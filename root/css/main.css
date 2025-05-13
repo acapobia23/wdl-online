@@ -1,0 +1,63 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body, h1, h2, h3, h4, h5, h6, p, a, button {
+    font-family: 'Poppins', sans-serif;
+    color: #555454;
+  }
+  
+  .banner {
+    background: url('../assets/img/headers/wdl-gohomes.webp') no-repeat center center;
+    background-size: cover;
+    background-position: center bottom;
+    width: 100%;
+    height: 250px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    border-radius: 0 0 4.2% 4.2%;
+  }
+  
+  .grid-item {
+    height: 100%; /* prende sempre tutta l'altezza disponibile dal .col */
+    min-height: 160px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border: 3px solid #3BD2C9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* centram. verticale */
+    text-align: center;
+    transition: transform 0.15s ease-out, background-color 0.15s ease-out;
+    touch-action: manipulation;
+    will-change: transform;
+  }
+  
+  
+  /* touch mobile */
+  .grid-item:active {
+    transform: scale(0.97);
+    background-color: #e6f9f8;
+  }
+  
+  .grid-item:hover {
+    transform: scale(1.03);
+  }
+  
+  .grid-item img {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 10px;
+  }
+  
+  .grid-item h2 {
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+  }
+  
