@@ -32,6 +32,15 @@
       font-weight: bold;
       color: #333;
     }
+    .bold-grey-list {
+      list-style-type: disc; /* opzionale: tipo di puntatore */
+      padding-left: 20px;    /* opzionale: spazio a sinistra */
+    }
+
+    .bold-grey-list li {
+      font-weight: bold;
+      color: #333;
+    }
     .empty-space {
       height: 20px;
     }
