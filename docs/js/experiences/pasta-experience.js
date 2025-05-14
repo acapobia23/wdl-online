@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // === GALLERY ===
   const galleryContainer = document.getElementById("gallery-container");
   if (galleryContainer) {
-    const imageFiles = ["01.jpeg","02.jpeg","04.jpeg","05.jpeg","06.jpeg","07.jpeg","08.jpeg","09.jpeg"]; //file name of pic
+    const imageFiles = ["01.jpg","02.jpeg","04.jpg","05.jpg"]; //file name of pic
     const basePath = "../../assets/img/boxes/experience/pasta_experience/"; //path pic
     const images = imageFiles.map(f => basePath + f);
 //cambiare alt name linea 14
