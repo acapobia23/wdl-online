@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // === GALLERY ===
   const galleryContainer = document.getElementById("gallery-container");
   if (galleryContainer) {
-    const imageFiles = ["01.jpeg","02.jpeg","03.jpeg","04.jpeg","05.jpeg","06.jpeg","07.jpeg","08.jpeg","09.jpeg"]; //file name of pic
+    const imageFiles = ["01.jpg","02.jpg","03.jpg","04.jpg"]; //file name of pic
     const basePath = "../../assets/img/boxes/experience/monaco-alfredo/"; //path pic
     const images = imageFiles.map(f => basePath + f);
 //cambiare alt name linea 14
@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <div></p></div>
         <input type="text" id="date-picker" placeholder="Select a date" readonly>
 
-        <input type="text" id="main-guest" placeholder="Name and Surname">
+        <input type="text" id="main-guest" placeholder="Name and Surname" required>
         <select id="guest-picker">
           ${[...Array(6)].map((_,i)=>
             `<option value="${i+1}">${i+1} Adult${i>0?'s':''}</option>`
@@ -114,10 +114,31 @@ document.addEventListener("DOMContentLoaded", () => {
   };
   
 
-    document.getElementById("booking-form")
-      .addEventListener("submit", e => { e.preventDefault(); sendMsg("whatsapp"); });
-    document.getElementById("submit-email")
-      .addEventListener("click", () => sendMsg("email"));
+// Gestione del bottone WhatsApp (submit del form)
+document.getElementById("booking-form")
+  .addEventListener("submit", e => {
+    e.preventDefault();
+    const form = e.target;
+
+    if (form.checkValidity()) {
+      sendMsg("whatsapp");
+    } else {
+      form.reportValidity(); // Mostra messaggi di errore dei campi
+    }
+  });
+
+// Gestione del bottone email (click separato)
+document.getElementById("submit-email")
+  .addEventListener("click", () => {
+    const form = document.getElementById("booking-form");
+
+    if (form.checkValidity()) {
+      sendMsg("email");
+    } else {
+      form.reportValidity(); // Mostra messaggi di errore dei campi
+    }
+  });
+
   }
 
   // === HEADER LOGO ===

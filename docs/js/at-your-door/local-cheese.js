@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <div></p></div>
         <input type="text" id="date-picker" placeholder="Select a date" readonly>
 
-        <input type="text" id="main-guest" placeholder="Name and Surname">
+        <input type="text" id="main-guest" placeholder="Name and Surname" required>
         <input type="email" id="email" placeholder="example@email.com">
         <input type="tel" id="phone" placeholder="+39 123 456 7890">
         <textarea id="optional-request" placeholder="Write here your chooses"></textarea>
@@ -101,10 +101,30 @@ document.addEventListener("DOMContentLoaded", () => {
   };
   
 
-    document.getElementById("booking-form")
-      .addEventListener("submit", e => { e.preventDefault(); sendMsg("whatsapp"); });
-    document.getElementById("submit-email")
-      .addEventListener("click", () => sendMsg("email"));
+// Gestione del bottone WhatsApp (submit del form)
+document.getElementById("booking-form")
+  .addEventListener("submit", e => {
+    e.preventDefault();
+    const form = e.target;
+
+    if (form.checkValidity()) {
+      sendMsg("whatsapp");
+    } else {
+      form.reportValidity(); // Mostra messaggi di errore dei campi
+    }
+  });
+
+// Gestione del bottone email (click separato)
+document.getElementById("submit-email")
+  .addEventListener("click", () => {
+    const form = document.getElementById("booking-form");
+
+    if (form.checkValidity()) {
+      sendMsg("email");
+    } else {
+      form.reportValidity(); // Mostra messaggi di errore dei campi
+    }
+  });
   }
 
   // === HEADER LOGO ===

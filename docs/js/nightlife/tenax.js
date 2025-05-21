@@ -54,6 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
       <form id="booking-form" class="booking-form" novalidate>
         <label class="bold-text" for="date-picker">Add info (optional) and chat!</label>
         <div></p></div>
+        <input type="text" id="main-guest" placeholder="Name and Surname" required>
         <select id="guest-picker">
           ${[...Array(6)].map((_,i)=>
             `<option value="${i+1}">${i+1} Adult${i>0?'s':''}</option>`
@@ -102,10 +103,31 @@ document.addEventListener("DOMContentLoaded", () => {
   };
   
 
-    document.getElementById("booking-form")
-      .addEventListener("submit", e => { e.preventDefault(); sendMsg("whatsapp"); });
-    document.getElementById("submit-email")
-      .addEventListener("click", () => sendMsg("email"));
+// Gestione del bottone WhatsApp (submit del form)
+document.getElementById("booking-form")
+  .addEventListener("submit", e => {
+    e.preventDefault();
+    const form = e.target;
+
+    if (form.checkValidity()) {
+      sendMsg("whatsapp");
+    } else {
+      form.reportValidity(); // Mostra messaggi di errore dei campi
+    }
+  });
+
+// Gestione del bottone email (click separato)
+document.getElementById("submit-email")
+  .addEventListener("click", () => {
+    const form = document.getElementById("booking-form");
+
+    if (form.checkValidity()) {
+      sendMsg("email");
+    } else {
+      form.reportValidity(); // Mostra messaggi di errore dei campi
+    }
+  });
+
   }
 
   // === HEADER LOGO ===
