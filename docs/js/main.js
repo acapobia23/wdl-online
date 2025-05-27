@@ -6,3 +6,10 @@ function toggleContent(id) {
     }
   }
   
+function handleCardClick(card) {
+  card.classList.toggle('flipped');
+  if (card.classList.contains('flipped')) {
+    setTimeout(() => card.classList.remove('flipped'), 10000); // ritorna dopo 5s
+  }
+}
+

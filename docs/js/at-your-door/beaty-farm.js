@@ -53,8 +53,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
       <form id="booking-form" class="booking-form" novalidate>
         <label class="bold-text" for="date-picker">Add info (optional) and chat!</label>
-        <div></p></div>
-        <input type="text" id="main-guest" placeholder="Name and Surname" required>
+        <div></p></div><p class="bold-gray">*mandatory field</p>
+        <input type="text" id="main-guest" placeholder="*Name and Surname" required>
         <input type="email" id="email" placeholder="example@email.com">
         <input type="tel" id="phone" placeholder="+39 123 456 7890">
         <textarea id="optional-request" placeholder="write here the selection"></textarea>
