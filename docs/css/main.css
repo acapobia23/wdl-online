@@ -38,6 +38,24 @@
     touch-action: manipulation;
     will-change: transform;
   }
+
+  .bott-grid-item {
+    height: 100%; /* prende sempre tutta l'altezza disponibile dal .col */
+    min-height: 50px;
+    background-color: #f9f9f9;
+    border-radius:  80px;
+    padding: 20px;
+    box-shadow: 0 8px 5px rgba(0, 0, 0, 0.1);
+    border: 3px solid #3BD2C9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* centram. verticale */
+    text-align: center;
+    transition: transform 0.15s ease-out, background-color 0.15s ease-out;
+    touch-action: manipulation;
+    will-change: transform;
+  }
   
   
   /* touch mobile */
@@ -98,7 +116,7 @@
 }
 
 .flip-card-back {
-  background-color: #e6f9f8;
+  background-color: #f9f9f9;
   transform: rotateY(180deg);
 }
 
