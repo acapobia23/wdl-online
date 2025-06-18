@@ -109,7 +109,7 @@ document.addEventListener("DOMContentLoaded", () => {
       window.open(`https://wa.me/393473119031?text=${encodeURIComponent(msg)}`, "_blank");
     } else {
       const mailMsg = encodeURIComponent(msg);
-      window.location.href = `mailto:francesco@wheredolocals.com?subject=WALKING TOUR EXPERIENCE&body=${mailMsg}`; //cambiare nome experience
+      wwindow.location.href = `mailto:francesco.deza.linares@gmail.com?subject=&body=${mailMsg}`; //cambiare nome experience
     }
   };
   
