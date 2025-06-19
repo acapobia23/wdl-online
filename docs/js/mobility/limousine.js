@@ -8,13 +8,11 @@ document.addEventListener("DOMContentLoaded", () => {
 //cambiare alt name linea 14
     galleryContainer.innerHTML = `
       <div class="gallery">
-        <button class="gallery-btn prev">&#10094;</button>
         <div class="gallery-track-container">
           <div class="gallery-track">
             ${images.map(src => `<div class="gallery-slide"><img src="${src}" alt="Pasta Experience" /></div>`).join('')}
           </div>
         </div>
-        <button class="gallery-btn next">&#10095;</button>
       </div>
     `;
 
