@@ -2,21 +2,21 @@ document.addEventListener("DOMContentLoaded", () => {
   // === GALLERY ===
   const galleryContainer = document.getElementById("gallery-container");
   if (galleryContainer) {
-    const imageFiles = ["01.jpg"]; //file name of pic
+    const imageFiles = ["01.jpg", "02.jpg", "03.jpg", "04.jpg"]; //file name of pic
     const basePath = "../../assets/img/boxes/experience/pasta_experience/cheflapo/"; //path pic
     const images = imageFiles.map(f => basePath + f);
 //cambiare alt name linea 14
-galleryContainer.innerHTML = `
-  <div class="gallery">
-    <button class="gallery-btn prev" style="display: none;">&#10094;</button>
-    <div class="gallery-track-container">
-      <div class="gallery-track">
-        ${images.map(src => `<div class="gallery-slide"><img src="${src}" alt="Pasta Experience" /></div>`).join('')}
+    galleryContainer.innerHTML = `
+      <div class="gallery">
+        <button class="gallery-btn prev">&#10094;</button>
+        <div class="gallery-track-container">
+          <div class="gallery-track">
+            ${images.map(src => `<div class="gallery-slide"><img src="${src}" alt="Pasta Experience" /></div>`).join('')}
+          </div>
+        </div>
+        <button class="gallery-btn next">&#10095;</button>
       </div>
-    </div>
-    <button class="gallery-btn next" style="display: none;">&#10095;</button>
-  </div>
-`;
+    `;
 
     const track = galleryContainer.querySelector('.gallery-track');
     const slides = galleryContainer.querySelectorAll('.gallery-slide');
