@@ -2,8 +2,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // === GALLERY ===
   const galleryContainer = document.getElementById("gallery-container");
   if (galleryContainer) {
-    const imageFiles = ["01.jpg","02.jpg"]; //file name of pic
-    const basePath = "../../assets/img/boxes/mobility/taxi/"; //path pic
+    const imageFiles = ["01.jpg","02.jpg","03.jpg"]; //file name of pic
+    const basePath = "../../assets/img/boxes/wellness/"; //path pic
     const images = imageFiles.map(f => basePath + f);
 //cambiare alt name linea 14
     galleryContainer.innerHTML = `
@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <button class="gallery-btn prev">&#10094;</button>
         <div class="gallery-track-container">
           <div class="gallery-track">
-            ${images.map(src => `<div class="gallery-slide"><img src="${src}" alt="Italian Taxi" /></div>`).join('')}
+            ${images.map(src => `<div class="gallery-slide"><img src="${src}" alt="Wellness" /></div>`).join('')}
           </div>
         </div>
         <button class="gallery-btn next">&#10095;</button>
