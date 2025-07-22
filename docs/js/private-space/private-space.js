@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <input type="text" id="date-picker" placeholder="Select a date" readonly>
         <select id="guest-picker">
           ${[...Array(8)].map((_,i)=>
-            // `<option value="${i+1}">${i+1} Guests${i>0?'s':''}</option>`
+            `<option value="${i+1}">${i+1} Guests${i>0?'s':''}</option>`
           ).join('')}
           <option value="more">More Guests</option>
         </select>
