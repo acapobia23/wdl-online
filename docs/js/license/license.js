@@ -2,8 +2,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // === GALLERY ===
   const galleryContainer = document.getElementById("gallery-container");
   if (galleryContainer) {
-    const imageFiles = ["01.jpg","02.jpg","03.jpeg","04.jpg","05.jpg","06.jpg"]; //file name of pic
-    const basePath = "../../assets/img/boxes/private-event-space/"; //path pic
+    const imageFiles = ["01.jpeg","02.jpeg","03.jpeg","04.jpeg","05.jpeg","06.jpeg","07.jpeg","08.jpeg","09.jpeg"]; //file name of pic
+    const basePath = "../../assets/img/boxes/experience/pasta_experience/"; //path pic
     const images = imageFiles.map(f => basePath + f);
 //cambiare alt name linea 14
     galleryContainer.innerHTML = `
@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <button class="gallery-btn prev">&#10094;</button>
         <div class="gallery-track-container">
           <div class="gallery-track">
-            ${images.map(src => `<div class="gallery-slide"><img src="${src}" alt="Private Event Space" /></div>`).join('')}
+            ${images.map(src => `<div class="gallery-slide"><img src="${src}" alt="Pasta Experience" /></div>`).join('')}
           </div>
         </div>
         <button class="gallery-btn next">&#10095;</button>
@@ -55,9 +55,26 @@ document.addEventListener("DOMContentLoaded", () => {
         <div><p></p></div><p class="bold-gray">*mandatory field</p> 
         <input type="text" id="main-guest" placeholder="*Name and Surname" required>
         <input type="text" id="date-picker" placeholder="Select a date" readonly>
+        <select id="guest-picker">
+          ${[...Array(6)].map((_,i)=>
+            `<option value="${i+1}">${i+1} Adult${i>0?'s':''}</option>`
+          ).join('')}
+        </select>
+        <select id="under-18">
+          <option value="0">No Minors</option>
+          ${[...Array(5)].map((_,i)=>
+            `<option value="${i+1}">${i+1} Minor${i>0?'s':''}</option>`
+          ).join('')}
+        </select>
         <input type="email" id="email" placeholder="example@email.com">
         <input type="tel" id="phone" placeholder="+39 123 456 7890">
         <textarea id="optional-request" placeholder="Optional Request"></textarea>
+        <label class="booking-checkbox">
+          <input type="checkbox" id="consent" required>
+          <span class="checkmark"></span>
+          <a href="#">Accetto i termini sulla gestione dei dati</a>
+        </label>
+        <p id="consent-error" class="error-text hidden">* Devi accettare per continuare</p>
         <button type="submit" class="check-btn">Send and chat via WhatsApp</button>
         <div><p></p></div>
         <button type="button" id="submit-email" class="check-btn">Send via email</button>
@@ -75,10 +92,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const sendMsg = method => {
     const val = id => document.getElementById(id)?.value.trim() || '';
     const lines = [
-      `Hello! I'd like to book "Private Event Space".`,
+      `Hello! I'd like to book "PASTA EXPERIENCE".`,
       ``,
       `📅 Date:  ${val("date-picker")}`,
       `👤 Name:  ${val("main-guest")}`,
+      `🧑‍🤝‍🧑 Adults: ${val("guest-picker")}`,
+      `👶 Minors: ${val("under-18")}`,
       `📧 Email: ${val("email")}`,
       `📞 Phone: ${val("phone")}`,
     ];
@@ -141,3 +160,71 @@ document.addEventListener("DOMContentLoaded", () => {
     lastY = y;
   });
 });
+
+/* === License JS link flaticon scomparsa === */
+
+document.addEventListener("DOMContentLoaded", function () {
+  const toggleBtn = document.getElementById("toggle-attribution");
+  const box = document.getElementById("attribution-box");
+  const source = document.getElementById("flaticon-links");
+  const arrowIcon = document.getElementById("arrow-icon");
+  const toggleText = document.getElementById("toggle-text");
+
+  toggleBtn.addEventListener("click", function () {
+  const isVisible = box.offsetParent !== null;
+
+    // Carico il contenuto solo la prima volta che mostro il box
+    if (!isVisible && box.innerHTML.trim() === "") {
+      box.innerHTML = source.innerHTML;
+    }
+
+    // Alterno visibilità del box
+    box.style.display = isVisible ? "none" : "block";
+
+    // Cambio testo del bottone in base allo stato
+    toggleText.textContent = isVisible
+      ? "Show icon credits"
+      : "Hide source links";
+
+    // Cambio la classe della freccia per ruotarla
+    arrowIcon.classList.remove("arrow-up", "arrow-down");
+    arrowIcon.classList.add(isVisible ? "arrow-down" : "arrow-up");
+  });
+});
+
+document.getElementById("booking-form").addEventListener("submit", function (e) {
+  const consent = document.getElementById("consent");
+  const error = document.getElementById("consent-error");
+
+  if (!consent.checked) {
+    e.preventDefault(); // blocca invio
+    error.classList.remove("hidden"); // mostra errore
+    consent.focus();
+  } else {
+    error.classList.add("hidden"); // nascondi errore se ok
+  }
+});
+
+
+// document.addEventListener("DOMContentLoaded", function () {
+//   const toggleBtn = document.getElementById("toggle-attribution");
+//   const box = document.getElementById("attribution-box");
+//   const source = document.getElementById("flaticon-links");
+
+//   toggleBtn.addEventListener("click", function () {
+//     const isVisible = box.style.display === "block";
+
+//     if (!isVisible) {
+//       // Se il box è vuoto, inserisco i link da #flaticon-links
+//       if (box.innerHTML.trim() === "") {
+//         box.innerHTML = source.innerHTML;
+//       }
+//     }
+
+//     box.style.display = isVisible ? "none" : "block";
+//     toggleBtn.textContent = isVisible
+//       ? "Mostra dettagli attribuzione"
+//       : "Nascondi dettagli attribuzione";
+//   });
+// });
+
