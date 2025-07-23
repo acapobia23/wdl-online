@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const sendMsg = method => {
     const val = id => document.getElementById(id)?.value.trim() || '';
     const lines = [
-      `Hello! I'd like to book "weekly tips".`,
+      `Hello! I'd like to book "Weekly Tips".`,
       ``,
       `👤 Name:  ${val("main-guest")}`,
       `📧 Email: ${val("email")}`,
