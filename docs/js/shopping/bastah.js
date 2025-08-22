@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // === GALLERY ===
   const galleryContainer = document.getElementById("gallery-container");
   if (galleryContainer) {
-    const imageFiles = ["00.png","01.jpg","02.jpg","03.jpg","04.jpg","05.jpg","06.jpg","07.jpg","08.jpg","09.jpg"]; //file name of pic
+    const imageFiles = ["00.png","01.jpg","02.jpg","03.jpg","04.jpg","05.jpg","06.jpg","08.jpg","09.jpg"]; //file name of pic
     const basePath = "../../assets/img/boxes/shopping/bastah/"; //path pic
     const images = imageFiles.map(f => basePath + f);
 //cambiare alt name linea 14
