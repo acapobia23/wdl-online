@@ -73,8 +73,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const sendMsg = method => {
     const val = id => document.getElementById(id)?.value.trim() || '';
+    const experience = document.querySelector(".section-title")?.innerText.trim() || document.title.trim() || "Unknown Experience";
+
+    gtag("event", "form_contact", {
+      method: method,
+      experience: experience
+    });
+    
     const lines = [
-      `Hello! I'd like to book "Weekly Tips".`,
+      `Hello! I'd like to book ${experience}.`,
       ``,
       `👤 Name:  ${val("main-guest")}`,
       `📧 Email: ${val("email")}`,

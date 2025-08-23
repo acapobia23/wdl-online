@@ -86,8 +86,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const sendMsg = method => {
     const val = id => document.getElementById(id)?.value.trim() || '';
+    const experience = document.querySelector(".section-title")?.innerText.trim() || document.title.trim() || "Unknown Experience";
+
+    gtag("event", "form_contact", {
+      method: method,
+      experience: experience
+    });
+    // "Live the Dolce Vita in Florence - eFiat 500 Tour"
     const lines = [
-      `Hello! I'd like to book "Live the Dolce Vita in Florence - eFiat 500 Tour".`,
+      `Hello! I'd like to book ${experience}.`,
       ``,
       `📅 Date:  ${val("date-picker")}`,
       `👤 Name:  ${val("main-guest")}`,
