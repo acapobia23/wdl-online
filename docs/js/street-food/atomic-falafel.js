@@ -118,7 +118,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const mailMsg = encodeURIComponent(msg);
         window.location.href = `mailto:wheredolocals@gmail.com?subject=&body=${mailMsg}`;
       }
-    }, 500);
+    }, 1000);
   };
   
 

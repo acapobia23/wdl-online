@@ -110,7 +110,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const mailMsg = encodeURIComponent(msg);
         window.location.href = `mailto:wheredolocals@gmail.com?subject=&body=${mailMsg}`;
       }
-    }, 500);
+    }, 1000);
   };
   
 // Gestione del bottone WhatsApp (submit del form)
