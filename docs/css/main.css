@@ -29,10 +29,10 @@
     left: 50%;
     transform: translateX(-50%) scale(1.15);
     opacity: 0;                           /* Inizialmente trasparente */
-    width: 500px;                         /* Dimensione finale  */
+    width: 420px;                         /* Dimensione finale  */
     height: auto;
     z-index: 10;
-    transition: all 0.8s ease-out;        /* durata */
+    transition: all 0.7s ease-out;        /* durata */
     will-change: transform, opacity;
   }
 
