@@ -10,7 +10,7 @@
   }
   
   .banner {
-    background: url('../assets/img/headers/wdl-onlylogo.jpg') no-repeat center center;
+    background: url('../assets/img/headers/header-1920x1080.jpeg') no-repeat center center;
     background-size: cover;
     background-position: center bottom;
     width: 100%;
@@ -19,8 +19,28 @@
     align-items: flex-end;
     justify-content: flex-start;
     border-radius: 0 0 4.2% 4.2%;
+    transform: translateZ(0); /* Forza l'accelerazione hardware */
+    position: relative;      /* Per posizionamento del logo */
   }
-  
+    
+  .logo-animation {                       /* Logo animato sopra il banner */
+    position: absolute;
+    top: 30%; 
+    left: 50%;
+    transform: translateX(-50%) scale(1.15);
+    opacity: 0;                           /* Inizialmente trasparente */
+    width: 500px;                         /* Dimensione finale  */
+    height: auto;
+    z-index: 10;
+    transition: all 0.8s ease-out;        /* durata */
+    will-change: transform, opacity;
+  }
+
+  .logo-animation.show {                  /* Stato finale del logo  */
+    transform: translateX(-50%) scale(1); /* Dimensione normale */
+    opacity: 1;                           /* Completamente visibile */
+  }
+
   .grid-item {
     height: 100%; /* prende sempre tutta l'altezza disponibile dal .col */
     min-height: 160px;

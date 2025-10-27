@@ -45,3 +45,15 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
+function animateLogo() { // Animazione logo WDL
+  const logo = document.getElementById('wdl-logo');
+  if (logo) {
+    setTimeout(() => {
+      logo.classList.add('show');
+    }, 300);
+  }
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  animateLogo();
+});
