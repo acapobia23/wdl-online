@@ -18,7 +18,7 @@
     display: flex;
     align-items: flex-end;
     justify-content: flex-start;
-    border-radius: 0 0 4.2% 4.2%;
+    border-radius: 0 0 24px 24px;
     transform: translateZ(0); /* Forza l'accelerazione hardware */
     position: relative;      /* Per posizionamento del logo */
   }
@@ -428,7 +428,7 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  margin: 85px 0 16px 0;
+  margin: 105px 0 16px 0;
   position: relative;
   z-index: 20;
 }
