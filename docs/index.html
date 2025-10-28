@@ -20,9 +20,20 @@
 <link rel="icon" href="assets/img/headers/cupola-logo.png" type="image/png">
 </head>
 <body>
-    <header class="banner">
+    <header class="banner" style="position:relative;">
       <img src="assets/img/svg/logoWDL.svg" alt="Where Do Locals Logo" class="logo-animation" id="wdl-logo" />
+      <div class="search-bar-container" style="position:absolute; left:50%; top:80px; transform:translateX(-50%); z-index:2000; width:100%; max-width:480px; display:flex; align-items:center;">
+        <span class="search-icon" style="position:absolute; left:24px; display:flex; align-items:center; height:100%; pointer-events:none; transform:scaleX(-1);">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="9" cy="9" r="7" stroke="#3BD2C9" stroke-width="2"/>
+            <line x1="14.4142" y1="14" x2="18" y2="17.5858" stroke="#3BD2C9" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <input type="text" id="search-bar" class="search-bar" placeholder=" Search services, experiences, food, events..." autocomplete="off" style="padding-left:48px;" />
+      </div>
     </header>
+    <div id="search-suggestions" class="search-suggestions d-none"></div>
+
   <main class="container py-4">
     <p>
       Discover handpicked <strong>local services</strong> and unique <strong>experiences</strong>, all at exclusive partner prices with our <strong>Best Price Guarantee</strong>.<br>
@@ -38,7 +49,6 @@
           </div>
         </a>
       </div>
-
       
       <div class="col-6 col-md-4">
         <a href="boxes/luggage-store/luggage-store.html" class="text-decoration-none text-dark">
