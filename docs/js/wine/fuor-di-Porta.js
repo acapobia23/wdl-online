@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
 <div class="expandable-form">
   <button type="button" class="btn-form" id="toggle-form">
     <span id="form-toggle-text">optional fields</span>
-    <img id="form-arrow" src="../../assets/img/icons/down-arrow.png" alt="Arrow" class="arrow-down" />
+    <img id="form-arrow" src="../../../assets/img/icons/down-arrow.png" alt="Arrow" class="arrow-down" />
   </button>
 
   <div id="optional-fields" class="optional-fields">
