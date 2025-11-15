@@ -122,3 +122,4 @@ experience → il nome dell’esperienza preso automaticamente
 method → "whatsapp" o "email"
 
 Non serve modificare il resto del JS, né creare parametri manuali per ogni pagina.
+
