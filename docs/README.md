@@ -79,7 +79,7 @@ Author(s): [Your Name or Team]
 **Comando per git per tutti i siti : Start Da Where Do Locals/**  
 
 
-cd generale/;git add .;git commit -m "update";git push;cd ../palazzo-nave/;git add .;git commit -m "update";git push;cd ../velonis/;git add .;git commit -m "update";git push;cd ../
+cd generale/;git add .;git commit -m "small modifiche varie pag";git push;cd ../palazzo-nave/;git add .;git commit -m "small modifiche varie pag";git push;cd ../velonas-jungle/;git add .;git commit -m "small modifiche varie pag";git push;cd ../../
 
 ---
 
@@ -122,3 +122,4 @@ experience → il nome dell’esperienza preso automaticamente
 method → "whatsapp" o "email"
 
 Non serve modificare il resto del JS, né creare parametri manuali per ogni pagina.
+

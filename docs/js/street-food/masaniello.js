@@ -2,8 +2,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // === GALLERY ===
   const galleryContainer = document.getElementById("gallery-container");
   if (galleryContainer) {
-    const imageFiles = ["01.jpg","02.jpg","03.jpg","04.jpg"]; //file name of pic
-    const basePath = "../../assets/img/boxes/shopping/monaco-alfredo/"; //path pic
+    const imageFiles = ["02.jpg","01.jpg","03.jpg", "04.jpg","05.jpg","06.jpg","07.jpg","08.jpg", "09.jpg","10.jpg"]; //file name of pic
+    const basePath = "../../assets/img/boxes//street-food/masaniello/"; //path pic
     const images = imageFiles.map(f => basePath + f);
 //cambiare alt name linea 14
     galleryContainer.innerHTML = `
@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <button class="gallery-btn prev">&#10094;</button>
         <div class="gallery-track-container">
           <div class="gallery-track">
-            ${images.map(src => `<div class="gallery-slide"><img src="${src}" alt="Le Firme Di Monaco Alfredo" /></div>`).join('')}
+            ${images.map(src => `<div class="gallery-slide"><img src="${src}" alt="Wine tast" /></div>`).join('')}
           </div>
         </div>
         <button class="gallery-btn next">&#10095;</button>
@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <input type="text" id="date-picker" placeholder="Select a date" readonly>
         <input type="email" id="email" placeholder="example@email.com">
         <input type="tel" id="phone" placeholder="+39 123 456 7890">
-        <textarea id="optional-request" placeholder="Optional Request"></textarea>
+        <textarea id="optional-request" placeholder="Write here your chooses"></textarea>
       </div>
     </div>
     <br>
@@ -163,7 +163,6 @@ document.getElementById("submit-email")
       form.reportValidity(); // Mostra messaggi di errore dei campi
     }
   });
-
   }
 
   // === HEADER LOGO ===
@@ -180,4 +179,65 @@ document.getElementById("submit-email")
     }
     lastY = y;
   });
+});
+
+/* === License JS link flaticon scomparsa === */
+
+document.addEventListener("DOMContentLoaded", function () {
+  // === WINE MENU TOGGLE ===
+  const menuToggleBtn = document.querySelector('button .license-btn') || document.querySelector('.license-btn');
+  const menuBox = document.getElementById("content-menu");
+  const menuArrow = document.getElementById("arrow-menu");
+  const menuToggleText = document.getElementById("toggle-text-menu");
+
+  if (menuToggleBtn && menuBox && menuArrow && menuToggleText) {
+    menuToggleBtn.addEventListener("click", function () {
+      const isVisible = menuBox.offsetParent !== null;
+
+      // Alterno visibilità del box
+      menuBox.style.display = isVisible ? "none" : "block";
+
+      // Cambio testo del bottone in base allo stato
+      if (!menuToggleText.dataset.original) {
+        menuToggleText.dataset.original = menuToggleText.textContent;
+      }
+      menuToggleText.textContent = isVisible 
+        ? menuToggleText.dataset.original 
+        : "Hide Wine Menu";
+
+      // Cambio la classe della freccia per ruotarla
+      menuArrow.classList.remove("arrow-up", "arrow-down");
+      menuArrow.classList.add(isVisible ? "arrow-down" : "arrow-up");
+    });
+  }
+
+  // === ATTRIBUTION TOGGLE (originale) ===
+  const toggleBtn = document.getElementById("toggle-attribution");
+  const box = document.getElementById("attribution-box");
+  const source = document.getElementById("flaticon-links");
+  const arrowIcon = document.getElementById("arrow-icon");
+  const toggleText = document.getElementById("toggle-text");
+
+  if (toggleBtn && box && source && arrowIcon && toggleText) {
+    toggleBtn.addEventListener("click", function () {
+      const isVisible = box.offsetParent !== null;
+
+      // Carico il contenuto solo la prima volta che mostro il box
+      if (!isVisible && box.innerHTML.trim() === "") {
+        box.innerHTML = source.innerHTML;
+      }
+
+      // Alterno visibilità del box
+      box.style.display = isVisible ? "none" : "block";
+
+      // Cambio testo del bottone in base allo stato
+      toggleText.textContent = isVisible
+        ? "Show icon credits"
+        : "Hide source links";
+
+      // Cambio la classe della freccia per ruotarla
+      arrowIcon.classList.remove("arrow-up", "arrow-down");
+      arrowIcon.classList.add(isVisible ? "arrow-down" : "arrow-up");
+    });
+  }
 });

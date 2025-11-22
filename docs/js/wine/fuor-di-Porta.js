@@ -2,8 +2,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // === GALLERY ===
   const galleryContainer = document.getElementById("gallery-container");
   if (galleryContainer) {
-    const imageFiles = ["01.jpg","02.jpg","03.jpg","04.jpg"]; //file name of pic
-    const basePath = "../../assets/img/boxes/shopping/monaco-alfredo/"; //path pic
+    const imageFiles = ["02.jpg","01.jpg","03.jpg", "04.jpg","05.jpg"]; //file name of pic
+    const basePath = "../../../assets/img/boxes/wine/fill-bottle/fuor-di-porta/"; //path pic
     const images = imageFiles.map(f => basePath + f);
 //cambiare alt name linea 14
     galleryContainer.innerHTML = `
@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <button class="gallery-btn prev">&#10094;</button>
         <div class="gallery-track-container">
           <div class="gallery-track">
-            ${images.map(src => `<div class="gallery-slide"><img src="${src}" alt="Le Firme Di Monaco Alfredo" /></div>`).join('')}
+            ${images.map(src => `<div class="gallery-slide"><img src="${src}" alt="Wine taste" /></div>`).join('')}
           </div>
         </div>
         <button class="gallery-btn next">&#10095;</button>
@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       <form id="booking-form" class="booking-form" novalidate>
         <label class="bold-text" for="date-picker">Add info and chat!</label>
-        <div><p></p></div><p class="bold-gray">*mandatory field</p>
+        <div><p></p></div><p class="bold-gray">*mandatory field</p>  
       <input type="text" id="main-guest" placeholder="*Name and Surname" required>
   <input type="text" id="host" placeholder="*Who did you book your stay with?" required>
   
@@ -61,11 +61,21 @@ document.addEventListener("DOMContentLoaded", () => {
 <div class="expandable-form">
   <button type="button" class="btn-form" id="toggle-form">
     <span id="form-toggle-text">optional fields</span>
-    <img id="form-arrow" src="../../assets/img/icons/down-arrow.png" alt="Arrow" class="arrow-down" />
+    <img id="form-arrow" src="../../../assets/img/icons/down-arrow.png" alt="Arrow" class="arrow-down" />
   </button>
 
   <div id="optional-fields" class="optional-fields">
-        <input type="text" id="date-picker" placeholder="Select a date" readonly>
+        <select id="guest-picker">
+          ${[...Array(6)].map((_,i)=>
+            `<option value="${i+1}">${i+1} Adult${i>0?'s':''}</option>`
+          ).join('')}
+        </select>
+        <select id="under-18">
+          <option value="0">No Minors</option>
+          ${[...Array(5)].map((_,i)=>
+            `<option value="${i+1}">${i+1} Minor${i>0?'s':''}</option>`
+          ).join('')}
+        </select>
         <input type="email" id="email" placeholder="example@email.com">
         <input type="tel" id="phone" placeholder="+39 123 456 7890">
         <textarea id="optional-request" placeholder="Optional Request"></textarea>
@@ -115,6 +125,8 @@ document.querySelector('.btn-form').addEventListener('click', () => {
       `📅 Date:  ${val("date-picker")}`,
     `👤 Name:  ${val("main-guest")}`,
     `🏠 Host:  ${val("host")}`,
+      `🧑‍🤝‍🧑 Adults: ${val("guest-picker")}`,
+      `👶 Minors: ${val("under-18")}`,
       `📧 Email: ${val("email")}`,
       `📞 Phone: ${val("phone")}`,
     ];
@@ -139,31 +151,30 @@ document.querySelector('.btn-form').addEventListener('click', () => {
   };
   
 
-// Gestione del bottone WhatsApp (submit del form)
-document.getElementById("booking-form")
-  .addEventListener("submit", e => {
-    e.preventDefault();
-    const form = e.target;
+  // Gestione del bottone WhatsApp (submit del form)
+  document.getElementById("booking-form")
+    .addEventListener("submit", e => {
+      e.preventDefault();
+      const form = e.target;
 
-    if (form.checkValidity()) {
-      sendMsg("whatsapp");
-    } else {
-      form.reportValidity(); // Mostra messaggi di errore dei campi
-    }
-  });
+      if (form.checkValidity()) {
+        sendMsg("whatsapp");
+      } else {
+        form.reportValidity(); // Mostra messaggi di errore dei campi
+      }
+    });
 
-// Gestione del bottone email (click separato)
-document.getElementById("submit-email")
-  .addEventListener("click", () => {
-    const form = document.getElementById("booking-form");
+  // Gestione del bottone email (click separato)
+  document.getElementById("submit-email")
+    .addEventListener("click", () => {
+      const form = document.getElementById("booking-form");
 
-    if (form.checkValidity()) {
-      sendMsg("email");
-    } else {
-      form.reportValidity(); // Mostra messaggi di errore dei campi
-    }
-  });
-
+      if (form.checkValidity()) {
+        sendMsg("email");
+      } else {
+        form.reportValidity(); // Mostra messaggi di errore dei campi
+      }
+    });
   }
 
   // === HEADER LOGO ===
@@ -180,4 +191,65 @@ document.getElementById("submit-email")
     }
     lastY = y;
   });
+});
+
+/* === License JS link flaticon scomparsa === */
+
+document.addEventListener("DOMContentLoaded", function () {
+  // === WINE MENU TOGGLE ===
+  const menuToggleBtn = document.querySelector('button .license-btn') || document.querySelector('.license-btn');
+  const menuBox = document.getElementById("content-menu");
+  const menuArrow = document.getElementById("arrow-menu");
+  const menuToggleText = document.getElementById("toggle-text-menu");
+
+  if (menuToggleBtn && menuBox && menuArrow && menuToggleText) {
+    menuToggleBtn.addEventListener("click", function () {
+      const isVisible = menuBox.offsetParent !== null;
+
+      // Alterno visibilità del box
+      menuBox.style.display = isVisible ? "none" : "block";
+
+      // Cambio testo del bottone in base allo stato
+      if (!menuToggleText.dataset.original) {
+        menuToggleText.dataset.original = menuToggleText.textContent;
+      }
+      menuToggleText.textContent = isVisible 
+        ? menuToggleText.dataset.original 
+        : "Hide Wine Menu";
+
+      // Cambio la classe della freccia per ruotarla
+      menuArrow.classList.remove("arrow-up", "arrow-down");
+      menuArrow.classList.add(isVisible ? "arrow-down" : "arrow-up");
+    });
+  }
+
+  // === ATTRIBUTION TOGGLE (originale) ===
+  const toggleBtn = document.getElementById("toggle-attribution");
+  const box = document.getElementById("attribution-box");
+  const source = document.getElementById("flaticon-links");
+  const arrowIcon = document.getElementById("arrow-icon");
+  const toggleText = document.getElementById("toggle-text");
+
+  if (toggleBtn && box && source && arrowIcon && toggleText) {
+    toggleBtn.addEventListener("click", function () {
+      const isVisible = box.offsetParent !== null;
+
+      // Carico il contenuto solo la prima volta che mostro il box
+      if (!isVisible && box.innerHTML.trim() === "") {
+        box.innerHTML = source.innerHTML;
+      }
+
+      // Alterno visibilità del box
+      box.style.display = isVisible ? "none" : "block";
+
+      // Cambio testo del bottone in base allo stato
+      toggleText.textContent = isVisible
+        ? "Show icon credits"
+        : "Hide source links";
+
+      // Cambio la classe della freccia per ruotarla
+      arrowIcon.classList.remove("arrow-up", "arrow-down");
+      arrowIcon.classList.add(isVisible ? "arrow-down" : "arrow-up");
+    });
+  }
 });

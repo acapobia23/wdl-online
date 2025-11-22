@@ -2,8 +2,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // === GALLERY ===
   const galleryContainer = document.getElementById("gallery-container");
   if (galleryContainer) {
-    const imageFiles = ["01.jpg","02.jpg","03.jpg","04.jpg"]; //file name of pic
-    const basePath = "../../assets/img/boxes/shopping/monaco-alfredo/"; //path pic
+    const imageFiles = ["01.jpeg","02.jpeg","03.jpeg","04.jpeg","05.jpeg","06.jpeg","07.jpeg","08.jpeg","09.jpeg","10.jpeg","11.jpeg","12.jpeg","13.jpeg","14.jpeg"]; //file name of pic
+    const basePath = "../../assets/img/boxes/street-food/local-cheese/"; //path pic
     const images = imageFiles.map(f => basePath + f);
 //cambiare alt name linea 14
     galleryContainer.innerHTML = `
@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <button class="gallery-btn prev">&#10094;</button>
         <div class="gallery-track-container">
           <div class="gallery-track">
-            ${images.map(src => `<div class="gallery-slide"><img src="${src}" alt="Le Firme Di Monaco Alfredo" /></div>`).join('')}
+            ${images.map(src => `<div class="gallery-slide"><img src="${src}" alt="local-cheese" /></div>`).join('')}
           </div>
         </div>
         <button class="gallery-btn next">&#10095;</button>
@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <input type="text" id="date-picker" placeholder="Select a date" readonly>
         <input type="email" id="email" placeholder="example@email.com">
         <input type="tel" id="phone" placeholder="+39 123 456 7890">
-        <textarea id="optional-request" placeholder="Optional Request"></textarea>
+        <textarea id="optional-request" placeholder="Write here your chooses"></textarea>
       </div>
     </div>
     <br>
@@ -163,7 +163,6 @@ document.getElementById("submit-email")
       form.reportValidity(); // Mostra messaggi di errore dei campi
     }
   });
-
   }
 
   // === HEADER LOGO ===
