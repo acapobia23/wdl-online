@@ -134,28 +134,21 @@ document.querySelectorAll('.carousel').forEach(carousel => {
   
   window.addEventListener('resize', () => updateCarousel(false));
 
-  // Swipe touch
+  // Swipe touch - Ottimizzato per Safari iOS
   let startX = null;
   let startY = null;
   let isDragging = false;
-  let startTime = null;
-  let touchTimeout = null;
+  let swipeTriggered = false;
   
   track.addEventListener('touchstart', e => {
     startX = e.touches[0].clientX;
     startY = e.touches[0].clientY;
     isDragging = false;
-    startTime = Date.now();
-    
-    // Clear any existing timeout
-    if (touchTimeout) {
-      clearTimeout(touchTimeout);
-      touchTimeout = null;
-    }
-  });
+    swipeTriggered = false;
+  }, { passive: true });
   
   track.addEventListener('touchmove', e => {
-    if (startX === null || startY === null) return;
+    if (startX === null || startY === null || swipeTriggered) return;
     
     const currentX = e.touches[0].clientX;
     const currentY = e.touches[0].clientY;
@@ -165,33 +158,39 @@ document.querySelectorAll('.carousel').forEach(carousel => {
     // Solo se il movimento orizzontale è chiaramente maggiore di quello verticale
     if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 15) {
       isDragging = true;
-      // Solo previeni se siamo sicuri che è un gesto orizzontale
-      if (e.cancelable) {
-        e.preventDefault();
-      }
-      
-      if (Math.abs(dx) > 60) {
-        if (dx < 0) current++;
-        if (dx > 0) current--;
-        updateCarousel();
-        startX = null;
-        startY = null;
-      }
     }
-  });
+  }, { passive: true });
   
   track.addEventListener('touchend', e => {
-    // Reset variables
+    if (startX === null || startY === null || swipeTriggered) {
+      // Reset completo
+      startX = null;
+      startY = null;
+      isDragging = false;
+      swipeTriggered = false;
+      return;
+    }
+    
+    // Calcola il movimento finale solo su touchend
+    const currentX = e.changedTouches[0].clientX;
+    const currentY = e.changedTouches[0].clientY;
+    const dx = currentX - startX;
+    const dy = currentY - startY;
+    
+    // Verifica se è un swipe orizzontale valido
+    if (isDragging && Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 40) {
+      swipeTriggered = true;
+      if (dx < 0) current++;
+      if (dx > 0) current--;
+      updateCarousel();
+    }
+    
+    // Reset sempre alla fine
     startX = null;
     startY = null;
     isDragging = false;
-    
-    // Clear any existing timeout
-    if (touchTimeout) {
-      clearTimeout(touchTimeout);
-      touchTimeout = null;
-    }
-  });
+    swipeTriggered = false;
+  }, { passive: true });
   
   // Fallback per resettare le variabili in caso di eventi persi
   track.addEventListener('touchcancel', e => {
