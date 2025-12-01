@@ -2,19 +2,52 @@
 // Gestisce lo scroll orizzontale senza interferire con quello verticale
 
 document.addEventListener('DOMContentLoaded', function() {
+    // Ritardo per permettere al CSS dinamico di stabilizzarsi su Safari iOS
+    setTimeout(() => {
+        initializeCarouselTouch();
+    }, 100);
+});
+
+function initializeCarouselTouch() {
     const carousels = document.querySelectorAll('.carousel-track');
     
-    // Variabile globale per tracciare se un'animazione è in corso
-    let isCarouselAnimating = false;
+    // Rilevamento Safari iOS
+    const isSafariIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && 
+                       /Safari/.test(navigator.userAgent) && 
+                       !/Chrome|CriOS|FxiOS/.test(navigator.userAgent);
     
+    // Gestione globale delle animazioni (fix per listener duplicati)
+    let globalListenersAdded = false;
+    const globalCarouselAnimating = new Set(); // Traccia caroselli multipli
+    
+    // Aggiungi listener globali solo una volta per evitare duplicati
+    if (!globalListenersAdded) {
+        document.addEventListener('touchmove', function(e) {
+            if (globalCarouselAnimating.size > 0) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+        }, { passive: false });
+        
+        document.addEventListener('wheel', function(e) {
+            if (globalCarouselAnimating.size > 0) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+        }, { passive: false });
+        
+        globalListenersAdded = true;
+    }
+
     carousels.forEach(carousel => {
         let startX = null;
         let startY = null;
         let isDragging = false;
         let isHorizontalScroll = false;
         
-        const THRESHOLD = 10; // Soglia minima di movimento in pixel (ridotta per essere più reattivi)
-        const MAX_ANGLE_DEGREES = 45; // Massimo angolo permesso per considerare movimento orizzontale (45° = movimento diagonale incluso)
+        // Soglie adattate per Safari iOS
+        const THRESHOLD = isSafariIOS ? 15 : 10; // Soglia più alta per Safari iOS
+        const MAX_ANGLE_DEGREES = isSafariIOS ? 35 : 45; // Più restrittivo per Safari iOS
         
         // Funzione per calcolare l'angolo del movimento
         function getMovementAngle(deltaX, deltaY) {
@@ -23,28 +56,14 @@ document.addEventListener('DOMContentLoaded', function() {
             return Math.min(angleDeg, 180 - angleDeg); // Normalizza tra 0-90°
         }
         
-        // Monitora l'inizio delle animazioni del carosello
+        // Monitora animazioni per questo specifico carosello
         carousel.addEventListener('transitionstart', function() {
-            isCarouselAnimating = true;
+            globalCarouselAnimating.add(carousel);
         });
         
-        // Monitora la fine delle animazioni del carosello
         carousel.addEventListener('transitionend', function() {
-            isCarouselAnimating = false;
+            globalCarouselAnimating.delete(carousel);
         });
-        
-        // Intercetta gli eventi di scroll globali durante l'animazione
-        const preventVerticalScrollDuringAnimation = function(e) {
-            if (isCarouselAnimating) {
-                e.preventDefault();
-                e.stopPropagation();
-                return false;
-            }
-        };
-        
-        // Applica la prevenzione dello scroll durante l'animazione
-        document.addEventListener('touchmove', preventVerticalScrollDuringAnimation, { passive: false });
-        document.addEventListener('wheel', preventVerticalScrollDuringAnimation, { passive: false });
         
         carousel.addEventListener('touchstart', function(e) {
             startX = e.touches[0].clientX;
@@ -53,64 +72,91 @@ document.addEventListener('DOMContentLoaded', function() {
             isHorizontalScroll = false;
         }, { passive: true });
         
-        carousel.addEventListener('touchmove', function(e) {
-            // Se c'è un'animazione in corso, blocca tutto
-            if (isCarouselAnimating) {
-                e.preventDefault();
-                return;
-            }
-            
-            if (!startX || !startY) return;
-            
-            const currentX = e.touches[0].clientX;
-            const currentY = e.touches[0].clientY;
-            
-            const deltaX = Math.abs(currentX - startX);
-            const deltaY = Math.abs(currentY - startY);
-            
-            // Calcola l'angolo del movimento
-            const movementAngle = getMovementAngle(deltaX, deltaY);
-            
-            // Determina la direzione usando l'angolo
-            if (!isDragging && (deltaX > 5 || deltaY > 5)) {
-                if (movementAngle <= MAX_ANGLE_DEGREES) {
-                    // Movimento orizzontale o diagonale (≤45°)
+        // Logica touch differenziata per Safari iOS
+        if (isSafariIOS) {
+            // Safari iOS: logica semplificata e più permissiva
+            carousel.addEventListener('touchmove', function(e) {
+                // Se c'è un'animazione in corso, blocca tutto
+                if (globalCarouselAnimating.has(carousel)) {
+                    e.preventDefault();
+                    return;
+                }
+                
+                if (!startX || !startY) return;
+                
+                const currentX = e.touches[0].clientX;
+                const currentY = e.touches[0].clientY;
+                const deltaX = Math.abs(currentX - startX);
+                const deltaY = Math.abs(currentY - startY);
+                
+                // Safari iOS: logica più semplice e restrittiva
+                if (deltaX > THRESHOLD && deltaX > deltaY * 1.5) {
                     isHorizontalScroll = true;
                     isDragging = true;
-                } else if (movementAngle >= (90 - MAX_ANGLE_DEGREES)) {
-                    // Movimento molto verticale (≥45°)
-                    isHorizontalScroll = false;
-                    isDragging = true;
+                    e.preventDefault(); // Blocca scroll verticale solo se chiaramente orizzontale
                 }
-            }
-            
-            // Solo se abbiamo superato la soglia principale per confermare
-            if (deltaX > THRESHOLD || deltaY > THRESHOLD) {
-                if (!isDragging) {
-                    // Fallback con soglia più restrittiva
-                    if (deltaX > deltaY * 2) { // Deve essere almeno 2x più orizzontale
+            }, { passive: false });
+        } else {
+            // Altri browser: logica completa esistente
+            carousel.addEventListener('touchmove', function(e) {
+                // Se c'è un'animazione in corso, blocca tutto
+                if (globalCarouselAnimating.has(carousel)) {
+                    e.preventDefault();
+                    return;
+                }
+                
+                if (!startX || !startY) return;
+                
+                const currentX = e.touches[0].clientX;
+                const currentY = e.touches[0].clientY;
+                
+                const deltaX = Math.abs(currentX - startX);
+                const deltaY = Math.abs(currentY - startY);
+                
+                // Calcola l'angolo del movimento
+                const movementAngle = getMovementAngle(deltaX, deltaY);
+                
+                // Determina la direzione usando l'angolo
+                if (!isDragging && (deltaX > 5 || deltaY > 5)) {
+                    if (movementAngle <= MAX_ANGLE_DEGREES) {
+                        // Movimento orizzontale o diagonale (≤45°)
                         isHorizontalScroll = true;
                         isDragging = true;
-                    } else if (deltaY > deltaX * 2) { // Deve essere almeno 2x più verticale
+                    } else if (movementAngle >= (90 - MAX_ANGLE_DEGREES)) {
+                        // Movimento molto verticale (≥45°)
                         isHorizontalScroll = false;
                         isDragging = true;
                     }
-                    // Se non è chiaramente orizzontale o verticale, non fare nulla (zona grigia)
                 }
                 
-                // Se è scroll orizzontale, previeni lo scroll verticale
-                if (isHorizontalScroll) {
+                // Solo se abbiamo superato la soglia principale per confermare
+                if (deltaX > THRESHOLD || deltaY > THRESHOLD) {
+                    if (!isDragging) {
+                        // Fallback con soglia più restrittiva
+                        if (deltaX > deltaY * 2) { // Deve essere almeno 2x più orizzontale
+                            isHorizontalScroll = true;
+                            isDragging = true;
+                        } else if (deltaY > deltaX * 2) { // Deve essere almeno 2x più verticale
+                            isHorizontalScroll = false;
+                            isDragging = true;
+                        }
+                        // Se non è chiaramente orizzontale o verticale, non fare nulla (zona grigia)
+                    }
+                    
+                    // Se è scroll orizzontale, previeni lo scroll verticale
+                    if (isHorizontalScroll) {
+                        if (e.cancelable) {
+                            e.preventDefault();
+                        }
+                    }
+                } else if (isHorizontalScroll && isDragging) {
+                    // Continua a prevenire anche per movimenti piccoli se abbiamo già determinato la direzione
                     if (e.cancelable) {
                         e.preventDefault();
                     }
                 }
-            } else if (isHorizontalScroll && isDragging) {
-                // Continua a prevenire anche per movimenti piccoli se abbiamo già determinato la direzione
-                if (e.cancelable) {
-                    e.preventDefault();
-                }
-            }
-        }, { passive: false });
+            }, { passive: false });
+        }
         
         carousel.addEventListener('touchend', function(e) {
             // Reset delle variabili
@@ -176,24 +222,6 @@ document.addEventListener('DOMContentLoaded', function() {
             isPointerHorizontalScroll = false;
         });
     });
-});
-
-// Funzione di utilità per debug (opzionale)
-function debugCarouselTouch(enable = false) {
-    if (!enable) return;
-    
-    document.addEventListener('touchstart', function(e) {
-        if (e.target.closest('.carousel-track')) {
-            console.log('Touch start su carousel');
-        }
-    });
-    
-    document.addEventListener('touchmove', function(e) {
-        if (e.target.closest('.carousel-track')) {
-            console.log('Touch move su carousel - prevented:', e.defaultPrevented);
-        }
-    });
 }
 
-// Per abilitare il debug, decommentare la riga seguente:
-// debugCarouselTouch(true);
+
