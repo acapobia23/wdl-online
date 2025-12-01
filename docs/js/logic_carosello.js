@@ -12,7 +12,7 @@ document.querySelectorAll('.carousel').forEach(carousel => {
   track.appendChild(firstClone);
 
   const cards = Array.from(track.querySelectorAll('.carousel-card'));
-  let current = 2; // card centrale reale (indice relativo ai cloni)
+  let current = 1; // inizia dalla prima card reale (puntino più a sinistra evidenziato)
 
   // Crea gli indicatori a puntini
   const dotsContainer = document.createElement('div');
@@ -228,15 +228,15 @@ document.querySelectorAll('.carousel').forEach(carousel => {
   const imgs = track.querySelectorAll('img');
   let loaded = 0;
   if (imgs.length === 0) {
-    jumpTo(2);
+    jumpTo(1);
   } else {
     imgs.forEach(img => {
       if (img.complete) loaded++;
       else img.addEventListener('load', () => {
         loaded++;
-        if (loaded === imgs.length) jumpTo(2);
+        if (loaded === imgs.length) jumpTo(1);
       });
     });
-    if (loaded === imgs.length) jumpTo(2);
+    if (loaded === imgs.length) jumpTo(1);
   }
 }); 
