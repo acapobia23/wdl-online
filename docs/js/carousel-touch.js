@@ -40,10 +40,56 @@ function initializeCarouselTouch() {
         if (isSafariIOS) {
             let safariScrollBackupTimer = null;
             
-            document.addEventListener('touchstart', function() {
+            document.addEventListener('touchstart', function(e) {
                 // Reset del timer di backup ogni volta che l'utente tocca
                 if (safariScrollBackupTimer) {
                     clearTimeout(safariScrollBackupTimer);
+                }
+                
+                // Controlla se il tocco è fuori dalle aree dei caroselli
+                const touchedCarousel = e.target.closest('.carousel-track');
+                if (!touchedCarousel) {
+                    // Tocco fuori dai caroselli: riattiva immediatamente lo scroll verticale
+                    document.body.style.overflow = '';
+                    document.documentElement.style.overflow = '';
+                    document.body.style.webkitOverflowScrolling = 'touch';
+                    
+                    // Trigger evento per "risvegliare" Safari iOS
+                    setTimeout(() => {
+                        window.dispatchEvent(new Event('scroll', { bubbles: true }));
+                    }, 10);
+                } else {
+                    // Tocco su carosello: controlla se è fuori dall'area delle card
+                    const carouselCards = touchedCarousel.querySelectorAll('.carousel-card');
+                    let touchedCard = false;
+                    
+                    carouselCards.forEach(card => {
+                        const rect = card.getBoundingClientRect();
+                        const touch = e.touches[0];
+                        
+                        // Box invisibile leggermente più piccolo della card (5% di margine)
+                        const margin = Math.min(rect.width, rect.height) * 0.05;
+                        const adjustedRect = {
+                            left: rect.left + margin,
+                            right: rect.right - margin,
+                            top: rect.top + margin,
+                            bottom: rect.bottom - margin
+                        };
+                        
+                        if (touch.clientX >= adjustedRect.left && 
+                            touch.clientX <= adjustedRect.right &&
+                            touch.clientY >= adjustedRect.top && 
+                            touch.clientY <= adjustedRect.bottom) {
+                            touchedCard = true;
+                        }
+                    });
+                    
+                    if (!touchedCard) {
+                        // Tocco nel carosello ma fuori dalle card: riattiva scroll verticale
+                        document.body.style.overflow = '';
+                        document.documentElement.style.overflow = '';
+                        document.body.style.webkitOverflowScrolling = 'touch';
+                    }
                 }
                 
                 // Backup: ripristina lo scroll dopo 2 secondi di inattività
@@ -56,6 +102,77 @@ function initializeCarouselTouch() {
                 }, 2000);
             }, { passive: true });
         }
+        
+        // Funzione helper per controllare se un punto è dentro l'area rilevante di una card
+        function isPointInCardArea(x, y, card) {
+            const rect = card.getBoundingClientRect();
+            const margin = 8; // 8px di margine per box più piccolo
+            
+            const adjustedRect = {
+                left: rect.left + margin,
+                right: rect.right - margin,
+                top: rect.top + margin,
+                bottom: rect.bottom - margin
+            };
+            
+            return x >= adjustedRect.left && x <= adjustedRect.right &&
+                   y >= adjustedRect.top && y <= adjustedRect.bottom;
+        }
+        
+        // Funzione helper per forzare il ripristino dello scroll
+        function forceScrollRestore() {
+            setTimeout(() => {
+                document.body.style.overflow = '';
+                document.documentElement.style.overflow = '';
+                if (isSafariIOS) {
+                    document.body.style.webkitOverflowScrolling = 'touch';
+                    window.dispatchEvent(new Event('scroll', { bubbles: true }));
+                }
+            }, 5);
+        }
+        
+        // Listener per touch events
+        document.addEventListener('touchstart', function(e) {
+            const touchedCarousel = e.target.closest('.carousel-track');
+            
+            if (touchedCarousel) {
+                const carouselCards = touchedCarousel.querySelectorAll('.carousel-card');
+                const touch = e.touches[0];
+                let isOnCard = false;
+                
+                carouselCards.forEach(card => {
+                    if (isPointInCardArea(touch.clientX, touch.clientY, card)) {
+                        isOnCard = true;
+                    }
+                });
+                
+                // Se tocca nel carosello ma non su una card, forza il ripristino
+                if (!isOnCard) {
+                    forceScrollRestore();
+                }
+            }
+        }, { passive: true });
+        
+        // Listener per mouse events (desktop)
+        document.addEventListener('mousedown', function(e) {
+            const clickedCarousel = e.target.closest('.carousel-track');
+            
+            if (clickedCarousel) {
+                const carouselCards = clickedCarousel.querySelectorAll('.carousel-card');
+                let isOnCard = false;
+                
+                carouselCards.forEach(card => {
+                    if (isPointInCardArea(e.clientX, e.clientY, card)) {
+                        isOnCard = true;
+                    }
+                });
+                
+                // Se clicca nel carosello ma non su una card, forza il ripristino
+                if (!isOnCard) {
+                    forceScrollRestore();
+                }
+            }
+        }, { passive: true });
         
         globalListenersAdded = true;
     }
