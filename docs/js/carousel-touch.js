@@ -36,6 +36,27 @@ function initializeCarouselTouch() {
             }
         }, { passive: false });
         
+        // Safari iOS: Sistema di backup per ripristino scroll
+        if (isSafariIOS) {
+            let safariScrollBackupTimer = null;
+            
+            document.addEventListener('touchstart', function() {
+                // Reset del timer di backup ogni volta che l'utente tocca
+                if (safariScrollBackupTimer) {
+                    clearTimeout(safariScrollBackupTimer);
+                }
+                
+                // Backup: ripristina lo scroll dopo 2 secondi di inattività
+                safariScrollBackupTimer = setTimeout(() => {
+                    if (globalCarouselAnimating.size === 0) {
+                        document.body.style.overflow = '';
+                        document.documentElement.style.overflow = '';
+                        document.body.style.webkitOverflowScrolling = 'touch';
+                    }
+                }, 2000);
+            }, { passive: true });
+        }
+        
         globalListenersAdded = true;
     }
 
@@ -63,6 +84,19 @@ function initializeCarouselTouch() {
         
         carousel.addEventListener('transitionend', function() {
             globalCarouselAnimating.delete(carousel);
+            
+            // Safari iOS: Ripristino veloce al termine delle animazioni
+            if (isSafariIOS && globalCarouselAnimating.size === 0) {
+                // Quando non ci sono più caroselli animanti, ripristina subito lo scroll
+                setTimeout(() => {
+                    document.body.style.overflow = '';
+                    document.documentElement.style.overflow = '';
+                    document.body.style.webkitOverflowScrolling = 'touch';
+                    
+                    // Trigger scroll event per "risvegliare" Safari iOS
+                    window.dispatchEvent(new Event('scroll', { bubbles: true }));
+                }, 20);
+            }
         });
         
         carousel.addEventListener('touchstart', function(e) {
@@ -159,6 +193,16 @@ function initializeCarouselTouch() {
         }
         
         carousel.addEventListener('touchend', function(e) {
+            // Safari iOS: Ripristino veloce dello scroll verticale
+            if (isSafariIOS && (isDragging || isHorizontalScroll)) {
+                // Forza il ripristino dello scroll verticale immediatamente
+                setTimeout(() => {
+                    // Trigger un evento dummy per "sbloccare" Safari iOS
+                    const dummyEvent = new Event('touchstart', { bubbles: true, cancelable: true });
+                    document.body.dispatchEvent(dummyEvent);
+                }, 10);
+            }
+            
             // Reset delle variabili
             startX = null;
             startY = null;
@@ -167,6 +211,17 @@ function initializeCarouselTouch() {
         }, { passive: true });
         
         carousel.addEventListener('touchcancel', function(e) {
+            // Safari iOS: Ripristino forzato anche su touchcancel
+            if (isSafariIOS) {
+                // Ripristino immediato per Safari iOS
+                setTimeout(() => {
+                    document.body.style.overflow = '';
+                    document.documentElement.style.overflow = '';
+                    // Re-enable momentum scrolling
+                    document.body.style.webkitOverflowScrolling = 'touch';
+                }, 5);
+            }
+            
             // Reset delle variabili anche in caso di cancel
             startX = null;
             startY = null;
