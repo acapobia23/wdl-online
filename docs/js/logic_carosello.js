@@ -162,8 +162,8 @@ document.querySelectorAll('.carousel').forEach(carousel => {
   }, { passive: true });
   
   track.addEventListener('touchend', e => {
-    if (startX === null || startY === null || swipeTriggered) {
-      // Reset completo
+    // Reset immediato se non abbiamo coordinate valide
+    if (startX === null || startY === null) {
       startX = null;
       startY = null;
       isDragging = false;
@@ -171,21 +171,24 @@ document.querySelectorAll('.carousel').forEach(carousel => {
       return;
     }
     
-    // Calcola il movimento finale solo su touchend
-    const currentX = e.changedTouches[0].clientX;
-    const currentY = e.changedTouches[0].clientY;
-    const dx = currentX - startX;
-    const dy = currentY - startY;
-    
-    // Verifica se è un swipe orizzontale valido
-    if (isDragging && Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 40) {
-      swipeTriggered = true;
-      if (dx < 0) current++;
-      if (dx > 0) current--;
-      updateCarousel();
+    // Processa il nuovo swipe SOLO se non è già in corso
+    if (!swipeTriggered) {
+      // Calcola il movimento finale solo su touchend
+      const currentX = e.changedTouches[0].clientX;
+      const currentY = e.changedTouches[0].clientY;
+      const dx = currentX - startX;
+      const dy = currentY - startY;
+      
+      // Verifica se è un swipe orizzontale valido
+      if (isDragging && Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 40) {
+        swipeTriggered = true;
+        if (dx < 0) current++;
+        if (dx > 0) current--;
+        updateCarousel();
+      }
     }
     
-    // Reset sempre alla fine
+    // Reset SEMPRE alla fine - questo è fondamentale per Safari iOS
     startX = null;
     startY = null;
     isDragging = false;
