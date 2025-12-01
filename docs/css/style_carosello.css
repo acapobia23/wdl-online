@@ -32,12 +32,42 @@ body {
 }
 
 .carousel-track {
+  /* CSS Custom Properties per controllo dinamico */
+  --carousel-offset: -180px;  /* Pre-posizionamento intelligente per mobile/desktop */
+  --carousel-duration: 0s;   /* Inizialmente senza animazione per prevenire FOUC */
+  --carousel-easing: cubic-bezier(.4,1.3,.5,1);
+  
   display: flex;
-  transition: transform 0.4s cubic-bezier(.4,1.3,.5,1);
+  transform: translateX(var(--carousel-offset));
+  transition: transform var(--carousel-duration) var(--carousel-easing);
   will-change: transform;
   gap: 1rem;
   padding: 0 1rem;
   box-sizing: border-box;
+  
+  /* Nascosto inizialmente per prevenire FOUC */
+  opacity: 0;
+  transition: transform var(--carousel-duration) var(--carousel-easing), 
+              opacity 0.15s ease-out;
+}
+
+/* Pre-posizionamenti intelligenti per diverse dimensioni */
+@media (min-width: 700px) {
+  .carousel-track {
+    --carousel-offset: -260px; /* Ottimizzato per desktop (card più larghe) */
+  }
+}
+
+@media (max-width: 699px) {
+  .carousel-track {
+    --carousel-offset: -170px; /* Ottimizzato per mobile (card più strette) */
+  }
+}
+
+/* Abilita le animazioni e mostra il carosello dopo l'inizializzazione */
+.carousel-track.carousel-initialized {
+  --carousel-duration: 0.4s;
+  opacity: 1;
 }
 
 .carousel-card {
