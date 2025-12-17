@@ -123,3 +123,4 @@ method → "whatsapp" o "email"
 
 Non serve modificare il resto del JS, né creare parametri manuali per ogni pagina.
 
+cd generale/;git add .;git commit -m "update pre new index";git push;cd ../palazzo-nave/;git add .;git commit -m "update pre new index";git push;cd ../velonas-jungle/;git add .;git commit -m "update pre new index";git push;cd ../
