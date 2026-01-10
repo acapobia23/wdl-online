@@ -21,7 +21,9 @@ document.querySelectorAll('.carousel').forEach(carousel => {
 
   // Clona le card per effetto loop e calcola la posizione iniziale
   const firstClone = originalCards[0].cloneNode(true);
+  firstClone.classList.add('carousel-card-clone');
   const lastClone = originalCards[total - 1].cloneNode(true);
+  lastClone.classList.add('carousel-card-clone');
   track.insertBefore(lastClone, originalCards[0]);
   track.appendChild(firstClone);
 
@@ -30,19 +32,18 @@ document.querySelectorAll('.carousel').forEach(carousel => {
   
   // Calcolo e posizionamento ultra-veloce con CSS Custom Properties
   function setInitialPosition() {
-    const dims = calculateDimensions();
-    const targetOffset = (dims.cardWidth * current) + (dims.gap * current) - (dims.carouselWidth / 2) + (dims.cardWidth / 2) + dims.paddingLeft;
-    
-    // Applicazione istantanea - batch di operazioni per performance ottimale
-    const offsetValue = `${-targetOffset}px`;
-    
-    // Solo se la posizione calcolata è diversa da quella CSS di default
-    const currentCSSOffset = getComputedStyle(track).getPropertyValue('--carousel-offset').trim();
-    if (currentCSSOffset !== offsetValue) {
-      track.style.setProperty('--carousel-offset', offsetValue);
+    if (window.innerWidth < 700) {
+      const dims = calculateDimensions();
+      const targetOffset = (dims.cardWidth * current) + (dims.gap * current) - (dims.carouselWidth / 2) + (dims.cardWidth / 2) + dims.paddingLeft;
+      const offsetValue = `${-targetOffset}px`;
+      const currentCSSOffset = getComputedStyle(track).getPropertyValue('--carousel-offset').trim();
+      if (currentCSSOffset !== offsetValue) {
+        track.style.setProperty('--carousel-offset', offsetValue);
+      }
+    } else {
+      // Su desktop, nessun centramento
+      track.style.setProperty('--carousel-offset', '0px');
     }
-    
-    // Assicura che non ci siano animazioni durante l'inizializzazione
     track.style.setProperty('--carousel-duration', '0s');
   }
 
@@ -85,18 +86,17 @@ document.querySelectorAll('.carousel').forEach(carousel => {
     cards.forEach((card, i) => {
       card.classList.toggle('active', i === current);
     });
-    
-    // Aggiorna gli indicatori a puntini
     dots.forEach((dot, i) => {
-      const isActive = (current - 1) === i; // -1 perché current tiene conto del clone iniziale
-      dot.style.backgroundColor = isActive ? '#20b2aa' : '#ccc'; // turchese per attivo, grigio per inattivo
+      const isActive = (current - 1) === i;
+      dot.style.backgroundColor = isActive ? '#20b2aa' : '#ccc';
     });
-    
-    const dims = calculateDimensions();
-    const offset = (dims.cardWidth * current) + (dims.gap * current) - (dims.carouselWidth / 2) + (dims.cardWidth / 2) + dims.paddingLeft;
-    
-    // Usa CSS Custom Properties per controllo dinamico delle animazioni
-    track.style.setProperty('--carousel-offset', `${-offset}px`);
+    if (window.innerWidth < 700) {
+      const dims = calculateDimensions();
+      const offset = (dims.cardWidth * current) + (dims.gap * current) - (dims.carouselWidth / 2) + (dims.cardWidth / 2) + dims.paddingLeft;
+      track.style.setProperty('--carousel-offset', `${-offset}px`);
+    } else {
+      track.style.setProperty('--carousel-offset', '0px');
+    }
     track.style.setProperty('--carousel-duration', animate ? '0.4s' : '0s');
   }
 
@@ -272,4 +272,4 @@ document.querySelectorAll('.carousel').forEach(carousel => {
       }
     }
   });
-}); 
+});

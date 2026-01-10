@@ -598,8 +598,8 @@ body {
 
 @media (min-width: 700px) {
   .carousel-card {
-    min-width: 480px;
-    max-width: 900px;
+    min-width: 280px !important; 
+    max-width: 900px !important;
   }
   .carousel-card .carousel-img {
     width: 80px !important;
@@ -796,4 +796,15 @@ body {
 .carousel-card,
 .static-card {
   border: 3px solid #3bd2c9;
+}
+
+/* Nasconde i cloni del carosello su desktop */
+@media (min-width: 700px) {
+  .carousel-card-clone {
+    display: none !important;
+  }
+  /* Nasconde i puntini del carosello su desktop */
+  .carousel-dots {
+    display: none !important;
+  }
 }

@@ -90,6 +90,7 @@ body {
   transition: box-shadow 0.3s, transform 0.4s;
   text-decoration: none;
   color: inherit;
+  margin-top: 60px; /* Spazio verticale sopra ogni card */
 }
 .carousel-card.active {
   box-shadow:
@@ -290,8 +291,8 @@ body {
 }
 .carousel-pill {
   position: absolute;
-  top: 1.2rem;
-  left: 1.2rem;
+  top: -0.5rem;
+  left: 2rem;
   z-index: 10;
   background: #30ada5;
   color: #ffffff;
