@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>La Birr'aia - Where Do Locals</title>
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="../../css/form.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
+  
+  <!-- Scripts esterni -->
+  <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
+  
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EH7YNQHCH0"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-EH7YNQHCH0');
+  </script>
+  
+  <link rel="icon" href="../../assets/img/headers/cupola-logo.png" type="image/png">
+</head>
+
+<body data-form-type="la-birraia">
+
+  <!-- HEADER -->
+  <header class="menu-header">
+    <a href="../../index.html">
+      <img src="../../assets/img/original/logo-wdl.png" alt="Where Do Locals logo">
+    </a>
+  </header>
+
+  <div class="container">
+    <br><br><br>
+
+    <!-- TITOLO -->
+    <h2 class="section-title">La Birr'aia</h2>
+
+    <!-- GALLERIA -->
+    <div id="gallery-container"></div>
+
+    <!-- DESCRIZIONE -->
+    <section class="description">
+      <p>[Introduzione...]</p>
+      <br><hr><br>
+
+      <!-- SEZIONE 1: BEER & FOOD -->
+      <button class="license-btn" id="beerfood-toggle-btn">
+        <span id="toggle-text-beerfood">Beer & Food</span>
+        <img id="arrow-beerfood" src="../../assets/img/icons/down-arrow.png" alt="Arrow" class="arrow-down" />
+      </button>
+      <div id="content-beerfood" style="display: none;">
+        [Contenuto Beer & Food...]
+      </div>
+
+      <br>
+
+      <!-- SEZIONE 2: EVENTS & TIPS -->
+      <button class="license-btn" id="events-toggle-btn">
+        <span id="toggle-text-events">Events & Live Music</span>
+        <img id="arrow-events" src="../../assets/img/icons/down-arrow.png" alt="Arrow" class="arrow-down" />
+      </button>
+      <div id="content-events" style="display: none;">
+        [Contenuto Events...]
+      </div>
+
+      <br>
+
+      <!-- SEZIONE 3: LOCATION -->
+      <button class="license-btn" id="location-toggle-btn">
+        <span id="toggle-text-location">Location & Season Info</span>
+        <img id="arrow-location" src="../../assets/img/icons/down-arrow.png" alt="Arrow" class="arrow-down" />
+      </button>
+      <div id="content-location" style="display: none;">
+        [Contenuto Location...]
+        <div class="map-wine">
+          <a href="https://maps.app.goo.gl/xW6fwFUwkGRPiJeZ6">
+            <span>Find Us Here</span>
+            <img src="../../assets/img/icons/map.png" alt="map">
+          </a>
+        </div>
+      </div>
+
+      <br><hr><br>
+
+      <!-- CONTACT BOX -->
+      <div style="max-width: 600px; margin: 30px auto 0 auto;">
+        <h3>Book or Request Information</h3>
+        <p>[Testo contatto...]</p>
+      </div>
+      
+      <hr>
+    </section>
+
+    <!-- FORM -->
+    <div id="form-container"></div>
+    <br><br><br><br><br>
+
+    <!-- ICON LINKS -->
+    <div class="icon-links">
+      <a href="https://wa.me/+393473119031">
+        <img src="../../assets/img/icons/whatsapp.png" alt="contact" />
+      </a>
+      <a href="sesonal-places.html">
+        <img src="../../assets/img/icons/back-arrow.png" alt="back" />
+      </a>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script src="../../js/nightlife/la-birraia.js"></script>
+</body>
+</html>
+```
+
+---
+
+## Mini Scheletro ASCII:
+```
+┌─────────────────────────────────────────────┐
+│           📄 LA BIRR'AIA PAGE               │
+└─────────────────────────────────────────────┘
+
+<!DOCTYPE html>
+│
+├── <head>
+│   ├── Meta tags
+│   ├── CSS (form.css, Poppins, Pikaday)
+│   ├── Google Analytics
+│   └── Favicon
+│
+├── <body data-form-type="la-birraia">
+│   │
+│   ├── HEADER
+│   │   └── Logo WDL → index.html
+│   │
+│   ├── CONTAINER
+│   │   │
+│   │   ├── 🏷️ TITLE: "La Birr'aia"
+│   │   │
+│   │   ├── 🖼️ GALLERY
+│   │   │   └── #gallery-container
+│   │   │
+│   │   ├── 📝 DESCRIPTION SECTION
+│   │   │   │
+│   │   │   ├── Intro text
+│   │   │   │
+│   │   │   ├── 🍺 TOGGLE 1: Beer & Food
+│   │   │   │   └── #content-beerfood (hidden)
+│   │   │   │
+│   │   │   ├── 🎵 TOGGLE 2: Events & Tips
+│   │   │   │   └── #content-events (hidden)
+│   │   │   │
+│   │   │   ├── 📍 TOGGLE 3: Location
+│   │   │   │   ├── #content-location (hidden)
+│   │   │   │   └── Map link
+│   │   │   │
+│   │   │   └── 📞 CONTACT BOX
+│   │   │
+│   │   ├── 📋 FORM
+│   │   │   └── #form-container
+│   │   │
+│   │   └── 🔗 ICON LINKS
+│   │       ├── WhatsApp
+│   │       └── Back button
+│   │
+│   └── <script src="la-birraia.js">
+│
+└── </html>
+
+═══════════════════════════════════════════════
+
+STRUTTURA LOGICA:
+─────────────────
+[HEADER]
+   ↓
+[TITLE + GALLERY]
+   ↓
+[3 COLLAPSIBLE SECTIONS]
+   ↓
+[CONTACT INFO]
+   ↓
+[BOOKING FORM]
+   ↓
+[FOOTER LINKS]

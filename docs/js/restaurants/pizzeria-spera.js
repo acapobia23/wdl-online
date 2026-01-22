@@ -2,8 +2,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // === GALLERY ===
   const galleryContainer = document.getElementById("gallery-container");
   if (galleryContainer) {
-    const imageFiles = ["01.webp","02.webp","03.webp"]; //file name of pic
-    const basePath = "../../assets/img/boxes/restaurants/pizzaiuolo/"; //path pic
+    const imageFiles = ["01.jpg","02.jpg","03.jpg","04.jpg","05.jpg","06.jpg"]; //file name of pic
+    const basePath = "../../assets/img/boxes/restaurants/pizzeria-spera/"; //path pic
     const images = imageFiles.map(f => basePath + f);
 //cambiare alt name linea 14
     galleryContainer.innerHTML = `
@@ -53,18 +53,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
       <form id="booking-form" class="booking-form" novalidate>
         <label class="bold-text" for="date-picker">Add info and chat!</label>
-        <div><p></p></div><p class="bold-gray">*mandatory field</p>        
-      <input type="text" id="main-guest" placeholder="*Name and Surname" required>
-  <input type="text" id="host" placeholder="*Who did you book your stay with?" required>
-  
-<!-- Sezione campi facoltativi integrata nel bottone -->
-<div class="expandable-form">
-  <button type="button" class="btn-form" id="toggle-form">
-    <span id="form-toggle-text">optional fields</span>
-    <img id="form-arrow" src="../../assets/img/icons/down-arrow.png" alt="Arrow" class="arrow-down" />
-  </button>
+            <p class="bold-gray">*mandatory field</p>        
+      <input type="text" id="main-guest" placeholder="*Name and Surname" required></input>
+        
+      <!-- Sezione campi facoltativi integrata nel bottone -->
+      <div class="expandable-form">
+        <button type="button" class="btn-form" id="toggle-form">
+          <span id="form-toggle-text">optional fields</span>
+          <img id="form-arrow" src="../../assets/img/icons/down-arrow.png" alt="Arrow" class="arrow-down" />
+        </button>
 
-  <div id="optional-fields" class="optional-fields">
+        <div id="optional-fields" class="optional-fields">
+
         <input type="text" id="date-picker" placeholder="Select a date" readonly>
         <select id="guest-picker">
           ${[...Array(6)].map((_,i)=>
@@ -80,10 +80,11 @@ document.addEventListener("DOMContentLoaded", () => {
         <input type="email" id="email" placeholder="example@email.com">
         <input type="tel" id="phone" placeholder="+39 123 456 7890">
         <textarea id="optional-request" placeholder="Optional Request"></textarea>
-      </div>
-    </div>
-    <br>
-  
+
+        </div>
+        </div>
+        <br>
+    
         <!-- Bottoni di invio -->
         <button type="submit" class="check-btn">Send and chat via WhatsApp</button>
         <div><p></p></div>
@@ -121,11 +122,11 @@ document.querySelector('.btn-form').addEventListener('click', () => {
     });
     
     const lines = [
-      `Hello! I'd like to book ${experience}.`,
+      `Hello! I'm staying at Velona's Jungle and I'd like to book this ${experience}.`,
       ``,
       `📅 Date:  ${val("date-picker")}`,
     `👤 Name:  ${val("main-guest")}`,
-    `🏠 Host:  ${val("host")}`,
+
       `🧑‍🤝‍🧑 Adults: ${val("guest-picker")}`,
       `👶 Minors: ${val("under-18")}`,
       `📧 Email: ${val("email")}`,
@@ -191,5 +192,46 @@ document.querySelector('.btn-form').addEventListener('click', () => {
       header.style.transform = 'translateY(0)';
     }
     lastY = y;
+  });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  // === TOGGLE FUNCTIONALITY ===
+  const toggleButtons = document.querySelectorAll(".toggle-btn");
+
+  toggleButtons.forEach((btn) => {
+    const toggleKey = btn.dataset.toggle; // Leggi l'id dal data attribute
+    const content = document.querySelector(`.toggle-content[data-toggle="${toggleKey}"]`);
+    const arrow = btn.querySelector("img");
+
+    if (!content) return; // Protezione: se il content non esiste, salta
+
+    btn.addEventListener("click", () => {
+      const isVisible = content.style.display === "block";
+
+      // Chiudi tutte le altre sezioni
+      document.querySelectorAll(".toggle-content").forEach((div) => {
+        div.style.display = "none";
+      });
+      document.querySelectorAll(".toggle-btn img").forEach((img) => {
+        img.classList.remove("arrow-up");
+        img.classList.add("arrow-down");
+      });
+
+      // Apri solo la sezione cliccata
+      content.style.display = isVisible ? "none" : "block";
+
+      if (!isVisible) {
+        arrow.classList.add("arrow-up");
+        arrow.classList.remove("arrow-down");
+
+        // Se è la mappa, forza l'aggiornamento Leaflet
+        if (toggleKey === "spots" && typeof map !== "undefined") {
+          setTimeout(() => {
+            map.invalidateSize();
+          }, 250);
+        }
+      }
+    });
   });
 });

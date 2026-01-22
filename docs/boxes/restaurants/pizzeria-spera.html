@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Pizzeria Spera - Where Do Locals</title>
+
+  <link rel="stylesheet" href="../../css/form.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
+  <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EH7YNQHCH0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-EH7YNQHCH0');
+</script>
+<link rel="icon" href="../../assets/img/headers/cupola-logo.png" type="image/png">
+</head>
+
+<body data-form-type="pizzeria-spera">
+
+  <header class="menu-header">
+    <a href="../../index.html">
+      <img src="../../assets/img/original/logo-wdl.png" alt="Where Do Locals logo">
+    </a>
+  </header>
+
+  <div class="container">
+    <br><br><br>
+
+    <h2 class="section-title">Pizzeria Spera</h2>
+
+    <div id="gallery-container"></div>
+
+    <!-- DESCRIPTION SECTION -->
+    <section class="description">
+        <hr><br>
+        <!-- ALWAYS VISIBLE -->
+        <!-- PLACE INTRO -->
+        <p>
+            A beloved local pizza spot just a short stroll from Piazza della Vittoria and Fortezza da Basso, 
+            Pizzeria Spera is a classic Florentine pizzeria known for its delicious traditional Italian and 
+            Neapolitan-style pizzas at great value.
+        </p>
+
+        <!-- EXPERIENCE SNAPSHOT -->
+        <p>
+            It's a favorite among locals and visitors alike for a relaxed meal without tourist prices 
+            and a truly authentic Italian atmosphere.<br>
+            Simple, lively, and genuine — exactly how a neighborhood pizzeria in Florence should be.
+        </p>
+
+        <hr><br>
+
+    <!-- TOGGLE 1 — PIZZA & EXPERIENCE -->
+    <button class="toggle-btn" data-toggle="pizza-experience">
+        <span>Pizza & Experience</span>
+        <img src="../../assets/img/icons/down-arrow.png"
+            alt="Arrow"
+            class="arrow-down" />
+    </button>
+
+    <div class="toggle-content" data-toggle="pizza-experience" style="display: none;">
+        <!-- What to Expect -->
+        <div style="margin: 10px 24px 20px 24px;">
+            <br>
+            <h4>What to Expect</h4>
+            <br>
+            <p>
+                This straightforward, no-frills pizzeria focuses on well-made pizzas with fresh ingredients, 
+                generous portions, and tasty crusts.<br>
+                Many diners praise the solid quality, extensive menu, 
+                and authentic vibe — making it a great option for pizza lovers exploring this part of the city.
+                This straightforward, no-frills pizzeria focuses on well-made pizzas with fresh ingredients, 
+                generous portions, and tasty crusts.<br>
+                Many diners praise the solid quality, extensive menu, 
+                and authentic vibe — making it a great option for pizza lovers exploring this part of the city.
+            </p>
+        </div>
+        <hr><br>
+        <!-- Dietary Focus -->
+        <div style="margin: 10px 24px 20px 24px;">
+            <h4>You'll find</h4>
+            <ul>
+                <li>Classic and Neapolitan-inspired pizzas</li>
+                <li>Choice of different dough types, selectable when ordering</li>
+                <li>Excellent vegetarian options — the pizza chef is vegetarian and has created many meat-free recipes, while meat options are also available</li>
+                <li>Casual, family-friendly atmosphere</li>
+                <li>Takeaway and dine-in service (takeaway prices are lower)</li>
+                <li>Wine, beer, soft drinks, and local craft beers</li>
+                <li>All pizzas are dressed with extra virgin olive oil, sea salt, and basil.</li>
+            </ul>
+        </div>
+        <hr>
+    </div>
+    <br>
+    <!-- TOGGLE 2 — DOUGH, TOPPINGS & CUSTOMIZATION -->
+    <button class="toggle-btn" data-toggle="dough-toppings">
+        <span>Dough, Toppings & Customization</span>
+        <img src="../../assets/img/icons/down-arrow.png"
+            alt="Arrow"
+            class="arrow-down" />
+    </button>
+
+    <div class="toggle-content" data-toggle="dough-toppings" style="display: none;">
+        <!-- Dough Options -->
+        <div style="margin: 10px 24px 20px 24px;">
+            <br>
+            <h4>
+                Each evening, according to availability, you can request 
+                special doughs made with premium flours (+€1.00)
+            </h4>
+            <ul>
+                <li>Whole wheat</li>
+                <li>Organic Tuscan ancient grains</li>
+                <li>Organic Verna ancient wheat</li>
+                <li>Stone-milled flour</li>
+                <li>Multigrain</li>
+            </ul>
+        </div>
+        <hr><br>
+        <!-- Extra Toppings -->
+        <div style="margin: 10px 24px 20px 24px;">
+            <h4>Extra toppings (+€1.50 each)</h4>
+            <ul>
+                <li>Buffalo mozzarella</li>
+                <li>Burrata</li>
+                <li>Rocket (arugula)</li>
+                <li>Prosciutto crudo / cotto / speck</li>
+            </ul>
+        </div>
+        <hr><br>
+        <!-- Extra Toppings -->
+        <div style="margin: 10px 24px 20px 24px;">
+            <h4>Custom pizzas or variations are available on request.</h4>
+        </div>
+        <!-- Notes -->
+         <br>
+        <div style="margin: 10px 24px 20px 24px;">
+            <h4>Allergen information is available on-site upon request.</h4>
+        </div>
+        <hr>
+    </div>
+
+    <br>
+
+    <!-- TOGGLE 3 — PRICES & DRINKS -->
+    <button class="toggle-btn" data-toggle="prices-drinks">
+        <span>Prices & Drinks</span>
+        <img src="../../assets/img/icons/down-arrow.png"
+            alt="Arrow"
+            class="arrow-down" />
+    </button>
+
+    <div class="toggle-content" data-toggle="prices-drinks" style="display: none;">
+        <!-- Sample Prices -->
+        <div style="margin: 10px 24px 20px 24px;">
+            <br>
+            <h4>Great value is one of Spera's strengths</h4>
+            <br>
+            <ul>
+                <li>Margherita - €5.00</li>
+                <li>Margherita con crudo - €6.50</li>
+                <li>Margherita con rucola - €6.50</li>
+                <li>Napoli - €6.00</li>
+                <li>Marinara - €4.80</li>
+                <li>Funghi Porcini - €7.50</li>
+                <li>Rustica - €8.50</li>
+                <li>Fantasia (award-winning pizza) - €8.90</li>
+            </ul>
+        </div>
+        <hr>
+        <!-- Service Rules -->
+        <div style="margin: 10px 24px 20px 24px;">
+            <h4>Note</h4><br>
+            <p>
+                Dining at a table adds €1.00 per pizza.<br>
+                At-table service requires ordering a pizza + a drink per person. <br>
+            </p>
+        </div>
+        <hr>
+        <!-- Drinks -->
+        <div style="margin: 10px 24px 20px 24px;">
+            <h4>Drinks</h4>
+            <br>
+            <ul>
+                <li>Water 50 cl - €1.50</li>
+                <li>Soft drinks 33 cl - €2.50-3.00</li>
+            </ul>
+            
+            <strong>House craft beers:</strong>
+            <ul>
+                <li>Blond Ale - €5.50 (33 cl) / €11.00 (75 cl)</li>
+                <li>Uppercut Blond Ale - €5.50 / €11.00</li>
+                <li>Amber Ale - €5.50 / €11.00</li>
+            </ul>
+            
+            <strong>Other beers:</strong>
+            <ul>
+                <li>Menabrea 33 cl - €3.50</li>
+                <li>Ichnusa 50 cl - €4.50</li>
+                <li>Moretti 66 cl - €4.50</li>
+            </ul>
+            
+            <strong>House wine (white or red):</strong>
+            <ul>
+                <li>Quarter liter - €3.00</li>
+                <li>Half liter - €5.00</li>
+                <li>One liter - €9.00</li>
+            </ul>
+        </div>
+        <hr>
+    </div>
+
+    <br>
+
+    <!-- TOGGLE 4 — LOCATION & HOURS -->
+    <button class="toggle-btn" data-toggle="location-hours">
+        <span>Location & Hours</span>
+        <img src="../../assets/img/icons/down-arrow.png"
+            alt="Arrow"
+            class="arrow-down" />
+    </button>
+
+    <div class="toggle-content" data-toggle="location-hours" style="display: none;">
+        <!-- Address & Area -->
+        <div style="margin: 10px 24px 20px 24px;">
+            <br>
+            <h4>Easy to reach on foot or by public transport</h4><br>
+            <strong>Address</strong><br>
+            <p style="margin-left: 15px;">
+                Via della Cernaia 9R, a lively residential area near Piazza della Vittoria.<br>
+            </p>
+            <strong>Neighborhood</strong><br>
+            <p style="margin-left: 15px;">
+                Statuto<br>
+            </p>
+            <hr>
+        </div>
+        <!-- Map & Contact Buttons -->
+        <div style="display: flex; gap: 15px; justify-content: center; align-items: center; flex-wrap: wrap;">
+            <!-- Contact Button (Left) -->
+            <div class="map-wine" style="width: 120px; height: 120px; display: flex; align-items: center; justify-content: center;">
+                <a href="../mobility/mobility.html" style="display: flex; align-items: center; justify-content: center; flex-direction: column; width: 100%; height: 100%; text-align: center;">
+                    <img src="../../assets/img/icons/public-transport.png" alt="public-transport" style="width: 40px; height: 40px; margin-bottom: 8px;">
+                    <span>Mobility Info</span>
+                </a>
+            </div>
+            
+            <!-- Map Button (Right) -->
+            <div class="map-wine" style="width: 120px; height: 120px; display: flex; align-items: center; justify-content: center;">
+                <a href="https://maps.app.goo.gl/Ac8JKjTyQgHg1iUPA" style="display: flex; align-items: center; justify-content: center; flex-direction: column; width: 100%; height: 100%; text-align: center;">
+                    <img src="../../assets/img/icons/map.png" alt="map" style="width: 40px; height: 40px; margin-bottom: 8px;">
+                    <span>Find Us Here</span>
+                </a>
+            </div>
+        </div>
+        <hr>
+        <br>
+        <!-- How to Get There -->
+        <div style="margin: 10px 24px 20px 24px;">
+            <h4>Nearest tram stop</h4>
+            <br>
+            <a href="https://maps.app.goo.gl/NmEn5k374UupaRdD9" style="margin-left: 15px;" >
+                Statuto (Tramvia T2) — just a short walk away
+            </a>
+            <br>
+        </div>
+        <hr>
+
+        <!-- Opening Hours -->
+        <div style="margin: 10px 24px 20px 24px;">
+            <h4>Opening Hours</h4>
+            <br>
+            <ul>
+                <li>Monday: Closed</li>
+                <li>Tuesday-Friday: 12:00-14:00 & 19:00-22:00</li>
+                <li>Saturday: 19:00-22:00</li>
+                <li>Sunday: 19:00-22:00</li>
+            </ul>
+            <p><em>Hours may vary — checking before visiting is always a good idea.</em></p>
+        </div>
+    </div>
+    <br><hr><br>
+    <!-- Local Tip -->
+    <div style="margin: 10px 24px 20px 24px;">
+        <h4>Local Tip</h4><br>
+        <p style="margin-left: 15px;">
+            No reservations are accepted, so try to arrive
+             early at peak times, especially for dinner.<br>
+            Perfect for a casual meal after visiting Stibbert Museum, 
+            Piazza della Vittoria, or before events at Fortezza da Basso<br>
+        </p>
+    </div>
+    <br><hr><br>
+    </section>
+
+    <div id="form-container"></div>
+<br><br><br><br><br>
+    <div class="icon-links">
+            <a href="https://wa.me/+393473119031" class="text-decoration-none text-dark">
+        <img src="../../assets/img/icons/whatsapp.png" alt="contact" /></a>
+      <a href="restaurants.html"><img src="../../assets/img/icons/back-arrow.png" alt="back" /></a>
+    </div>
+  </div>
+</body>
+</html>
+
+<script src="../../js/restaurants/pizzeria-spera.js"></script>
