@@ -9,12 +9,12 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
   
   <!-- Custom Styles -->
-  <link rel="stylesheet" href="../../css/style.css" />
-  <link rel="stylesheet" href="../../css/sidebar.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="sidebar.css" />
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="icon" href="../../assets/img/headers/cupola-logo.png" type="image/png">
+  <link rel="icon" href="../assets/img/headers/cupola-logo.png" type="image/png">
 </head>
 <body>
 
@@ -23,14 +23,13 @@
     <aside id="sidebar" class="sidebar">
       <div class="sidebar-header">
         <div class="header-top">
-          <a href="../../index.html">
-            <span class="header-icon"> <img style="width: 64px; height: 64px;" src="../../assets/img/icons/cupola.png" alt="Cupola Icon" /> </span>
+          <a href="../index.html">
+            <span class="header-icon"> <img style="width: 64px; height: 64px;" src="../assets/img/icons/cupola.png" alt="Cupola Icon" /> </span>
           </a>
-            <div>
-              <h1>Where Do Locals</h1>
-              <p>Mappa interattiva</p>
-            </div>
+          <div>
+            <h1>Where Do Locals</h1>
           </div>
+        </div>
         
         <div class="search-box">
           <input type="text" id="map-search" placeholder="Cerca luoghi..." />
@@ -47,7 +46,9 @@
       </div>
 
       <div class="sidebar-footer">
-        <span class="file-info">📄 File: export.geojson</span>
+        <span class="file-info">
+          <a href="../index.html"><img src="../assets/img/icons/back-arrow.png" alt="back" /></a>
+        </span>
       </div>
     </aside>
 
@@ -67,8 +68,8 @@
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   
   <!-- App Modules -->
-  <script src="../../js/map/parser.js"></script>
-  <script src="../../js/map/sidebar.js"></script>
-  <script src="../../js/map/logic.js"></script>
+  <script src="parser.js"></script>
+  <script src="sidebar.js"></script>
+  <script src="logic.js"></script>
 </body>
 </html>
