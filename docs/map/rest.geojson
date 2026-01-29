@@ -1,0 +1,268 @@
+[
+]
+{
+  "type": "Feature",
+  "properties": {
+    "name": "Cibrèo Ristorante",
+    "category": "restaurants",
+    "url_img": "../assets/img/boxes/restaurants/cibreo/02.jpg",
+    "url": "../boxes/restaurants/cibreo-place/cibreo-ristorante.html",
+    "description": "Refined Tuscan cuisine with contemporary twist."
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [11.2462, 43.7641]
+  }
+},
+{
+  "type": "Feature",
+  "properties": {
+    "name": "Cibrèo Trattoria (Il Cibrèino)",
+    "category": "restaurants",
+    "url_img": "../assets/img/boxes/restaurants/cibreo/cibreino/01.webp",
+    "url": "../boxes/restaurants/cibreo-place/cibreino.html",
+    "description": "Classic Florentine dishes, relaxed atmosphere."
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [11.2463, 43.7640]
+  }
+},
+{
+  "type": "Feature",
+  "properties": {
+    "name": "Ciblèo",
+    "category": "restaurants",
+    "url_img": "../assets/img/boxes/restaurants/cibreo/cibleo/01.jpg",
+    "url": "../boxes/restaurants/cibreo-place/cibleo.html",
+    "description": "Tuscan-Oriental fusion cuisine."
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [11.2464, 43.7642]
+  }
+},
+{
+  "type": "Feature",
+  "properties": {
+    "name": "Cibrèo Caffè (Sant'Ambrogio)",
+    "category": "restaurants",
+    "url_img": "../assets/img/boxes/restaurants/cibreo/caffe/01.jpg",
+    "url": "../boxes/restaurants/cibreo-place/caffe.html",
+    "description": "Traditional dishes & signature cocktails."
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [11.2461, 43.7643]
+  }
+},
+{
+  "type": "Feature",
+  "properties": {
+    "name": "Cibrèo Caffè at Helvetia & Bristol",
+    "category": "restaurants",
+    "url_img": "../assets/img/boxes/restaurants/cibreo/elvetia/01.jpg",
+    "url": "../boxes/restaurants/cibreo-place/elvetia.html",
+    "description": "Stylish café with light bites."
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [11.2460, 43.7644]
+  }
+},
+{
+  "type": "Feature",
+  "properties": {
+    "name": "Cibrèo Ristorante & Cocktail Bar",
+    "category": "restaurants",
+    "url_img": "../assets/img/boxes/restaurants/cibreo/cocktail-bar/01.webp",
+    "url": "../boxes/restaurants/cibreo-place/cocktail-bar.html",
+    "description": "Contemporary Italian & expert cocktails."
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [11.2462, 43.7645]
+  }
+},
+{
+  "type": "Feature",
+  "properties": {
+    "name": "Teatro del Sale",
+    "category": "restaurants",
+    "url_img": "../assets/img/boxes/restaurants/cibreo/teatro-sale/01.jpg",
+    "url": "../boxes/restaurants/cibreo-place/teatro-sale.html",
+    "description": "Culinary theater & cultural hub."
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [11.2463, 43.7646]
+  }
+},
+{
+  "type": "Feature",
+  "properties": {
+    "name": "Da Ruggero",
+    "category": "restaurants",
+    "url_img": "../assets/img/boxes/restaurants/ruggero/01.jpg",
+    "url": "../boxes/restaurants/ruggero.html",
+    "description": "Cozy and authentic. Tuscan cuisine."
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [11.2510, 43.7670]
+  }
+},
+{
+  "type": "Feature",
+  "properties": {
+    "name": "I Briganti",
+    "category": "restaurants",
+    "url_img": "../assets/img/boxes/restaurants/i-briganti/01.webp",
+    "url": "../boxes/restaurants/i-briganti.html",
+    "description": "Authentic Florentine, beyond downtown"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [11.2490, 43.7655]
+  }
+},
+{
+  "type": "Feature",
+  "properties": {
+    "name": "I' Brindellone",
+    "category": "restaurants",
+    "url_img": "../assets/img/boxes/restaurants/brindellone/02.webp",
+    "url": "../boxes/restaurants/brindellone.html",
+    "description": "Florentine steak & true vibes"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [11.2485, 43.7645]
+  }
+},
+{
+  "type": "Feature",
+  "properties": {
+    "name": "La Casalinga",
+    "category": "restaurants",
+    "url_img": "../assets/img/boxes/restaurants/la-casalinga/02.jpg",
+    "url": "../boxes/restaurants/casalinga.html",
+    "description": "Historic restaurant in Santo Spirito."
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [11.2530, 43.7675]
+  }
+},
+{
+  "type": "Feature",
+  "properties": {
+    "name": "Pizzeria Spera",
+    "category": "restaurants",
+    "url_img": "../assets/img/boxes/restaurants/pizzeria-spera/01.jpg",
+    "url": "../boxes/restaurants/pizzeria-spera.html",
+    "description": "Traditional Italian and Neapolitan-style pizzas at great value."
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [11.2540, 43.7690]
+  }
+},
+{
+  "type": "Feature",
+  "properties": {
+    "name": "Pizzaiuolo",
+    "category": "restaurants",
+    "url_img": "../assets/img/boxes/restaurants/pizzaiuolo/01.webp",
+    "url": "../boxes/restaurants/pizzaiuolo.html",
+    "description": "Authentic Neapolitan pizza haven."
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [11.2545, 43.7695]
+  }
+},
+{
+  "type": "Feature",
+  "properties": {
+    "name": "I Tarocchi",
+    "category": "restaurants",
+    "url_img": "../assets/img/boxes/restaurants/tarocchi/02.webp",
+    "url": "../boxes/restaurants/tarocchi.html",
+    "description": "Authentic vibe, crisp pizza"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [11.2555, 43.7705]
+  }
+},
+{
+  "type": "Feature",
+  "properties": {
+    "name": "Marina di Santo Spirito",
+    "category": "restaurants",
+    "url_img": "../assets/img/boxes/restaurants/marina-santo-spirito/03.webp",
+    "url": "../boxes/restaurants/marina-santo-spirito.html",
+    "description": "Artistic vibe, historic charm"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [11.2560, 43.7700]
+  }
+},
+{
+  "type": "Feature",
+  "properties": {
+    "name": "La Brac",
+    "category": "restaurants",
+    "url_img": "../assets/img/boxes/restaurants/la-brac/01.jpg",
+    "url": "../boxes/restaurants/la-brac.html",
+    "description": "Vegetarian. Fun and elegant interior."
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [11.2570, 43.7710]
+  }
+},
+{
+  "type": "Feature",
+  "properties": {
+    "name": "Raw",
+    "category": "restaurants",
+    "url_img": "../assets/img/boxes/restaurants/raw/01.webp",
+    "url": "../boxes/restaurants/raw.html",
+    "description": "Naturally, vegan and gluten free"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [11.2575, 43.7715]
+  }
+},
+{
+  "type": "Feature",
+  "properties": {
+    "name": "Grotta Parri",
+    "category": "restaurants",
+    "url_img": "../assets/img/boxes/restaurants/grotta-parri/02.jpg",
+    "url": "../boxes/restaurants/grotta-parri.html",
+    "description": "Hidden gem. Tuscan cuisine."
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [11.2608, 43.7743]
+  }
+},
+{
+  "type": "Feature",
+  "properties": {
+    "name": "Caffè Amerini",
+    "category": "restaurants",
+    "url_img": "../assets/img/boxes/restaurants/caffe-amerini/01.jpg",
+    "url": "../boxes/restaurants/caffe-amerini.html",
+    "description": "A Classic Florentine Bar in the City Center."
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [11.2580, 43.7720]
+  }
+}    

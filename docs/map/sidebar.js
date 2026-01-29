@@ -15,6 +15,7 @@ const SidebarManager = {
             icon: '🗺️',
             expanded: false,
             categories: [
+                { id: 'all-explore', label: 'All Points', icon: '🗺️', selected: false },
                 { id: 'experiences', label: 'Experiences', icon: '✨', selected: false },
                 { id: 'private-space', label: 'Private Space', icon: '🔐', selected: false },
                 { id: 'nightlife', label: 'Nightlife', icon: '🎶', selected: false }
@@ -25,6 +26,7 @@ const SidebarManager = {
             icon: '🍷',
             expanded: false,
             categories: [
+                { id: 'all-food', label: 'All Points', icon: '🍷', selected: false },
                 { id: 'restaurants', label: 'Restaurants', icon: '🍽️', selected: false },
                 { id: 'street-food', label: 'Street Food', icon: '🌮', selected: false },
                 { id: 'wine', label: 'Wine', icon: '🍇', selected: false }
@@ -35,6 +37,7 @@ const SidebarManager = {
             icon: '🔧',
             expanded: false,
             categories: [
+                { id: 'all-services', label: 'All Points', icon: '🔧', selected: false },
                 { id: 'mobility', label: 'Mobility', icon: '🚴', selected: false },
                 { id: 'ship-package', label: 'Ship Package', icon: '📦', selected: false },
                 { id: 'wellness', label: 'Wellness', icon: '💆', selected: false },
@@ -46,9 +49,18 @@ const SidebarManager = {
             icon: '⚡',
             expanded: false,
             categories: [
+                { id: 'all-essentials', label: 'All Points', icon: '⚡', selected: false },
                 { id: 'shopping', label: 'Shopping', icon: '🛍️', selected: false },
                 { id: 'water', label: 'Water', icon: '💧', selected: false },
                 { id: 'at-your-door', label: 'At Your Door', icon: '🚪', selected: false }
+            ]
+        },
+        {
+            label: 'All Points',
+            icon: '🌍',
+            expanded: false,
+            categories: [
+                { id: 'all', label: 'All Points', icon: '🌍', selected: false }
             ]
         }
     ],
@@ -64,27 +76,52 @@ const SidebarManager = {
         list.innerHTML = '';
 
         this.categoryGroups.forEach((group, groupIndex) => {
-            if (group.isSpecial) {
-                // UNESCO - sempre visibile e selezionabile
+        if (group.isSpecial) {
+            const item = document.createElement('div');
+            item.className = `cat-item${this.activeCategory === group.id ? ' active' : ''}`;
+            item.innerHTML = `<span class="cat-icon">${group.icon}</span> <span>${group.label}</span>`;
+
+            item.onclick = () => {
+                this.activeCategory = group.id;
+                this.updateSelection(null); // deseleziona tutto il resto
+                if (this.onCategoryChange) this.onCategoryChange(group.id);
+                this.render();
+                this.closeSidebarMobile();
+            };
+
+            list.appendChild(item);
+
+            // separatore SOLO dopo UNESCO
+            if (group.id === 'unesco') {
+                list.appendChild(document.createElement('br'));
+                list.appendChild(document.createElement('hr'));
+                list.appendChild(document.createElement('br'));
+            }
+            } else if (group.label === 'All Points' && group.categories?.[0]?.id === 'all') {
+                const isActive = this.activeCategory === 'all';
+
                 const item = document.createElement('div');
-                item.className = `cat-item${group.selected ? ' active' : ''}`;
+                item.className = `cat-item${isActive ? ' active' : ''}`;
                 item.innerHTML = `<span class="cat-icon">${group.icon}</span> <span>${group.label}</span>`;
+
                 item.onclick = () => {
-                    this.activeCategory = group.id;
-                    if (this.onCategoryChange) this.onCategoryChange(group.id);
-                    this.updateSelection(group.id);
+                    if (isActive) {
+                        // 🔹 toggle OFF
+                        this.activeCategory = null;
+                        if (this.onCategoryChange) this.onCategoryChange(null);
+                    } else {
+                        // 🔹 toggle ON
+                        this.activeCategory = 'all';
+                        this.updateSelection(null);
+                        if (this.onCategoryChange) this.onCategoryChange('all');
+                    }
+
                     this.render();
                     this.closeSidebarMobile();
                 };
+
                 list.appendChild(item);
-                
-                // Aggiungi separator dopo UNESCO
-                const bre = document.createElement('br');
-                list.appendChild(bre);
-                const hr = document.createElement('hr');
-                list.appendChild(hr);
-                const br = document.createElement('br');
-                list.appendChild(br);
+                return;
             } else {
                 // Gruppi con categorie annidate
                 const groupContainer = document.createElement('div');
@@ -116,7 +153,7 @@ const SidebarManager = {
                                 if (this.onCategoryChange) this.onCategoryChange(null);
                             } else {
                                 this.updateSelection(cat.id);
-                                this.activeCategory = cat.id;
+                                this.activeCategory = cat.id;   // 👈 forza uscita da "all"
                                 if (this.onCategoryChange) this.onCategoryChange(cat.id);
                             }
                             this.render();
@@ -132,9 +169,8 @@ const SidebarManager = {
         });
     },
     updateSelection(categoryId) {
-        // Deseleziona tutte le categorie tranne UNESCO
         this.categoryGroups.forEach(group => {
-            if (!group.isSpecial && group.categories) {
+            if (group.categories) {
                 group.categories.forEach(cat => {
                     cat.selected = (cat.id === categoryId);
                 });

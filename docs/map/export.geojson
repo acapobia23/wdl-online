@@ -218,6 +218,76 @@
 {
   "type": "Feature",
   "properties": {
+    "name": "Tuscan Taste",
+    "category": "wine",
+    "url_img": "../assets/img/boxes/wine/wine-tasting/01.jpg",
+    "url": "../boxes/wine/wine-taste.html",
+    "description": "Wine and Beer Shop"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [11.2462066, 43.7641425]
+  }
+},
+{
+  "type": "Feature",
+  "properties": {
+    "name": "Vinaino Fuor di Porta",
+    "category": "wine",
+    "url_img": "../assets/img/boxes/wine/fill-bottle/fuor-di-porta/01.jpg",
+    "url": "../boxes/wine/fill-bottle/fuor-di-Porta.html",
+    "description": "Wine on Tap & Tuscan Street Food in San Frediano"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [11.2236, 43.7715]
+  }
+},
+{
+  "type": "Feature",
+  "properties": {
+    "name": "Il Santo Vino",
+    "category": "wine",
+    "url_img": "../assets/img/boxes/wine/fill-bottle/il-santo-vino/01.jpg",
+    "url": "../boxes/wine/fill-bottle/il-santo-vino.html",
+    "description": "Nestled between Piazza Santo Spirito and Piazza Pitti"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [11.24815, 43.76663]
+  }
+},
+{
+  "type": "Feature",
+  "properties": {
+    "name": "Odeon Restaurant",
+    "category": "restaurants",
+    "url_img": "../assets/img/boxes/restaurants/odeon/01.jpg",
+    "url": "../boxes/restaurants/odeon.html",
+    "description": "Amazing historical building!"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [11.2522988, 43.7709371]
+  }
+},
+{
+  "type": "Feature",
+  "properties": {
+    "name": "De Bardi",
+    "category": "restaurants",
+    "url_img": "../assets/img/boxes/restaurants/de-bardi/01.webp",
+    "url": "../boxes/restaurants/de-bardi.html",
+    "description": "Elegant and bold architecture."
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [11.2549663, 43.7665228]
+  }
+},
+{
+  "type": "Feature",
+  "properties": {
     "name": "Centro Storico UNESCO",
     "description": "Perimetrazione del centro storico UNESCO di Firenze"
   },

@@ -39,6 +39,13 @@ const amenityToCategoryMap = {
     'theatre': 'experiences'
 };
 
+const groupCategories = {
+    'all-explore': ['experiences', 'private-space', 'nightlife'],
+    'all-food': ['restaurants', 'street-food', 'wine'],
+    'all-services': ['mobility', 'ship-package', 'wellness', 'luggage-store'],
+    'all-essentials': ['shopping', 'water', 'at-your-door']
+};
+
 // Funzione per ottenere la categoria da un feature
 function getCategory(feature) {
     if (feature.properties?.category) {
@@ -56,6 +63,53 @@ async function initApp() {
         zoom: 14,
         maxZoom: 21
     });
+
+    // === RIGHELLO DINAMICO ===
+    const scaleControl = document.createElement('div');
+    scaleControl.id = 'custom-scale-control';
+    scaleControl.innerHTML = `
+      <div class="scale-bar-container">
+        <span class="scale-label"></span>
+        <div class="scale-bar-row">
+          <span class="scale-bar"></span>
+          <span class="scale-icon">🚶‍♂️</span>
+        </div>
+      </div>`;
+    document.getElementById('map-container').appendChild(scaleControl);
+
+    function updateScaleBar() {
+        // Lunghezza in pixel del righello
+        const barPx = 90;
+        // Prendi il centro della mappa
+        const center = map.getCenter();
+        // Calcola la distanza in metri tra due punti separati da barPx orizzontali
+        const p1 = map.containerPointToLatLng([map.getSize().x/2 - barPx/2, map.getSize().y/2]);
+        const p2 = map.containerPointToLatLng([map.getSize().x/2 + barPx/2, map.getSize().y/2]);
+        const meters = map.distance(p1, p2);
+        // Conversione: 5 km/h = 83.33 m/min
+        const min = meters / 83.33;
+        let label;
+        if (min < 1) {
+            const sec = Math.round(min * 60);
+            label = `${sec} sec`;
+        } else if (min < 60) {
+            label = `${Math.round(min)} min`;
+        } else {
+            const hours = Math.floor(min / 60);
+            const mins = Math.round(min % 60);
+            label = mins > 0 ? `${hours} h ${mins} min` : `${hours} h`;
+        }
+        // Aggiorna DOM
+        scaleControl.querySelector('.scale-bar').style.display = 'inline-block';
+        scaleControl.querySelector('.scale-bar').style.width = barPx + 'px';
+        scaleControl.querySelector('.scale-bar').style.height = '3px';
+        scaleControl.querySelector('.scale-bar').style.background = '#111';
+        scaleControl.querySelector('.scale-bar').style.borderRadius = '2px';
+        scaleControl.querySelector('.scale-bar').style.margin = '0 4px';
+        scaleControl.querySelector('.scale-label').innerHTML = label;
+    }
+    map.on('zoomend moveend', updateScaleBar);
+    setTimeout(updateScaleBar, 600);
 
     L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
         attribution: '&copy; OpenStreetMap',
@@ -89,48 +143,55 @@ async function initApp() {
     // Inizializza sidebar e callback filtro
     if (typeof SidebarManager !== 'undefined') {
         SidebarManager.init((cat) => {
-            currentCategory = cat;
+            // Se si deseleziona una categoria (cat === null), passa a unesco
+            currentCategory = cat === null ? 'unesco' : cat;  // ← MODIFICA QUESTA RIGA
             applyCategoryFilter();
         });
     }
+    // Imposta unesco come categoria iniziale
+    currentCategory = 'unesco';  // ← AGGIUNGI QUESTA RIGA
     applyCategoryFilter();
     setTimeout(() => map.invalidateSize(), 500);
 }
 
 function applyCategoryFilter() {
-    if (unescoLayer && !map.hasLayer(unescoLayer)) map.addLayer(unescoLayer); // sempre visibile
-    
-    // Se nessuna categoria è selezionata, mostra mappa vuota
-    if (currentCategory === null) {
+    // UNESCO sempre visibile come layer
+    if (unescoLayer && !map.hasLayer(unescoLayer)) {
+        map.addLayer(unescoLayer);
+    }
+
+    // Nessuna categoria selezionata
+    if (!currentCategory) {
         if (pinLayer) map.removeLayer(pinLayer);
         return;
     }
-    
+
+    // UNESCO = unico caso speciale
     if (currentCategory === 'unesco') {
+        if (pinLayer) map.removeLayer(pinLayer);
         if (unescoBounds && unescoBounds.isValid()) {
             map.fitBounds(unescoBounds, { padding: [50, 50], animate: true });
         }
-        // Mostra tutti i marker che ricadono dentro il poligono UNESCO
-        // const pinsInUnesco = allData.filter(f => {
-        //     if (f.geometry && f.geometry.type === 'Point') {
-        //         const lat = f.geometry.coordinates[1];
-        //         const lng = f.geometry.coordinates[0];
-        //         return unescoBounds && unescoBounds.contains([lat, lng]);
-        //     }
-        //     return false;
-        // });
-        // renderMarkers(pinsInUnesco);
         return;
     }
-    let filtered;
-    if (currentCategory === null) {
-        filtered = [];
-    } else if (currentCategory in categoryMap) {
-        // Filtra per categoria specifica
-        filtered = allData.filter(f => getCategory(f) === currentCategory);
-    } else {
-        filtered = [];
+
+    let filtered = [];
+
+    // 🔹 ALL POINTS (TUTTI)
+    if (currentCategory === 'all') {
+        filtered = allData;
     }
+    // 🔹 ALL POINTS DI GRUPPO
+    else if (groupCategories[currentCategory]) {
+        const cats = groupCategories[currentCategory];
+        filtered = allData.filter(f => cats.includes(getCategory(f)));
+    }
+    // 🔹 CATEGORIA SINGOLA
+    else {
+        filtered = allData.filter(f => getCategory(f) === currentCategory);
+    }
+
+    // 🔹 STESSO FLUSSO DI TUTTE LE ALTRE
     renderMarkers(filtered);
 }
 
@@ -139,8 +200,16 @@ function renderMarkers(features) {
     pinLayer = L.geoJSON({ type: "FeatureCollection", features }, {
         pointToLayer: (feature, latlng) => {
             let iconHtml = '📍';
-            const category = getCategory(feature);
-            
+            const featureCategory = getCategory(feature);
+
+            // 🔹 emoji per ALL
+            const allCategoryIcons = {
+                'all-explore': '🗺️',
+                'all-food': '🍷',
+                'all-services': '🔧',
+                'all-essentials': '⚡'
+            };
+
             // Mappa di categorie a emoji
             const categoryIcons = {
                 'experiences': '✨',
@@ -159,11 +228,12 @@ function renderMarkers(features) {
                 'water': '💧',
                 'at-your-door': '🚪'
             };
-            
-            if (category && categoryIcons[category]) {
-                iconHtml = categoryIcons[category];
+            if (allCategoryIcons[currentCategory]) {
+                iconHtml = allCategoryIcons[currentCategory];
+            } else if (featureCategory && categoryIcons[featureCategory]) {
+                iconHtml = categoryIcons[featureCategory];
             }
-            
+
             const icon = L.divIcon({
                 className: 'custom-pin-container',
                 html: `<div class="custom-pin">${iconHtml}</div>`,
@@ -338,16 +408,33 @@ if (searchInput) {
 }
 
 // ------------------ MOBILE SIDEBAR TOGGLE ------------------
+// ------------------ MOBILE SIDEBAR TOGGLE ------------------
 window.addEventListener('load', () => {
     const sidebarToggleBtn = document.getElementById('sidebar-toggle');
     const sidebar = document.getElementById('sidebar');
     const mapContainer = document.getElementById('map-container');
+    const card = document.getElementById('map-card');
+    
+    // Funzione per chiudere la card
+    function closeDetailCard() {
+        if (card && isDetailCardVisible) {
+            card.classList.remove('visible');
+            isDetailCardVisible = false;
+        }
+    }
     
     if (sidebarToggleBtn && sidebar) {
         // Toggle sidebar con il pulsante hamburger
         sidebarToggleBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             sidebar.classList.toggle('open');
+            // Chiudi la card quando si apre/chiude la sidebar
+            closeDetailCard();
+        });
+        
+        // Chiudi card quando si clicca sulla sidebar
+        sidebar.addEventListener('click', () => {
+            closeDetailCard();
         });
         
         // Chiudi sidebar se clicchi sulla mappa
@@ -359,11 +446,12 @@ window.addEventListener('load', () => {
             });
         }
         
-        // Chiudi sidebar se clicchi sulla barra di ricerca
+       // Chiudi card quando clicchi sulla barra di ricerca
         const searchInput = document.getElementById('map-search');
         if (searchInput) {
             searchInput.addEventListener('click', (e) => {
                 e.stopPropagation();
+                closeDetailCard();
             });
         }
     }

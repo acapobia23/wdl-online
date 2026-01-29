@@ -1,0 +1,52 @@
+Brindellone - [11.2485, 43.7645]
+Buca Niccolini - Ancora mancante
+Caffè Amerini - [11.2580, 43.7720]
+Casalinga - [11.2530, 43.7675]
+De Bardi - [11.2549663, 43.7665228]
+Grotta Parri - [11.2608, 43.7743]
+I Briganti - [11.2490, 43.7655]
+La Brac - [11.2570, 43.7710]
+Marina Santo Spirito - [11.2560, 43.7700]
+Pizzaiuolo - [11.2545, 43.7695]
+Pizzeria Spera - [11.2540, 43.7690]
+Raw - [11.2575, 43.7715]
+Ruggero - [11.2510, 43.7670]
+Tarocchi - [11.2555, 43.7705]
+../boxes/restaurants/
+├── cibreo-place
+│   ├── caffe.html 
+│   ├── cibleo.html
+│   ├── cibreino.html
+│   ├── cibreo-ristorante.html
+│   ├── cocktail-bar.html
+│   ├── elvetia.html
+│   └── teatro-sale.html
+├── brindellone.html
+            <a href="https://maps.app.goo.gl/ZuG4KB7HQTCSeriB9">
+├── buca-niccolini.html
+            <a href="https://maps.app.goo.gl/djZ3bRJE1TYqGap47">
+├── caffe-amerini.html
+                <a href="https://maps.app.goo.gl/AFNagxTuEfM5Nmg46" style="display: flex; align-items: center; justify-content: center; flex-direction: column; width: 100%; height: 100%; text-align: center;">
+├── casalinga.html
+            <a href="https://maps.app.goo.gl/xS7s4t67KmEdV2FU9">
+├── de-bardi.html
+            <a href="https://maps.app.goo.gl/Pq9gsjqq8gdLZRb57">
+├── grotta-parri.html
+            <a href="https://maps.app.goo.gl/shqL27ATAtu92Et2A">
+├── i-briganti.html
+            <a href="https://maps.app.goo.gl/kcfejEicpMjRJeDA7">
+├── la-brac.html
+            <a href="https://maps.app.goo.gl/jZvB5rAEomCGL9SP8">
+├── marina-santo-spirito.html
+            <a href="https://maps.app.goo.gl/wTyALp8aENse2Jqs9">
+├── pizzaiuolo.html
+            <a href="https://maps.app.goo.gl/AtWpm8gYcM66PKxd8">
+├── pizzeria-spera.html
+                    <img src="../../assets/img/icons/map.png" alt="map" style="width: 40px; height: 40px; margin-bottom: 8px;">
+├── raw.html
+            <a href="https://maps.app.goo.gl/7NXkXwJsb1Xej159A">
+├── ruggero.html
+            <a href="https://maps.app.goo.gl/amZyjkWsriknBnGk7">
+└── tarocchi.html
+            <a href="https://maps.app.goo.gl/P5919pLfmx5dYkg1A">
+2 directories, 26 files

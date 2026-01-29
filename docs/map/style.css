@@ -40,6 +40,100 @@ body, html {
   width: 100%;
 }
 
+/* === RIGHELLO DINAMICO === */
+#custom-scale-control {
+  pointer-events: none;
+  min-width: 120px;
+  font-size: 15px;
+  font-family: inherit;
+  background: transparent;
+  border-radius: 12px;
+  padding: 6px 14px 6px 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: absolute;
+  right: 42px !important;
+  bottom: 10px !important;
+  z-index: 1200;
+  flex-direction: column;
+}
+
+#custom-scale-control .scale-bar-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#custom-scale-control .scale-label {
+  font-size: 1em;
+  color: #111;
+  margin-bottom: -8px;
+  margin-top: -10px;
+  transform: translate(-20px, 10px); /* x=sinistra, y=basso */
+
+  text-align: center;
+}
+
+#custom-scale-control .scale-bar-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+#custom-scale-control .scale-bar {
+  position: relative;
+  height: 3px;
+  border-radius: 3px;
+  background: #111;
+  margin: 8px 4px 0 4px;
+  min-width: 60px;
+  max-width: 120px;
+  transition: width 0.2s;
+  display: inline-block;
+}
+
+#custom-scale-control .scale-bar::before,
+#custom-scale-control .scale-bar::after {
+  content: '';
+  position: absolute;
+  width: 2px;
+  height: 12px;
+  margin-right: 2px;
+  margin-left: 2px;
+  background: #111;
+  top: 0;
+  transform: translateY(-50%);
+}
+
+#custom-scale-control .scale-bar::before {
+  left: -4px;
+}
+
+#custom-scale-control .scale-bar::after {
+  right: -4px;
+}
+
+#custom-scale-control .scale-icon {
+  font-size: 1.5em;
+  margin-right: 2px;
+  margin-bottom: 14px;
+}
+
+@media (max-width: 600px) {
+  #custom-scale-control {
+    right: 10px;
+    bottom: 90px;
+    font-size: 13px;
+    padding: 5px 8px 5px 7px;
+  }
+  #custom-scale-control .scale-bar {
+    min-width: 40px;
+    max-width: 80px;
+    margin: 0px;
+  }
+}
+
 /* Toggle per mobile */
 .sidebar-toggle-btn {
   position: absolute;
