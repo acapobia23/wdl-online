@@ -191,3 +191,44 @@ document.getElementById("submit-email")
     lastY = y;
   });
 });
+
+// === TOGGLE FUNCTIONALITY ===
+document.addEventListener("DOMContentLoaded", () => {
+  const toggleButtons = document.querySelectorAll(".toggle-btn");
+
+  toggleButtons.forEach((btn) => {
+    const toggleKey = btn.dataset.toggle; // Leggi l'id dal data attribute
+    const content = document.querySelector(`.toggle-content[data-toggle="${toggleKey}"]`);
+    const arrow = btn.querySelector("img");
+
+    if (!content) return; // Protezione: se il content non esiste, salta
+
+    btn.addEventListener("click", () => {
+      const isVisible = content.style.display === "block";
+
+      // Chiudi tutte le altre sezioni
+      document.querySelectorAll(".toggle-content").forEach((div) => {
+        div.style.display = "none";
+      });
+      document.querySelectorAll(".toggle-btn img").forEach((img) => {
+        img.classList.remove("arrow-up");
+        img.classList.add("arrow-down");
+      });
+
+      // Apri solo la sezione cliccata
+      content.style.display = isVisible ? "none" : "block";
+
+      if (!isVisible) {
+        arrow.classList.add("arrow-up");
+        arrow.classList.remove("arrow-down");
+
+        // Se è la mappa, forza l'aggiornamento Leaflet
+        if (toggleKey === "spots" && typeof map !== "undefined") {
+          setTimeout(() => {
+            map.invalidateSize();
+          }, 250);
+        }
+      }
+    });
+  });
+});

@@ -195,8 +195,8 @@ document.querySelector('.btn-form').addEventListener('click', () => {
   });
 });
 
+// === TOGGLE FUNCTIONALITY ===
 document.addEventListener("DOMContentLoaded", () => {
-  // === TOGGLE FUNCTIONALITY ===
   const toggleButtons = document.querySelectorAll(".toggle-btn");
 
   toggleButtons.forEach((btn) => {
