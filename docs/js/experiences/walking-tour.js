@@ -223,7 +223,7 @@ document.addEventListener("DOMContentLoaded", () => {
         arrow.classList.remove("arrow-down");
 
         // Se è la mappa, forza l'aggiornamento Leaflet
-        if (toggleKey === "spots" && typeof map !== "undefined") {
+        if ((toggleKey === "spots" || toggleKey === "location-hours") && typeof map !== "undefined") {
           setTimeout(() => {
             map.invalidateSize();
           }, 250);
