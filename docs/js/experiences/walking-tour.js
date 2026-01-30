@@ -229,13 +229,6 @@ function initToggleFunctionality() {
         const arrowImg = newBtn.querySelector("img");
         arrowImg.classList.add("arrow-up");
         arrowImg.classList.remove("arrow-down");
-
-        // Se è la mappa, forza l'aggiornamento Leaflet
-        if ((toggleKey === "spots" || toggleKey === "location-hours") && typeof map !== "undefined") {
-          setTimeout(() => {
-            map.invalidateSize();
-          }, 250);
-        }
       }
     });
   });
