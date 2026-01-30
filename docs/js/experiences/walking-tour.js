@@ -193,7 +193,7 @@ document.getElementById("submit-email")
 });
 
 // === TOGGLE FUNCTIONALITY ===
-document.addEventListener("DOMContentLoaded", () => {
+function initToggleFunctionality() {
   const toggleButtons = document.querySelectorAll(".toggle-btn");
 
   toggleButtons.forEach((btn) => {
@@ -203,7 +203,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!content) return; // Protezione: se il content non esiste, salta
 
-    btn.addEventListener("click", () => {
+    // Rimuovi eventuali listener precedenti clonando il bottone
+    const newBtn = btn.cloneNode(true);
+    btn.parentNode.replaceChild(newBtn, btn);
+
+    newBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      
       const isVisible = content.style.display === "block";
 
       // Chiudi tutte le altre sezioni
@@ -219,8 +226,9 @@ document.addEventListener("DOMContentLoaded", () => {
       content.style.display = isVisible ? "none" : "block";
 
       if (!isVisible) {
-        arrow.classList.add("arrow-up");
-        arrow.classList.remove("arrow-down");
+        const arrowImg = newBtn.querySelector("img");
+        arrowImg.classList.add("arrow-up");
+        arrowImg.classList.remove("arrow-down");
 
         // Se è la mappa, forza l'aggiornamento Leaflet
         if ((toggleKey === "spots" || toggleKey === "location-hours") && typeof map !== "undefined") {
@@ -231,4 +239,11 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   });
-});
+}
+
+// Esegui quando il DOM è pronto
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initToggleFunctionality);
+} else {
+  initToggleFunctionality();
+}
