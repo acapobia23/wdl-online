@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 <html lang="it">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Luggage Stores - Where Do Locals</title>
-  <link rel="stylesheet" href="../../css/main.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&display=swap" rel="stylesheet" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Parking in Florence - Where Do Locals</title>
+
+  <link rel="stylesheet" href="../../css/form.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
+  <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-EH7YNQHCH0"></script>
 <script>
@@ -18,19 +23,382 @@
 </script>
 <link rel="icon" href="../../assets/img/headers/cupola-logo.png" type="image/png">
 </head>
-<body>
-    <a href="../../index.html" class="header-link">
-        <header class="banner">
-            <img src="../../assets/img/svg/logoWDL.svg" alt="Where Do Locals Logo" class="logo-animation" id="wdl-logo" />
-        </header>
+
+<body data-form-type="parking-florence">
+
+  <header class="menu-header">
+    <a href="../../index.html">
+      <img src="../../assets/img/original/logo-wdl.png" alt="Where Do Locals logo">
     </a>
-    <main class="container py-4">
+  </header>
 
-    <hr>
-    <section class="row g-4">
+  <div class="container">
+    <br><br><br>
 
-    </section>
-    </main>
-    <script src="../../js/main.js"></script>
+    <h2 class="section-title">Parking in Florence</h2>
+
+    <!-- DESCRIPTION SECTION -->
+<section class="description">
+    <hr><br>
+    <!-- ALWAYS VISIBLE -->
+    <!-- PLACE INTRO -->
+    <p>
+        Parking in Florence requires some attention, as the historic city center is regulated by the ZTL – Limited Traffic Zone.
+    </p>
+    <p>
+        Below you will find all the recommended solutions to arrive and park without risking fines.
+    </p>
+
+    <hr><br>
+
+    <!-- TOGGLE 1 — COVERED PARKING MANAGED BY FIRENZE PARCHEGGI -->
+    <button class="toggle-btn" data-toggle="firenze-parcheggi">
+        <span>Covered Parking Managed by Firenze Parcheggi</span>
+        <img src="../../assets/img/icons/down-arrow.png"
+            alt="Arrow"
+            class="arrow-down" />
+    </button>
+
+    <div class="toggle-content" data-toggle="firenze-parcheggi" style="display: none;">
+        <div style="margin: 10px 24px 20px 24px;">
+            <br>
+            <p>
+                <strong>Official website:</strong><br>
+                <a href="https://www.fipark.com/" target="_blank">https://www.fipark.com/</a>
+            </p>
+            <br>
+            <p>These parking facilities are:</p>
+            <ul>
+                <li>Covered</li>
+                <li>Monitored</li>
+                <li>Paid by the hour</li>
+                <li>In some cases with a maximum daily rate</li>
+            </ul>
+        </div>
+        <hr><br>
+        
+        <!-- Note on rates -->
+        <div style="margin: 10px 24px 20px 24px;">
+            <h4>Note on rates</h4>
+            <br>
+            <p>
+                Not all parking facilities have a fixed daily rate.<br>
+                Many apply an hourly rate with a daily maximum cap.<br>
+                Up-to-date rates are always available on the individual parking pages on fipark.com.
+            </p>
+            <br>
+            <p>
+                The only parking facility with a <strong>€15 daily rate</strong> and <strong>electric vehicle charging (up to 20 charging points)</strong> is <strong>Parterre</strong>.<br>
+                The hourly rate is €2.<br>
+                <a href="https://www.fipark.com/parcheggi/parterre/" target="_blank">https://www.fipark.com/parcheggi/parterre/</a>
+            </p>
+        </div>
+        <hr><br>
+
+        <!-- Parking facilities with daily rates -->
+        <div style="margin: 10px 24px 20px 24px;">
+            <h4>Parking facilities with daily rates:</h4>
+            <br>
+            <p>
+                <strong>Alberti</strong> – €15 per day / €2 per hour<br>
+                <a href="https://www.fipark.com/parcheggi/alberti/" target="_blank">https://www.fipark.com/parcheggi/alberti/</a>
+            </p>
+            <br>
+            <p>
+                <strong>Stazione Fortezza Fiera</strong> – €20 per day / €2 per hour<br>
+                <a href="https://www.fipark.com/parcheggi/stazione-fortezza-fiera/" target="_blank">https://www.fipark.com/parcheggi/stazione-fortezza-fiera/</a>
+            </p>
+            <br>
+            <p>
+                <strong>Porta al Prato Leopolda</strong> – €20 per day / €2 per hour<br>
+                <a href="https://www.fipark.com/parcheggi/porta-al-prato-leopolda/" target="_blank">https://www.fipark.com/parcheggi/porta-al-prato-leopolda/</a>
+            </p>
+            <br>
+            <p>
+                <strong>Pieraccini Meyer</strong> – €4 per day / €0.50 per hour<br>
+                <a href="https://www.fipark.com/parcheggi/pieraccini-meyer/" target="_blank">https://www.fipark.com/parcheggi/pieraccini-meyer/</a>
+            </p>
+            <br>
+            <p>
+                <strong>Careggi</strong> – €4 per day / €0.50 per hour<br>
+                <a href="https://www.fipark.com/parcheggi/careggi-cto/" target="_blank">https://www.fipark.com/parcheggi/careggi-cto/</a>
+            </p>
+            <br>
+            <p>
+                <strong>Palazzo di Giustizia (Novoli)</strong> – €15 per day / €1.00 per hour<br>
+                <a href="https://www.fipark.com/parcheggi/palazzo-di-giustizia-novoli/" target="_blank">https://www.fipark.com/parcheggi/palazzo-di-giustizia-novoli/</a>
+            </p>
+            <br>
+            <p>
+                For the complete list of parking facilities <strong>without a fixed daily rate</strong>, please consult the official website.
+            </p>
+            <br>
+            <p>
+                These parking facilities apply <strong>hourly rates</strong>, generally ranging from <strong>€2 to €4 per hour</strong>, and <strong>some of them are located in the city center, close to areas such as the train station, Sant'Ambrogio market, San Lorenzo market, and other central spots</strong>.
+            </p>
+            <br>
+            <p>
+                We recommend checking the official website to:
+            </p>
+            <ul>
+                <li>view the <strong>full list of parking facilities</strong></li>
+                <li>verify <strong>updated rates</strong></li>
+                <li>check <strong>real-time availability</strong></li>
+            </ul>
+        </div>
+        <hr>
+    </div>
+    <br>
+
+    <!-- TOGGLE 2 — BMOVE APP -->
+    <button class="toggle-btn" data-toggle="bmove-app">
+        <span>Bmove App – Save on Parking Rates</span>
+        <img src="../../assets/img/icons/down-arrow.png"
+            alt="Arrow"
+            class="arrow-down" />
+    </button>
+
+    <div class="toggle-content" data-toggle="bmove-app" style="display: none;">
+        <div style="margin: 10px 24px 20px 24px;">
+            <br>
+            <p>
+                In parking facilities managed by <strong>Firenze Parcheggi</strong>, it is possible to obtain discounted rates by using the <strong>Bmove app</strong>.
+            </p>
+            <br>
+            <p>With Bmove:</p>
+            <ul>
+                <li>Hourly rates are lower than standard payment rates</li>
+                <li>No ticket is required at entry</li>
+                <li>License plate recognition is automatic</li>
+                <li>Payment is processed automatically upon exit</li>
+            </ul>
+            <br>
+            <p>
+                <strong>Download the Bmove app (iOS / Android):</strong><br>
+                <a href="https://www.bmove.com/" target="_blank">https://www.bmove.com/</a>
+            </p>
+            <br>
+            <h4>How it works:</h4>
+            <ul>
+                <li>Register with your email address, car license plate, and payment card</li>
+                <li>Enter the parking facility → the barrier opens automatically</li>
+                <li>Exit → the amount is charged automatically</li>
+            </ul>
+            <br>
+            <p>
+                We recommend downloading and setting up the app before arrival, using Wi-Fi.
+            </p>
+        </div>
+        <hr><br>
+        
+        <!-- Important advantage -->
+        <div style="margin: 10px 24px 20px 24px;">
+            <h4>Important advantage</h4>
+            <br>
+            <p>
+                All parking facilities managed by <strong>Firenze Parcheggi S.p.A.</strong> have entrances and exits located <strong>outside the ZTL gates</strong>.<br>
+                You can reach them freely <strong>without any special permits</strong>.
+            </p>
+            <br>
+            <p>
+                Recommended solution if you want to park safely near the city center and save money by using the Bmove app.
+            </p>
+        </div>
+        <hr>
+    </div>
+    <br>
+
+    <!-- TOGGLE 3 — STREET PARKING -->
+    <button class="toggle-btn" data-toggle="street-parking">
+        <span>Street Parking (Marked Spaces)</span>
+        <img src="../../assets/img/icons/down-arrow.png"
+            alt="Arrow"
+            class="arrow-down" />
+    </button>
+
+    <div class="toggle-content" data-toggle="street-parking" style="display: none;">
+        <div style="margin: 10px 24px 20px 24px;">
+            <br>
+            <p>
+                <strong>Official website:</strong><br>
+                <a href="https://www.serviziallastrada.it/" target="_blank">https://www.serviziallastrada.it/</a>
+            </p>
+            <br>
+            <p>
+                In Florence, street parking is regulated by the color of the road markings and by vertical signs.<br>
+                Vertical signage always has priority.
+            </p>
+        </div>
+        <hr><br>
+
+        <!-- Blue lines -->
+        <div style="margin: 10px 24px 20px 24px;">
+            <h4>Blue lines</h4>
+            <br>
+            <ul>
+                <li>Always paid parking</li>
+                <li>Valid for everyone</li>
+                <li>Payment via parking meter or app</li>
+                <li>Typical rates in the city center (ZCS 1): €2.40 for the first hour, €3.00 per hour thereafter</li>
+                <li>Typical rates in semi-central/residential zones (ZCS 2–5): €1 for the first hour, €2 per hour thereafter</li>
+                <li>Rates may vary slightly based on local signage and time of day</li>
+                <li>Paid hours usually: Monday–Saturday daytime</li>
+                <li>Even with ZTL permits, <strong>blue lines are always paid</strong></li>
+            </ul>
+        </div>
+        <hr><br>
+
+        <!-- White or yellow lines -->
+        <div style="margin: 10px 24px 20px 24px;">
+            <h4>White or yellow lines</h4>
+            <br>
+            <ul>
+                <li>Reserved for residents</li>
+                <li>White lines are gradually being replaced by yellow lines</li>
+                <li>The meaning is the same</li>
+                <li>Always check vertical signage: if it indicates "residents only" or "ZCS", parking is <strong>prohibited</strong>, even for tourists with ZTL permits</li>
+                <li>White/yellow spaces <strong>without vertical signage</strong> exist but are <strong>very rare in the historic center</strong></li>
+                <li><strong>With a "Transit + Parking" ZTL permit</strong>, tourists can park <strong>legally and free of charge</strong> in white-line spaces where there is <strong>no ZCS sign</strong></li>
+            </ul>
+            <br>
+            <p>
+                In practice, in the historic center, <strong>street parking is almost always paid or restricted</strong>, so tourists will often use <strong>blue lines</strong> or <strong>covered parking</strong>.
+            </p>
+        </div>
+        <hr>
+    </div>
+    <br>
+
+    <!-- TOGGLE 4 — ZTL ACCESS -->
+    <button class="toggle-btn" data-toggle="ztl-access">
+        <span>🚦 ZTL Access – Permits for Guests</span>
+        <img src="../../assets/img/icons/down-arrow.png"
+            alt="Arrow"
+            class="arrow-down" />
+    </button>
+
+    <div class="toggle-content" data-toggle="ztl-access" style="display: none;">
+        <div style="margin: 10px 24px 20px 24px;">
+            <br>
+            <p>
+                To enter the central area by car, the following options are available:
+            </p>
+        </div>
+        <hr><br>
+
+        <!-- ZTL transit only -->
+        <div style="margin: 10px 24px 20px 24px;">
+            <h4>ZTL transit only</h4>
+            <br>
+            <ul>
+                <li>Approximate cost: €5</li>
+                <li>Allows only transit through the ZTL</li>
+                <li>Does not allow street parking</li>
+            </ul>
+        </div>
+        <hr><br>
+
+        <!-- ZTL transit + street parking -->
+        <div style="margin: 10px 24px 20px 24px;">
+            <h4>ZTL transit + street parking</h4>
+            <br>
+            <ul>
+                <li>Approximate cost: €15</li>
+                <li>Allows:
+                    <ul style="margin-left: 20px;">
+                        <li>Access to the ZTL</li>
+                        <li>Parking in <strong>white-line spaces reserved for residents</strong> where vertical signage allows it</li>
+                        <li>Blue-line parking remains <strong>always paid</strong></li>
+                    </ul>
+                </li>
+            </ul>
+            <br>
+            <p>
+                To request temporary ZTL access and parking for tourists, use the official website:<br>
+                <a href="https://www.serviziallastrada.it/servizi-al-turista/accessi-temporanei-ztl" target="_blank">https://www.serviziallastrada.it/servizi-al-turista/accessi-temporanei-ztl</a>
+            </p>
+        </div>
+        <hr><br>
+
+        <!-- Summary table -->
+        <div style="margin: 10px 24px 20px 24px;">
+            <h4>Summary of street parking rules with this permit:</h4>
+            <br>
+            <table style="width: 100%; border-collapse: collapse;">
+                <thead>
+                    <tr style="background-color: #f0f0f0;">
+                        <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Line type</th>
+                        <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Vertical sign</th>
+                        <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Access for tourists with "Transit + Parking" permit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 8px;">Blue</td>
+                        <td style="border: 1px solid #ddd; padding: 8px;">any</td>
+                        <td style="border: 1px solid #ddd; padding: 8px;">Always paid</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 8px;">White</td>
+                        <td style="border: 1px solid #ddd; padding: 8px;">none</td>
+                        <td style="border: 1px solid #ddd; padding: 8px;">Free with permit</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 8px;">White</td>
+                        <td style="border: 1px solid #ddd; padding: 8px;">ZCS / residents</td>
+                        <td style="border: 1px solid #ddd; padding: 8px;">Not allowed</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 8px;">Yellow</td>
+                        <td style="border: 1px solid #ddd; padding: 8px;">any</td>
+                        <td style="border: 1px solid #ddd; padding: 8px;">Not allowed</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <hr>
+    </div>
+    <br>
+
+    <!-- TOGGLE 5 — PRIVATE COVERED PARKING -->
+    <button class="toggle-btn" data-toggle="private-parking">
+        <span>Private Covered Parking</span>
+        <img src="../../assets/img/icons/down-arrow.png"
+            alt="Arrow"
+            class="arrow-down" />
+    </button>
+
+    <div class="toggle-content" data-toggle="private-parking" style="display: none;">
+        <div style="margin: 10px 24px 20px 24px;">
+            <br>
+            <p>
+                There are private, guarded, covered parking garages in the city center.<br>
+                They are generally more expensive, but:
+            </p>
+            <ul>
+                <li>They have a ZTL agreement</li>
+                <li>They allow access to the ZTL without purchasing separate permits</li>
+                <li>They offer greater convenience</li>
+            </ul>
+        </div>
+    </div>
+    <br><hr><br>
+        <div style="margin: 10px 24px 20px 24px;">
+            <p style="margin-left: 15px;">
+                Contact Francesco through the form below for details and more informations.
+            </p>
+        </div>
+        <hr><br>
+</section>
+    <div id="form-container"></div>
+<br><br><br><br><br>
+    <div class="icon-links">
+            <a href="https://wa.me/+393473119031" class="text-decoration-none text-dark">
+        <img src="../../assets/img/icons/whatsapp.png" alt="contact" /></a>
+      <a href="../../index.html"><img src="../../assets/img/icons/back-arrow.png" alt="back" /></a>
+    </div>
+  </div>
 </body>
 </html>
+
+<script src="../../js/parking/parking.js"></script>
