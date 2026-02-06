@@ -55,7 +55,9 @@ document.addEventListener("DOMContentLoaded", () => {
         <label class="bold-text" for="date-picker">Add info and chat!</label>
             <p class="bold-gray">*mandatory field</p>        
       <input type="text" id="main-guest" placeholder="*Name and Surname" required></input>
-      <input type="text" id="host" placeholder="*Who did you book your stay with?" required>
+      <input type="text" id="host" placeholder="*Who did you book your stay with?" required></input>
+
+
       <!-- Sezione campi facoltativi integrata nel bottone -->
       <div class="expandable-form">
         <button type="button" class="btn-form" id="toggle-form">
@@ -66,17 +68,6 @@ document.addEventListener("DOMContentLoaded", () => {
         <div id="optional-fields" class="optional-fields">
 
         <input type="text" id="date-picker" placeholder="Select a date" readonly>
-        <select id="guest-picker">
-          ${[...Array(6)].map((_,i)=>
-            `<option value="${i+1}">${i+1} Adult${i>0?'s':''}</option>`
-          ).join('')}
-        </select>
-        <select id="under-18">
-          <option value="0">No Minors</option>
-          ${[...Array(5)].map((_,i)=>
-            `<option value="${i+1}">${i+1} Minor${i>0?'s':''}</option>`
-          ).join('')}
-        </select>
         <input type="email" id="email" placeholder="example@email.com">
         <input type="tel" id="phone" placeholder="+39 123 456 7890">
         <textarea id="optional-request" placeholder="Optional Request"></textarea>
@@ -122,13 +113,11 @@ document.querySelector('.btn-form').addEventListener('click', () => {
     });
     
     const lines = [
-      `Hello! I'm staying at Velona's Jungle and I'd like to book this ${experience}.`,
+      `Hello! I'm staying at ${val("host")} I'd like to book this ${experience}.`,
       ``,
       `📅 Date:  ${val("date-picker")}`,
     `👤 Name:  ${val("main-guest")}`,
-
-      `🧑‍🤝‍🧑 Adults: ${val("guest-picker")}`,
-      `👶 Minors: ${val("under-18")}`,
+    `🏠 Host:  ${val("host")}`,
       `📧 Email: ${val("email")}`,
       `📞 Phone: ${val("phone")}`,
     ];

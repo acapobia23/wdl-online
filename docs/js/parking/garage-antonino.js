@@ -2,8 +2,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // === GALLERY ===
   const galleryContainer = document.getElementById("gallery-container");
   if (galleryContainer) {
-    const imageFiles = ["01.jpg","02.jpg","03.jpg","04.jpg","05.jpg"]; //file name of pic
-    const basePath = "../../assets/img/boxes/restaurants/caffe-amerini/"; //path pic
+    const imageFiles = ["01.webp","02.webp","03.webp","04.jpeg"]; //file name of pic
+    const basePath = "../../assets/img/boxes/parking/garage-antonino/"; //path pic
     const images = imageFiles.map(f => basePath + f);
 //cambiare alt name linea 14
     galleryContainer.innerHTML = `
@@ -55,7 +55,10 @@ document.addEventListener("DOMContentLoaded", () => {
         <label class="bold-text" for="date-picker">Add info and chat!</label>
             <p class="bold-gray">*mandatory field</p>        
       <input type="text" id="main-guest" placeholder="*Name and Surname" required></input>
-      <input type="text" id="host" placeholder="*Who did you book your stay with?" required>
+      <input type="text" id="host" placeholder="*Who did you book your stay with?" required></input>
+      <input type="text" id="model-car" placeholder="*Car model" required></input>
+
+
       <!-- Sezione campi facoltativi integrata nel bottone -->
       <div class="expandable-form">
         <button type="button" class="btn-form" id="toggle-form">
@@ -65,20 +68,49 @@ document.addEventListener("DOMContentLoaded", () => {
 
         <div id="optional-fields" class="optional-fields">
 
-        <input type="text" id="date-picker" placeholder="Select a date" readonly>
-        <select id="guest-picker">
-          ${[...Array(6)].map((_,i)=>
-            `<option value="${i+1}">${i+1} Adult${i>0?'s':''}</option>`
-          ).join('')}
-        </select>
-        <select id="under-18">
-          <option value="0">No Minors</option>
-          ${[...Array(5)].map((_,i)=>
-            `<option value="${i+1}">${i+1} Minor${i>0?'s':''}</option>`
-          ).join('')}
-        </select>
         <input type="email" id="email" placeholder="example@email.com">
         <input type="tel" id="phone" placeholder="+39 123 456 7890">
+        
+        <!-- Box estendibile per arrivo e partenza -->
+        <div class="expandable-form">
+          <button type="button" class="btn-form" id="toggle-datetime">
+            <span id="datetime-toggle-text">Arrival and Departure</span>
+            <img id="datetime-arrow" src="../../assets/img/icons/down-arrow.png" alt="Arrow" class="arrow-down" />
+          </button>
+
+          <div id="datetime-fields" class="optional-fields" style="display: none;">
+            <div style="padding: 0 15px;">
+              <!-- Arrivo -->
+              <label style="font-weight: bold; margin-top: 10px; display: block;">Arrival</label>
+              <input type="text" id="arrival-date" placeholder="Select arrival date" readonly>
+              <div style="display: flex; gap: 10px; margin-top: 5px;">
+                <select id="arrival-hour" class="time-select">
+                  <option value="">HH</option>
+                  ${Array.from({length: 24}, (_, i) => `<option value="${String(i).padStart(2, '0')}">${String(i).padStart(2, '0')}</option>`).join('')}
+                </select>
+                <select id="arrival-minute" class="time-select">
+                  <option value="">MM</option>
+                  ${Array.from({length: 60}, (_, i) => `<option value="${String(i).padStart(2, '0')}">${String(i).padStart(2, '0')}</option>`).join('')}
+                </select>
+              </div>
+
+              <!-- Partenza -->
+              <label style="font-weight: bold; margin-top: 15px; display: block;">Departure</label>
+              <input type="text" id="departure-date" placeholder="Select departure date" readonly>
+              <div style="display: flex; gap: 10px; margin-top: 5px; margin-bottom: 10px;">
+                <select id="departure-hour" class="time-select">
+                  <option value="">HH</option>
+                  ${Array.from({length: 24}, (_, i) => `<option value="${String(i).padStart(2, '0')}">${String(i).padStart(2, '0')}</option>`).join('')}
+                </select>
+                <select id="departure-minute" class="time-select">
+                  <option value="">MM</option>
+                  ${Array.from({length: 60}, (_, i) => `<option value="${String(i).padStart(2, '0')}">${String(i).padStart(2, '0')}</option>`).join('')}
+                </select>
+              </div>
+            </div>
+          </div>
+          </div>
+          <br>
         <textarea id="optional-request" placeholder="Optional Request"></textarea>
 
         </div>
@@ -91,21 +123,91 @@ document.addEventListener("DOMContentLoaded", () => {
         <button type="button" id="submit-email" class="check-btn">Send via email</button>
         <p style="color: #888888;">No auto-replies, no bot</p>
       </form>
+
+      <style>
+        .time-select {
+          flex: 1;
+          padding: 10px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          font-size: 16px;
+          font-family: inherit;
+          background-color: white;
+          color: #333;
+          cursor: pointer;
+          appearance: none;
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+          background-repeat: no-repeat;
+          background-position: right 10px center;
+          background-size: 16px;
+          padding-right: 35px;
+        }
+
+        .time-select:focus {
+          outline: none;
+          border-color: #888;
+        }
+
+        .time-select option {
+          padding: 10px;
+        }
+
+        #datetime-fields input[type="text"] {
+          width: calc(100% - 30px);
+          box-sizing: border-box;
+        }
+      </style>
     `;
-document.querySelector('.btn-form').addEventListener('click', () => {
-  const container = document.querySelector('.expandable-form');
-  const arrow = document.getElementById('form-arrow');
 
-  container.classList.toggle('open');
-  arrow.classList.toggle('arrow-up');
-});
+  // Toggle per i campi opzionali principali
+  document.querySelector('#toggle-form').addEventListener('click', (e) => {
+    e.preventDefault();
+    const container = e.target.closest('.expandable-form');
+    const arrow = document.getElementById('form-arrow');
 
+    container.classList.toggle('open');
+    arrow.classList.toggle('arrow-up');
+  });
 
-  // Inizializza il date picker (SPOSTATO DOPO IL TOGGLE)
-  const dateInput = document.getElementById('date-picker');
-  if (dateInput) {
-    const picker = new Pikaday({
-      field: dateInput,
+  // Toggle per arrivo e partenza
+  document.getElementById('toggle-datetime').addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    const container = e.target.closest('.expandable-form');
+    const datetimeFields = document.getElementById('datetime-fields');
+    const arrow = document.getElementById('datetime-arrow');
+
+    // Toggle la classe open sul container
+    container.classList.toggle('open');
+    arrow.classList.toggle('arrow-up');
+    
+    // Toggle display
+    if (container.classList.contains('open')) {
+      datetimeFields.style.display = 'block';
+    } else {
+      datetimeFields.style.display = 'none';
+    }
+  });
+
+  // Inizializza il date picker per arrivo
+  const arrivalDateInput = document.getElementById('arrival-date');
+  if (arrivalDateInput) {
+    const arrivalPicker = new Pikaday({
+      field: arrivalDateInput,
+      format: 'DD/MM/YYYY',
+      minDate: new Date(),
+      theme: 'dark-theme'
+    });
+  }
+
+  // Inizializza il date picker per partenza
+  const departureDateInput = document.getElementById('departure-date');
+  if (departureDateInput) {
+    const departurePicker = new Pikaday({
+      field: departureDateInput,
       format: 'DD/MM/YYYY',
       minDate: new Date(),
       theme: 'dark-theme'
@@ -124,15 +226,31 @@ document.querySelector('.btn-form').addEventListener('click', () => {
     const lines = [
       `Hello! I'm staying at ${val("host")} I'd like to book this ${experience}.`,
       ``,
-      `📅 Date:  ${val("date-picker")}`,
-    `👤 Name:  ${val("main-guest")}`,
-    `🏠 Host:  ${val("host")}`,
-      `🧑‍🤝‍🧑 Adults: ${val("guest-picker")}`,
-      `👶 Minors: ${val("under-18")}`,
+      `👤 Name:  ${val("main-guest")}`,
+      `🏠 Host:  ${val("host")}`,
+      `🚗 Model car:  ${val("model-car")}`,
       `📧 Email: ${val("email")}`,
       `📞 Phone: ${val("phone")}`,
     ];
   
+    // Aggiungi arrivo se compilato
+    const arrivalDate = val("arrival-date");
+    const arrivalHour = val("arrival-hour");
+    const arrivalMinute = val("arrival-minute");
+    if (arrivalDate || arrivalHour || arrivalMinute) {
+      const arrivalTime = (arrivalHour && arrivalMinute) ? `${arrivalHour}:${arrivalMinute}` : '';
+      lines.push(`🛬 Arrival: ${arrivalDate} ${arrivalTime}`.trim());
+    }
+    
+    // Aggiungi partenza se compilato
+    const departureDate = val("departure-date");
+    const departureHour = val("departure-hour");
+    const departureMinute = val("departure-minute");
+    if (departureDate || departureHour || departureMinute) {
+      const departureTime = (departureHour && departureMinute) ? `${departureHour}:${departureMinute}` : '';
+      lines.push(`🛫 Departure: ${departureDate} ${departureTime}`.trim());
+    }
+    
     if (val("optional-request")) {
       lines.push(`📝 Notes: ${val("optional-request")}`);
     }

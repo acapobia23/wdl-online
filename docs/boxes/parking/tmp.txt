@@ -1,0 +1,33 @@
+
+
+
+Parking rates depend on the vehicle category, based on size and type.
+After the 5th hour, the daily rate automatically applies.
+Category I - Small cars
+Daily rate: €29
+Hourly rate: €6
+Category II - Medium cars
+Daily rate: €34
+Hourly rate: €7
+Category III - Large cars / SUVs
+Daily rate: €39
+Hourly rate: €8
+Category IV - Luxury cars, vans, multi-seater vehicles
+Daily rate: €49
+Hourly rate: €10
+Category V - Motorcycles and scooters
+Daily rate: €25
+Hourly rate: €5
+ℹ️ Rates include VAT.
+Additional city tax may apply as per local regulations.
+
+
+📌 Reservation Required
+⚠️ Advance reservation is mandatory.
+To guarantee your parking space, please contact Francesco in advance.
+When booking, remember to specify the car model, as rates depend on the vehicle category.
+This allows us to:
+
+Reserve the correct space
+
+Ensure a smooth and stress-free arrival in the city center
