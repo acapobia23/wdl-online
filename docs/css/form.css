@@ -505,7 +505,7 @@ h1, h2, h3, h4, h5, h6, a, button {
   color: #3BD2C9;
 }
 
-.map-wine {
+.map-icon {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -518,25 +518,25 @@ h1, h2, h3, h4, h5, h6, a, button {
   transition: all 0.3s ease;
 }
 
-.map-wine:hover {
+.map-icon:hover {
   background-color: #f0f9f9;
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(59, 210, 201, 0.2);
 }
 
-.map-wine a {
+.map-icon a {
   display: flex;
   justify-content: center;
   align-items: center;
   text-decoration: none;
 }
 
-.map-wine img {
+.map-icon img {
   width: 65px;
   height: auto;
 }
 
-.map-wine span {
+.map-icon span {
   display: block;
   margin-top: 8px;
   font-size: 16px;
