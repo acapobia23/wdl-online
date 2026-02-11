@@ -70,6 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         <input type="email" id="email" placeholder="example@email.com">
         <input type="tel" id="phone" placeholder="+39 123 456 7890">
+        <input type="plate" id="plate" placeholder="Licenze Plate Car">
         
         <!-- Box estendibile per arrivo e partenza -->
         <div class="expandable-form">
@@ -229,6 +230,7 @@ document.addEventListener("DOMContentLoaded", () => {
       `👤 Name:  ${val("main-guest")}`,
       `🏠 Host:  ${val("host")}`,
       `🚗 Model car:  ${val("model-car")}`,
+      `🚗 Licenze Plate Car:${val("plate")}`,
       `📧 Email: ${val("email")}`,
       `📞 Phone: ${val("phone")}`,
     ];
