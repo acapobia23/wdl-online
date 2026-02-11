@@ -2,8 +2,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // === GALLERY ===
   const galleryContainer = document.getElementById("gallery-container");
   if (galleryContainer) {
-    const imageFiles = ["01.webp","02.webp","03.webp","04.jpeg"]; //file name of pic
-    const basePath = "../../assets/img/boxes/parking/garage-antonino/"; //path pic
+    const imageFiles = ["01.webp","02.webp","03.webp","04.webp"]; //file name of pic
+    const basePath = "../../assets/img/boxes/parking/garage-italia/"; //path pic
     const images = imageFiles.map(f => basePath + f);
 //cambiare alt name linea 14
     galleryContainer.innerHTML = `
@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <button class="gallery-btn prev">&#10094;</button>
         <div class="gallery-track-container">
           <div class="gallery-track">
-            ${images.map(src => `<div class="gallery-slide"><img src="${src}" alt="Garage S. Antonino" /></div>`).join('')}
+            ${images.map(src => `<div class="gallery-slide"><img src="${src}" alt="Garage Italia" /></div>`).join('')}
           </div>
         </div>
         <button class="gallery-btn next">&#10095;</button>
