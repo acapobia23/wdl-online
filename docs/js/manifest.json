@@ -1,19 +1,19 @@
 {
   "name": "where Do Locals",
   "short_name": "WDL",
-  "start_url": "index.html",
+  "start_url": "/index.html",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#000000",
   "orientation": "portrait",
   "icons": [
     {
-      "src": "assets/img/headers/cupola-logo.png",
+      "src": "/assets/img/headers/cupola-logo.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "assets/img/headers/cupola-logo.png",
+      "src": "/assets/img/headers/cupola-logo.png",
       "sizes": "512x512",
       "type": "image/png"
     }
