@@ -316,7 +316,7 @@ if (searchBar) {
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
     navigator.serviceWorker
-      .register("/sw.js")
+      .register("sw.js")
       .then(reg => console.log("Service Worker registrato:", reg))
       .catch(err => console.log("Errore SW:", err));
   });
