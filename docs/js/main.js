@@ -322,76 +322,83 @@ if ("serviceWorker" in navigator) {
   });
 }
 
+// Variabili globali
 let deferredPrompt;
-const popup = document.getElementById("install-popup");
-const installBtn = document.getElementById("install-btn");
-const closeBtn = document.getElementById("close-btn");
 let popupInterval;
 
 // Intercetta evento installabile
 window.addEventListener("beforeinstallprompt", (e) => {
   e.preventDefault(); // blocca popup automatico
   deferredPrompt = e;
-  schedulePopup();
 });
 
-// Controllo se PWA già installata
-if (window.matchMedia('(display-mode: standalone)').matches) {
-  console.log("PWA già installata -> non mostro popup");
-  deferredPrompt = null;
-  popup.classList.remove("visible");
-  popup.classList.add("hidden");
-}
+// Avvia tutto quando il DOM è pronto
+document.addEventListener("DOMContentLoaded", () => {
+  const popup = document.getElementById("install-popup");
+  const installBtn = document.getElementById("install-btn");
+  const closeBtn = document.getElementById("close-btn");
 
-// Mostra popup
-function showPopup() {
-  if (!deferredPrompt) return;
-  if (popup.classList.contains("visible")) return; // già visibile
+  // Non mostrare se PWA già installata
+  if (window.matchMedia('(display-mode: standalone)').matches) {
+    console.log("PWA già installata -> non mostro popup");
+    if (popup) {
+      popup.classList.remove("visible");
+      popup.classList.add("hidden");
+    }
+    return;
+  }
 
-  popup.classList.remove("hidden");
-  popup.classList.add("visible");
-  localStorage.setItem("lastInstallPopup", Date.now());
-}
+  // Funzione per mostrare popup
+  function showPopup() {
+    if (!deferredPrompt) return;
+    if (!popup || popup.classList.contains("visible")) return; // già visibile
 
-// Nascondi popup
-closeBtn.addEventListener("click", () => {
-  popup.classList.remove("visible");
-  popup.classList.add("hidden");
-});
+    popup.classList.remove("hidden");
+    popup.classList.add("visible");
+    localStorage.setItem("lastInstallPopup", Date.now());
+  }
 
-// Installa PWA
-installBtn.addEventListener("click", async () => {
-  if (!deferredPrompt) return;
-  deferredPrompt.prompt();
-  const choice = await deferredPrompt.userChoice;
-  console.log("Scelta utente:", choice.outcome);
+  // Chiudi popup
+  if (closeBtn) {
+    closeBtn.addEventListener("click", () => {
+      popup.classList.remove("visible");
+      popup.classList.add("hidden");
+    });
+  }
 
-  deferredPrompt = null;
-  popup.classList.remove("visible");
-  popup.classList.add("hidden");
-});
+  // Installa PWA
+  if (installBtn) {
+    installBtn.addEventListener("click", async () => {
+      if (!deferredPrompt) return;
+      deferredPrompt.prompt();
+      const choice = await deferredPrompt.userChoice;
+      console.log("Scelta utente:", choice.outcome);
 
-// Schedule popup con timer e intervallo
-function schedulePopup() {
-  const last = localStorage.getItem("lastInstallPopup");
-  const now = Date.now();
+      deferredPrompt = null;
+      popup.classList.remove("visible");
+      popup.classList.add("hidden");
+    });
+  }
 
-  if (!last) {
-    // Prima volta: dopo 2 minuti
-    setTimeout(() => {
-      showPopup();
-      startRecurringPopup();
-    }, 2 * 60 * 1000);
-  } else {
-    const diff = now - last;
-    if (diff > 10 * 60 * 1000) showPopup();
+  // Schedule popup con intervallo ricorrente
+  function schedulePopup() {
+    const last = localStorage.getItem("lastInstallPopup");
+    const now = Date.now();
+
+    // Mostra subito il popup se non installata
+    showPopup();
+
+    // Avvia intervallo ricorrente ogni 10 minuti
     startRecurringPopup();
   }
-}
 
-// Intervallo ricorrente ogni 10 minuti (solo uno)
-function startRecurringPopup() {
-  if (!popupInterval) {
-    popupInterval = setInterval(showPopup, 10 * 60 * 1000);
+  // Intervallo ricorrente ogni 10 minuti (solo uno)
+  function startRecurringPopup() {
+    if (!popupInterval) {
+      popupInterval = setInterval(showPopup, 10 * 60 * 1000);
+    }
   }
-}
+
+  // Avvia scheduling
+  schedulePopup();
+});
