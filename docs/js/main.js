@@ -312,11 +312,86 @@ if (searchBar) {
 
 //Versione aggiugi home
 
+// Registrazione Service Worker
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
     navigator.serviceWorker
       .register("/sw.js")
-      .then(reg => console.log("Registrato:", reg))
-      .catch(err => console.log("Errore:", err));
+      .then(reg => console.log("Service Worker registrato:", reg))
+      .catch(err => console.log("Errore SW:", err));
   });
+}
+
+let deferredPrompt;
+const popup = document.getElementById("install-popup");
+const installBtn = document.getElementById("install-btn");
+const closeBtn = document.getElementById("close-btn");
+let popupInterval;
+
+// Intercetta evento installabile
+window.addEventListener("beforeinstallprompt", (e) => {
+  e.preventDefault(); // blocca popup automatico
+  deferredPrompt = e;
+  schedulePopup();
+});
+
+// Controllo se PWA già installata
+if (window.matchMedia('(display-mode: standalone)').matches) {
+  console.log("PWA già installata -> non mostro popup");
+  deferredPrompt = null;
+  popup.classList.remove("visible");
+  popup.classList.add("hidden");
+}
+
+// Mostra popup
+function showPopup() {
+  if (!deferredPrompt) return;
+  if (popup.classList.contains("visible")) return; // già visibile
+
+  popup.classList.remove("hidden");
+  popup.classList.add("visible");
+  localStorage.setItem("lastInstallPopup", Date.now());
+}
+
+// Nascondi popup
+closeBtn.addEventListener("click", () => {
+  popup.classList.remove("visible");
+  popup.classList.add("hidden");
+});
+
+// Installa PWA
+installBtn.addEventListener("click", async () => {
+  if (!deferredPrompt) return;
+  deferredPrompt.prompt();
+  const choice = await deferredPrompt.userChoice;
+  console.log("Scelta utente:", choice.outcome);
+
+  deferredPrompt = null;
+  popup.classList.remove("visible");
+  popup.classList.add("hidden");
+});
+
+// Schedule popup con timer e intervallo
+function schedulePopup() {
+  const last = localStorage.getItem("lastInstallPopup");
+  const now = Date.now();
+
+  if (!last) {
+    // Prima volta: dopo 2 minuti
+    setTimeout(() => {
+      showPopup();
+      startRecurringPopup();
+    }, 2 * 60 * 1000);
+  } else {
+    const diff = now - last;
+    if (diff > 10 * 60 * 1000) showPopup();
+    startRecurringPopup();
+  }
+}
+
+// Intervallo ricorrente ogni 10 minuti (solo uno)
+function startRecurringPopup() {
+  if (!popupInterval) {
+    popupInterval = setInterval(showPopup, 10 * 60 * 1000);
+  }
 }
