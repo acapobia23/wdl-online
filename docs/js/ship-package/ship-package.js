@@ -92,7 +92,7 @@ document.querySelector('.btn-form').addEventListener('click', () => {
     });
     
     const lines = [
-      `Hello! I'd like to book ${experience}.`,
+      `Hello! I'm staying at ${val("host")} I'd like to book this ${experience}.`,
       ``,
       `📅 Date:  ${val("date-picker")}`,
     `👤 Name:  ${val("main-guest")}`,
@@ -194,7 +194,7 @@ document.querySelector('.btn-form').addEventListener('click', () => {
     });
     
     const lines = [
-      `Hello! I'd like to book ${experience}.`,
+      `Hello! I'm staying at ${val("host")} I'd like to book this ${experience}.`,
       ``,
       `📅 Date:  ${val("date-picker")}`,
     `👤 Name:  ${val("main-guest")}`,

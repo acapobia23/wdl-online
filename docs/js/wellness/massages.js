@@ -2,8 +2,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // === GALLERY ===
   const galleryContainer = document.getElementById("gallery-container");
   if (galleryContainer) {
-    const imageFiles = ["01.jpg","02.jpg"]; //file name of pic
-    const basePath = "../../assets/img/boxes/street-food/jamm-bell/"; //path pic
+    const imageFiles = ["01.jpg","02.jpg","03.jpg", "04.jpg","05.jpg","06.jpg"]; //file name of pic
+    const basePath = "../../assets/img/boxes/wellness/massages/"; //path pic
     const images = imageFiles.map(f => basePath + f);
 //cambiare alt name linea 14
     galleryContainer.innerHTML = `
@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <button class="gallery-btn prev">&#10094;</button>
         <div class="gallery-track-container">
           <div class="gallery-track">
-            ${images.map(src => `<div class="gallery-slide"><img src="${src}" alt="I'cchebab" /></div>`).join('')}
+            ${images.map(src => `<div class="gallery-slide"><img src="${src}" alt="Wellness" /></div>`).join('')}
           </div>
         </div>
         <button class="gallery-btn next">&#10095;</button>
@@ -122,8 +122,8 @@ document.querySelector('.btn-form').addEventListener('click', () => {
     const lines = [
       `Hello! I'm staying at ${val("host")} I'd like to book this ${experience}.`,
       ``,
-    `👤 Name:  ${val("main-guest")}`,
-    `🏠 Host:  ${val("host")}`,
+      `👤 Name:  ${val("main-guest")}`,
+      `🏠 Host:  ${val("host")}`,
       `🧑‍🤝‍🧑 Adults: ${val("guest-picker")}`,
       `👶 Minors: ${val("under-18")}`,
       `📧 Email: ${val("email")}`,
@@ -189,5 +189,46 @@ document.querySelector('.btn-form').addEventListener('click', () => {
       header.style.transform = 'translateY(0)';
     }
     lastY = y;
+  });
+});
+
+// === TOGGLE FUNCTIONALITY ===
+document.addEventListener("DOMContentLoaded", () => {
+  const toggleButtons = document.querySelectorAll(".toggle-btn");
+
+  toggleButtons.forEach((btn) => {
+    const toggleKey = btn.dataset.toggle; // Leggi l'id dal data attribute
+    const content = document.querySelector(`.toggle-content[data-toggle="${toggleKey}"]`);
+    const arrow = btn.querySelector("img");
+
+    if (!content) return; // Protezione: se il content non esiste, salta
+
+    btn.addEventListener("click", () => {
+      const isVisible = content.style.display === "block";
+
+      // Chiudi tutte le altre sezioni
+      document.querySelectorAll(".toggle-content").forEach((div) => {
+        div.style.display = "none";
+      });
+      document.querySelectorAll(".toggle-btn img").forEach((img) => {
+        img.classList.remove("arrow-up");
+        img.classList.add("arrow-down");
+      });
+
+      // Apri solo la sezione cliccata
+      content.style.display = isVisible ? "none" : "block";
+
+      if (!isVisible) {
+        arrow.classList.add("arrow-up");
+        arrow.classList.remove("arrow-down");
+
+        // Se è la mappa, forza l'aggiornamento Leaflet
+        if (toggleKey === "spots" && typeof map !== "undefined") {
+          setTimeout(() => {
+            map.invalidateSize();
+          }, 250);
+        }
+      }
+    });
   });
 });
