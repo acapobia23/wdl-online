@@ -309,3 +309,14 @@ if (searchBar) {
     }
   });
 }
+
+//Versione aggiugi home
+
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker
+      .register("/sw.js")
+      .then(reg => console.log("Registrato:", reg))
+      .catch(err => console.log("Errore:", err));
+  });
+}
