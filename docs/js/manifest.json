@@ -8,12 +8,12 @@
   "orientation": "portrait",
   "icons": [
     {
-      "src": "../assets/img/headers/cupola-logo.png",
+      "src": "assets/img/headers/cupola-logo.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "../assets/img/headers/cupola-logo.png",
+      "src": "assets/img/headers/cupola-logo.png",
       "sizes": "512x512",
       "type": "image/png"
     }
