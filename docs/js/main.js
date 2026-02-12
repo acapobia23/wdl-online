@@ -313,92 +313,92 @@ if (searchBar) {
 //Versione aggiugi home
 
 // Registrazione Service Worker
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker
-      .register("js/sw.js")
-      .then(reg => console.log("Service Worker registrato:", reg))
-      .catch(err => console.log("Errore SW:", err));
-  });
-}
+// if ("serviceWorker" in navigator) {
+//   window.addEventListener("load", () => {
+//     navigator.serviceWorker
+//       .register("js/sw.js")
+//       .then(reg => console.log("Service Worker registrato:", reg))
+//       .catch(err => console.log("Errore SW:", err));
+//   });
+// }
 
-// Variabili globali
-let deferredPrompt;
-let popupInterval;
+// // Variabili globali
+// let deferredPrompt;
+// let popupInterval;
 
-// Intercetta evento installabile
-window.addEventListener("beforeinstallprompt", (e) => {
-  e.preventDefault(); // blocca popup automatico
-  deferredPrompt = e;
-});
+// // Intercetta evento installabile
+// window.addEventListener("beforeinstallprompt", (e) => {
+//   e.preventDefault(); // blocca popup automatico
+//   deferredPrompt = e;
+// });
 
-// Avvia tutto quando il DOM è pronto
-document.addEventListener("DOMContentLoaded", () => {
-  const popup = document.getElementById("install-popup");
-  const installBtn = document.getElementById("install-btn");
-  const closeBtn = document.getElementById("close-btn");
+// // Avvia tutto quando il DOM è pronto
+// document.addEventListener("DOMContentLoaded", () => {
+//   const popup = document.getElementById("install-popup");
+//   const installBtn = document.getElementById("install-btn");
+//   const closeBtn = document.getElementById("close-btn");
 
-  // Non mostrare se PWA già installata
-  if (window.matchMedia('(display-mode: standalone)').matches) {
-    console.log("PWA già installata -> non mostro popup");
-    if (popup) {
-      popup.classList.remove("visible");
-      popup.classList.add("hidden");
-    }
-    return;
-  }
+//   // Non mostrare se PWA già installata
+//   if (window.matchMedia('(display-mode: standalone)').matches) {
+//     console.log("PWA già installata -> non mostro popup");
+//     if (popup) {
+//       popup.classList.remove("visible");
+//       popup.classList.add("hidden");
+//     }
+//     return;
+//   }
 
-  // Funzione per mostrare popup
-  function showPopup() {
-    if (!deferredPrompt) return;
-    if (!popup || popup.classList.contains("visible")) return; // già visibile
+//   // Funzione per mostrare popup
+//   function showPopup() {
+//     if (!deferredPrompt) return;
+//     if (!popup || popup.classList.contains("visible")) return; // già visibile
 
-    popup.classList.remove("hidden");
-    popup.classList.add("visible");
-    localStorage.setItem("lastInstallPopup", Date.now());
-  }
+//     popup.classList.remove("hidden");
+//     popup.classList.add("visible");
+//     localStorage.setItem("lastInstallPopup", Date.now());
+//   }
 
-  // Chiudi popup
-  if (closeBtn) {
-    closeBtn.addEventListener("click", () => {
-      popup.classList.remove("visible");
-      popup.classList.add("hidden");
-    });
-  }
+//   // Chiudi popup
+//   if (closeBtn) {
+//     closeBtn.addEventListener("click", () => {
+//       popup.classList.remove("visible");
+//       popup.classList.add("hidden");
+//     });
+//   }
 
-  // Installa PWA
-  if (installBtn) {
-    installBtn.addEventListener("click", async () => {
-      if (!deferredPrompt) return;
-      deferredPrompt.prompt();
-      const choice = await deferredPrompt.userChoice;
-      console.log("Scelta utente:", choice.outcome);
+//   // Installa PWA
+//   if (installBtn) {
+//     installBtn.addEventListener("click", async () => {
+//       if (!deferredPrompt) return;
+//       deferredPrompt.prompt();
+//       const choice = await deferredPrompt.userChoice;
+//       console.log("Scelta utente:", choice.outcome);
 
-      deferredPrompt = null;
-      popup.classList.remove("visible");
-      popup.classList.add("hidden");
-    });
-  }
+//       deferredPrompt = null;
+//       popup.classList.remove("visible");
+//       popup.classList.add("hidden");
+//     });
+//   }
 
-  // Schedule popup con intervallo ricorrente
-  function schedulePopup() {
-    const last = localStorage.getItem("lastInstallPopup");
-    const now = Date.now();
+//   // Schedule popup con intervallo ricorrente
+//   function schedulePopup() {
+//     const last = localStorage.getItem("lastInstallPopup");
+//     const now = Date.now();
 
-    // Mostra subito il popup se non installata
-    showPopup();
+//     // Mostra subito il popup se non installata
+//     showPopup();
 
-    // Avvia intervallo ricorrente ogni 10 minuti
-    startRecurringPopup();
-  }
+//     // Avvia intervallo ricorrente ogni 10 minuti
+//     startRecurringPopup();
+//   }
 
-  // Intervallo ricorrente ogni 10 minuti (solo uno)
-  function startRecurringPopup() {
-    if (!popupInterval) {
-      popupInterval = setInterval(showPopup, 10 * 60 * 1000);
-    }
-  }
+//   // Intervallo ricorrente ogni 10 minuti (solo uno)
+//   function startRecurringPopup() {
+//     if (!popupInterval) {
+//       popupInterval = setInterval(showPopup, 10 * 60 * 1000);
+//     }
+//   }
 
-  // Avvia scheduling
-  schedulePopup();
-});
+//   // Avvia scheduling
+//   schedulePopup();
+// });
