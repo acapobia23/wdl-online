@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Massages - Where Do Locals</title> <!-- scrivere nome experience -->
+
+  <link rel="stylesheet" href="../../css/form.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&display=swap" rel="stylesheet">
+  <link rel="icon" href="../../assets/img/headers/cupola-logo.png" type="image/png">
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
+  <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EH7YNQHCH0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-EH7YNQHCH0');
+</script>
+</head>
+
+<body data-form-type="massages"> <!-- mettere tag pagina-->
+
+  <header class="menu-header">
+    <a href="../../index.html">
+      <img src="../../assets/img/original/logo-wdl.png" alt="Where Do Locals logo">
+    </a>
+  </header>
+
+  <div class="container">
+    <br><br><br>
+
+    <h2 class="section-title">Massages</h2> <!-- titolo experience -->
+
+    <div id="gallery-container"></div>
+
+<section class="description">
+    <hr><br>
+
+    <p>
+        <strong>Professional Massage Experience in Florence</strong><br><br>
+        Take a moment to slow down and recharge with a professional massage experience in Florence.<br>
+        Our certified massage therapist offers a wide range of treatments designed to release tension, 
+        improve circulation, and restore balance — perfect after long days of walking or traveling.<br><br>
+    </p>
+
+    <br><hr><br>
+
+    <!-- TOGGLE 1 — MASSAGE TYPES -->
+    <button class="toggle-btn" data-toggle="types-massage">
+        <span>Massage Types Available</span>
+        <img src="../../assets/img/icons/down-arrow.png"
+            alt="Arrow"
+            class="arrow-down" />
+    </button>
+
+    <div class="toggle-content" data-toggle="types-massage" style="display: none;">
+        <div style="margin: 10px 24px 20px 24px;">
+            <br>
+            <ul>
+                <li>Deep Tissue Massage</li>
+                <li>Sports Massage</li>
+                <li>Shiatsu Massage</li>
+                <li>Shiatsu Oil Massage</li>
+                <li>Ayurvedic Massage</li>
+                <li>Polynesian Massage</li>
+                <li>Draining Massage</li>
+                <li>Relaxing Massage</li>
+            </ul>
+            <br>
+            <p>
+                Each treatment can be adapted to your needs and physical condition.
+            </p>
+        </div>
+        <hr>
+    </div>
+
+    <br>
+
+    <!-- TOGGLE 2 — PRICES IN  -->
+    <button class="toggle-btn" data-toggle="-prices">
+        <span>Prices</span>
+        <img src="../../assets/img/icons/down-arrow.png"
+            alt="Arrow"
+            class="arrow-down" />
+    </button>
+
+    <div class="toggle-content" data-toggle="-prices" style="display: none;">
+        <div style="margin: 10px 24px 20px 24px;">
+            <br>
+            <br>
+            <h4>Prices - At Your Accommodation</h4>
+            <p>
+                <strong>50 minutes:</strong> €80<br>
+                <strong>60 minutes:</strong> €90<br>
+                <strong>75 minutes:</strong> €105<br>
+                <strong>90 minutes:</strong> €120
+            </p>
+
+            <br>
+            <p><em>Availability is limited — advance booking recommended.</em></p>
+        </div>
+        <hr>
+    </div>
+    <br>
+    <br><hr><br>
+
+    <!-- TOGGLE 4 — AT YOUR DOOR -->
+    <button class="toggle-btn" data-toggle="at-your-door">
+        <span>Massage at Your Door</span>
+        <img src="../../assets/img/icons/down-arrow.png"
+            alt="Arrow"
+            class="arrow-down" />
+    </button>
+
+    <div class="toggle-content" data-toggle="at-your-door" style="display: none;">
+        <div style="margin: 10px 24px 20px 24px;">
+            <br>
+            <p>
+                Enjoy a professional massage directly in your apartment or accommodation — no travel, no stress, total comfort.
+            </p>
+            <p>
+                This service is ideal if you prefer privacy, are traveling with children, or simply want to relax without leaving your space.
+            </p>
+            <p>
+                All equipment is provided by the therapist.
+            </p>
+
+            <br>
+
+
+            <br>
+            <h4>Good to Know</h4>
+            <ul>
+                <li>Available throughout Florence and nearby areas</li>
+                <li>Quiet, clean space required</li>
+                <li>Advance booking recommended, especially in high season</li>
+            </ul>
+        </div>
+    </div>
+
+    <br><hr><br>
+
+    <h4>Reservation Required</h4>
+    <br>
+    <p>
+        Advance booking is mandatory.<br>
+        To book or check availability, please contact Francesco through the form at the bottom of the page.
+    </p>
+    <p>
+        He will coordinate directly with the therapist and confirm the best option for you.
+    </p>
+
+    <br><hr><br>
+
+</section>
+
+    <div id="form-container"></div>
+<br><br><br><br>
+    <div class="icon-links">
+            <a href="https://wa.me/+393473119031" class="text-decoration-none text-dark">
+        <img src="../../assets/img/icons/whatsapp.png" alt="contact" /></a>
+      <a href="at-your-door.html"><img src="../../assets/img/icons/back-arrow.png" alt="back" /></a> <!-- aggiungere back page-->
+    </div>
+  </div>
+</body>
+</html>
+
+<script src="../../js/wellness/massages.js"></script> <!-- aggiungere js experience-->
