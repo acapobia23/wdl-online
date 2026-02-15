@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Water in Florence - Where Do Locals</title> <!-- nome experience -->
+   <title>Water in Florence - Where Do Locals</title>
 
   <link rel="stylesheet" href="../../css/form.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
   <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
-
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-EH7YNQHCH0"></script>
@@ -24,7 +24,7 @@
 <link rel="icon" href="../../assets/img/headers/cupola-logo.png" type="image/png">
 </head>
 
-<body data-form-type="water-florence"> <!-- tag pagina -->
+<body data-form-type="parking-florence">
 
   <header class="menu-header">
     <a href="../../index.html">
@@ -32,115 +32,287 @@
     </a>
   </header>
 
-    <br><br><br><br>
+  <div class="container">
+    <h2 class="section-title">Drinking Water In Florence</h2>
 
-<h1 class="section-title">💧 Is tap water in Florence drinkable?</h1>
+    <br><br><br>
+
+    <div id="gallery-container"></div>
 
 <section class="description">
-  <p>Yes, the tap water in Florence is perfectly safe to drink. It is treated according to strict EU standards, using processes like clarification, filtration, and disinfection (ozone and chlorine dioxide).</p>
+    <hr><br>
 
-  <hr> <br>
+    <h4><strong>Is Florence Tap Water Safe to Drink?</strong></h4><br><br>
+    <p>
+        Yes, the tap water in Florence is perfectly safe to drink. It is treated according to strict EU standards, using processes like clarification, filtration, and disinfection (ozone and chlorine dioxide).<br><br>
+    </p>
 
-  <h3>✅ Safety and quality</h3>
-  <p>The chemical and physical parameters of the water are constantly monitored.<br>
-  Both ARPAT and Publiacqua regularly test the water quality, and Florence consistently meets all legal standards.</p>
+    <br><hr><br>
 
-  <p>By the way, Italian tap water ranks among the best in Europe—5th overall in a recent quality ranking.</p>
+    <!-- TOGGLE 1 — SAFETY AND QUALITY -->
+    <button class="toggle-btn" data-toggle="safety-quality">
+        <span>Safety and Quality</span>
+        <img src="../../assets/img/icons/down-arrow.png"
+            alt="Arrow"
+            class="arrow-down" />
+    </button>
 
-  <hr> <br>
+    <div class="toggle-content" data-toggle="safety-quality" style="display: none;">
+        <div style="margin: 10px 24px 20px 24px;">
+            <br>
+            <p>
+                The chemical and physical parameters of the water are constantly monitored.<br>
+                Both ARPAT and Publiacqua regularly test the water quality, and Florence consistently meets all legal standards.
+            </p>
+            <p>
+                By the way, Italian tap water ranks among the best in Europe—5th overall in a recent quality ranking.
+            </p>
+        </div>
+        <hr>
+    </div>
 
-  <h3>💧 Taste and smell</h3>
-  <p>Some people notice a slight sulfur-like smell—this is typical of water rich in natural minerals. It's not harmful and can vary slightly depending on the terrain.</p>
+    <br>
 
-  <blockquote>
-    <p>Tap water is almost always drinkable, unless the municipality says otherwise. And if it's not, there will be clear signage near the tap to indicate that.</p>
-  </blockquote>
+    <!-- TOGGLE 2 — TASTE AND SMELL -->
+    <button class="toggle-btn" data-toggle="taste-smell">
+        <span>Taste and Smell</span>
+        <img src="../../assets/img/icons/down-arrow.png"
+            alt="Arrow"
+            class="arrow-down" />
+    </button>
 
-  <hr> <br>
+    <div class="toggle-content" data-toggle="taste-smell" style="display: none;">
+        <div style="margin: 10px 24px 20px 24px;">
+            <br>
+            <p>
+                Some people notice a slight sulfur-like smell—this is typical of water rich in natural minerals. It's not harmful and can vary slightly depending on the terrain.
+            </p>
+            <blockquote>
+                <p>
+                    Tap water is almost always drinkable, unless the municipality says otherwise. And if it's not, there will be clear signage near the tap to indicate that.
+                </p>
+            </blockquote>
+        </div>
+        <hr>
+    </div>
 
-  <h3> But a true Florentine...</h3>
-  <p>...gets their water from the luxurious public fountains with purified, refrigerated, sparkling water and of course, free and drinkable water. People come prepared with reusable bottles, multiple containers, or even large jugs.</p>
+    <br>
 
-  <p>If you just need to fill a small bottle and someone ahead of you has a lot of containers, feel free to politely ask if you can go first—it’s common courtesy in Florence, and people are usually friendly and happy to let you through.</p>
+    <!-- TOGGLE 3 — PUBLIC FOUNTAINS -->
+    <button class="toggle-btn" data-toggle="public-fountains">
+        <span>But a True Florentine...</span>
+        <img src="../../assets/img/icons/down-arrow.png"
+            alt="Arrow"
+            class="arrow-down" />
+    </button>
 
-  <p>Also, many locals only collect either still or sparkling water, not both. With a little kindness and communication, you’ll easily manage to fill bottles at the same time without trouble.</p>
+    <div class="toggle-content" data-toggle="public-fountains" style="display: none;">
+        <div style="margin: 10px 24px 20px 24px;">
+            <br>
+            <p>
+                ...gets their water from the luxurious public fountains with purified, refrigerated, sparkling water and of course, free and drinkable water. People come prepared with reusable bottles, multiple containers, or even large jugs.
+            </p>
+            <p>
+                If you just need to fill a small bottle and someone ahead of you has a lot of containers, feel free to politely ask if you can go first—it's common courtesy in Florence, and people are usually friendly and happy to let you through.
+            </p>
+            <p>
+                Also, many locals only collect either still or sparkling water, not both. With a little kindness and communication, you'll easily manage to fill bottles at the same time without trouble.
+            </p>
+            
+            <br>
+            <h4>Historic Centre Locations</h4>
+            <ul>
+                <li>
+                    <strong>Piazza della Signoria</strong> - in the Palazzo Vecchio wall and behind the statue of Neptune
+                    <div class="map-icon">
+                        <a href="https://maps.app.goo.gl/nCF3xU24zY1LjheW7?g_st=ac" target="_blank">
+                            <span>Map Here</span>
+                            <img src="../../assets/img/icons/map.png" alt="map">
+                        </a>
+                    </div>
+                </li>
+                <li>
+                    <strong>Via Michelangelo Buonarroti</strong> - in the Sant'Ambrogio area
+                    <div class="map-icon">
+                        <a href="https://maps.app.goo.gl/ArPeZNuJfRnNQC1G9?g_st=ac" target="_blank">
+                            <span>Map Here</span>
+                            <img src="../../assets/img/icons/map.png" alt="map">
+                        </a>
+                    </div>
+                </li>
+                <li>
+                    <strong>Piazza Tasso</strong> - in the public garden in the Oltrarno district
+                    <div class="map-icon">
+                        <a href="https://maps.app.goo.gl/ysA2mS1xKB9nToTe9?g_st=ac" target="_blank">
+                            <span>Map Here</span>
+                            <img src="../../assets/img/icons/map.png" alt="map">
+                        </a>
+                    </div>
+                </li>
+            </ul>
 
-  <p>In the Historic Centre of Florence, you can find these luxurious public fountains in several key locations:</p>
+            <br>
+            <h4>Note:</h4>
+            <p>
+                On very hot days, if the fountain is heavily used, the cooling system might not have enough time to fully chill the water, so it may not be as cold as expected.
+            </p>
+            <p>
+                There are also other public fountains scattered around the city center that are not considered "luxurious." These still provide drinkable water (unless indicated otherwise with signage), but the water is not filtered, chilled, or carbonated.<br>
+                To find them, simply search the Italian word "<a href="https://maps.app.goo.gl/sLXEx6RKMvXD345SA" target="_blank">fontanello</a>" on Google Maps.
+            </p>
+        </div>
+        <hr>
+    </div>
 
-  <ul>
-    <li>Piazza della Signoria, in the Palazzo Vecchio wall and behind the statue of Neptune.</li>
-    <li><a href="https://maps.app.goo.gl/nCF3xU24zY1LjheW7?g_st=ac" target="_blank">Map Here</a></li>
+    <br>
 
-    <li>Via Michelangelo buonarroti, in the Sant’Ambrogio area</li>
-    <li><a href="https://maps.app.goo.gl/ArPeZNuJfRnNQC1G9?g_st=ac" target="_blank">Map Here</a></li>
+    <!-- TOGGLE 4 — FOUNTAINS OUTSIDE CENTER -->
+    <button class="toggle-btn" data-toggle="fountains-neighborhoods">
+        <span>Fountains Outside the Center</span>
+        <img src="../../assets/img/icons/down-arrow.png"
+            alt="Arrow"
+            class="arrow-down" />
+    </button>
 
-    <li>Piazza Tasso, in the public garden in the Oltrarno district</li>
-    <li><a href="https://maps.app.goo.gl/ysA2mS1xKB9nToTe9?g_st=ac" target="_blank">Map Here</a></li>
-  </ul>
+    <div class="toggle-content" data-toggle="fountains-neighborhoods" style="display: none;">
+        <div style="margin: 10px 24px 20px 24px;">
+            <br>
+            <p>
+                Outside the city center, every neighborhood typically has its own luxury fountain, including:
+            </p>
+            <ul>
+                <li>
+                    <strong>Piazza delle Cure</strong>
+                    <div class="map-icon">
+                        <a href="https://maps.app.goo.gl/8hA19nPN2Q97Y9ca8?g_st=ac" target="_blank">
+                            <span>Map Here</span>
+                            <img src="../../assets/img/icons/map.png" alt="map">
+                        </a>
+                    </div>
+                </li>
+                <li>
+                    <strong>Piazza Gino Bartali</strong> - in the Gavinana area
+                    <div class="map-icon">
+                        <a href="https://maps.app.goo.gl/UL1sa7asrMmJxyW6A?g_st=ac" target="_blank">
+                            <span>Map Here</span>
+                            <img src="../../assets/img/icons/map.png" alt="map">
+                        </a>
+                    </div>
+                </li>
+                <li>
+                    <strong>Piazza dell'Isolotto</strong>
+                    <div class="map-icon">
+                        <a href="https://maps.app.goo.gl/gFFzmJNN63AAmqis5?g_st=ac" target="_blank">
+                            <span>Map Here</span>
+                            <img src="../../assets/img/icons/map.png" alt="map">
+                        </a>
+                    </div>
+                </li>
+                <li>
+                    <strong>San Donato Fountain</strong> - in Novoli next to Firenze Nord highway exit
+                    <div class="map-icon">
+                        <a href="https://maps.app.goo.gl/mSDVKq9spbynE6yY7?g_st=ac" target="_blank">
+                            <span>Map Here</span>
+                            <img src="../../assets/img/icons/map.png" alt="map">
+                        </a>
+                    </div>
+                </li>
+                <li>
+                    <strong>Via Maragliano</strong> - next to Piazza San Jacopino
+                    <div class="map-icon">
+                        <a href="https://maps.app.goo.gl/rPMc2iLBzi5JUNB9A?g_st=ac" target="_blank">
+                            <span>Map Here</span>
+                            <img src="../../assets/img/icons/map.png" alt="map">
+                        </a>
+                    </div>
+                </li>
+                <li>
+                    <strong>Via Dosio</strong> - between Isolotto - Soffiano
+                    <div class="map-icon">
+                        <a href="https://maps.app.goo.gl/xeHH8A8tmUVuqsNh9?g_st=ac" target="_blank">
+                            <span>Map Here</span>
+                            <img src="../../assets/img/icons/map.png" alt="map">
+                        </a>
+                    </div>
+                </li>
+                <li>
+                    <strong>Fontanello Villa Vogel</strong> - Isolotto
+                    <div class="map-icon">
+                        <a href="https://maps.app.goo.gl/9yTmBuSCCdaE5daZA?g_st=ac" target="_blank">
+                            <span>Map Here</span>
+                            <img src="../../assets/img/icons/map.png" alt="map">
+                        </a>
+                    </div>
+                </li>
+                <li>
+                    <strong>Piazza Dalmazia</strong> - near Careggi
+                    <div class="map-icon">
+                        <a href="https://maps.app.goo.gl/Y7hGaEJah68XSA2n8?g_st=ac" target="_blank">
+                            <span>Map Here</span>
+                            <img src="../../assets/img/icons/map.png" alt="map">
+                        </a>
+                    </div>
+                </li>
+                <li>
+                    <strong>Via Aretina</strong> - near the Firenze Sud highway exit
+                    <div class="map-icon">
+                        <a href="https://maps.app.goo.gl/YVjvcs6YPDTAQBgA9?g_st=ac" target="_blank">
+                            <span>Map Here</span>
+                            <img src="../../assets/img/icons/map.png" alt="map">
+                        </a>
+                    </div>
+                </li>
+                <li>
+                    <strong>Via del Mezzetta</strong> - Coverciano
+                    <div class="map-icon">
+                        <a href="https://maps.app.goo.gl/dEzaftGkfbHBS4he9?g_st=ac" target="_blank">
+                            <span>Map Here</span>
+                            <img src="../../assets/img/icons/map.png" alt="map">
+                        </a>
+                    </div>
+                </li>
+                <li>
+                    <strong>Viale Manfredo Fanti</strong> - next to Fiorentina football stadium
+                    <div class="map-icon">
+                        <a href="https://maps.app.goo.gl/34ukuf9665mFxfja8?g_st=ac" target="_blank">
+                            <span>Map Here</span>
+                            <img src="../../assets/img/icons/map.png" alt="map">
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <hr>
+    </div>
 
-  <h3>⚠️ Note:</h3>
-  <p>On very hot days, if the fountain is heavily used, the cooling system might not have enough time to fully chill the water, so it may not be as cold as expected.</p>
+    <br><hr><br>
 
-  <p>There are also other public fountains scattered around the city center that are not considered “luxurious.” These still provide drinkable water (unless indicated otherwise with signage), but the water is not filtered, chilled, or carbonated.<br>
-  To find them, simply search the Italian word " <a href="https://maps.app.goo.gl/sLXEx6RKMvXD345SA">fontanello</a> "
- on Google Maps.</p>
+    <h4>Practical Tips</h4>
+    <br>
+    <p>
+        You can ask for "tap water" at restaurants or bars if you want to avoid plastic bottles. But unlike in some countries, it's not always served in pre-filled pitchers—they might give you a glass straight from the tap, or, if they're kind, they'll pour it from a bottle.
+    </p>
+    <p>
+        Bring a reusable water bottle—with the luxurious fountains, you'll save money and help the environment too.
+    </p>
 
-  <p>Outside the city center, every neighborhood typically has its own luxury fountain, including:</p>
+    <br><hr><br>
 
-  <ul>
-    <li>Piazza delle Cure</li>
-    <li><a href="https://maps.app.goo.gl/8hA19nPN2Q97Y9ca8?g_st=ac" target="_blank">Map Here</a></li>
-
-    <li>Piazza Gino Bartali, in the Gavinana area</li>
-    <li><a href="https://maps.app.goo.gl/UL1sa7asrMmJxyW6A?g_st=ac" target="_blank">Map Here</a></li>
-
-    <li>Piazza dell’Isolotto</li>
-    <li><a href="https://maps.app.goo.gl/gFFzmJNN63AAmqis5?g_st=ac" target="_blank">Map Here</a></li>
-
-    <li>San Donato fountain, in Novoli next to Firenze Nord highway exit</li>
-    <li><a href="https://maps.app.goo.gl/mSDVKq9spbynE6yY7?g_st=ac" target="_blank">Map Here</a></li>
-
-    <li>Via Maragliano, next to Piazza San Jacopino</li>
-    <li><a href="https://maps.app.goo.gl/rPMc2iLBzi5JUNB9A?g_st=ac" target="_blank">Map Here</a></li>
-
-    <li>Via dosio beetween isolotto - soffiano</li>
-    <li><a href="https://maps.app.goo.gl/xeHH8A8tmUVuqsNh9?g_st=ac" target="_blank">Map Here</a></li>
-
-    <li>Fontanello villa Vogel - isolotto</li>
-    <li><a href="https://maps.app.goo.gl/9yTmBuSCCdaE5daZA?g_st=ac" target="_blank">Map Here</a></li>
-
-    <li>Piazza dalmazzia near careggi</li>
-    <li><a href="https://maps.app.goo.gl/Y7hGaEJah68XSA2n8?g_st=ac" target="_blank">Map Here</a></li>
-
-    <li>Via aretina near the Firenze Sud highway exit</li>
-    <li><a href="https://maps.app.goo.gl/YVjvcs6YPDTAQBgA9?g_st=ac" target="_blank">Map Here</a></li>
-
-    <li>Via del mezzetta - coverciano</li>
-    <li><a href="https://maps.app.goo.gl/dEzaftGkfbHBS4he9?g_st=ac" target="_blank">Map Here</a></li>
-
-    <li>Viale manfredo fanti - next to Fiorentina football stadium</li>
-    <li><a href="https://maps.app.goo.gl/34ukuf9665mFxfja8?g_st=ac" target="_blank">Map Here</a></li>
-  </ul>
-
-  <hr> <br>
-
-  <h3>📌 Tips</h3>
-  <p>You can ask for “tap water” at restaurants or bars if you want to avoid plastic bottles. But unlike in some countries, it’s not always served in pre-filled pitchers—they might give you a glass straight from the tap, or, if they’re kind, they’ll pour it from a bottle.</p>
-
-  <p>Bring a reusable water bottle—with the luxurious fountains, you'll save money and help the environment too.</p>
 </section>
+    
+    <h2 class="section-title">Is tap water in Florence drinkable?</h2>
 
-    </section>
+    <!-- DESCRIPTION SECTION -->
 
-    <br><br><br><br><br>
-
+    <div id="form-container"></div>
+<br><br><br><br><br>
     <div class="icon-links">
-                <a href="https://wa.me/+393473119031" class="text-decoration-none text-dark">
+            <a href="https://wa.me/+393473119031" class="text-decoration-none text-dark">
         <img src="../../assets/img/icons/whatsapp.png" alt="contact" /></a>
-      <a href="../../index.html"><img src="../../assets/img/icons/back-arrow.png" alt="back" /></a> <!-- back page -->
+      <a href="../../index.html"><img src="../../assets/img/icons/back-arrow.png" alt="back" /></a>
     </div>
   </div>
 </body>
 </html>
 
-<script src="../../js/water/water.js"></script> <!-- js experience -->
+<script src="../../js/water/water.js"></script>
