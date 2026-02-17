@@ -59,6 +59,24 @@
     will-change: transform;
   }
 
+  .offer-grid-item {
+    height: 100%; /* prende sempre tutta l'altezza disponibile dal .col */
+    min-height: 89px;
+    background-color: #f9f9f9;
+    border-radius:  80px;
+    padding: 20px;
+    box-shadow: 0 8px 5px rgba(0, 0, 0, 0.1);
+    border: 4px solid #3BD2C9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* centram. verticale */
+    text-align: center;
+    transition: transform 0.15s ease-out, background-color 0.15s ease-out;
+    touch-action: manipulation;
+    will-change: transform;
+  }
+
   .bott-grid-item {
     height: 100%; /* prende sempre tutta l'altezza disponibile dal .col */
     min-height: 50px;
@@ -98,6 +116,13 @@
     font-size: 1.1rem;
     margin-bottom: 8px;
   }
+
+  .grid-item p {
+    padding: 12px;
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+  }
+
   .flip-card {
   perspective: 1000px;
   cursor: pointer;

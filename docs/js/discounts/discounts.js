@@ -2,23 +2,73 @@ document.addEventListener("DOMContentLoaded", () => {
   // === GALLERY ===
   const galleryContainer = document.getElementById("gallery-container");
   if (galleryContainer) {
-    const imageFiles = ["01.jpeg"]; //file name of pic
-    const basePath = "../../assets/img/boxes/drink-water/"; //path pic
-    const images = imageFiles.map(f => basePath + f);
-//cambiare alt name linea 14
+    const offerCards = Array.from(document.querySelectorAll('.row.g-4 .flip-card-front'));
+    const galleryItems = offerCards
+      .map(card => {
+        const image = card.querySelector('img');
+        const link = card.querySelector('a');
+        const title = card.querySelector('p strong');
+
+        return {
+          src: image?.getAttribute('src') || '',
+          alt: image?.getAttribute('alt') || title?.textContent?.trim() || 'special offer',
+          href: link?.getAttribute('href') || ''
+        };
+      })
+      .filter(item => item.src);
+
+    const fallbackItems = [
+      {
+        src: "../../assets/img/boxes/shopping/avantgarde/01.jpg",
+        alt: "Avantgarde Calzature",
+        href: "avantgarde.html"
+      }
+    ];
+
+    const slidesData = galleryItems.length ? galleryItems : fallbackItems;
+
     galleryContainer.innerHTML = `
       <div class="gallery">
+        <button class="gallery-btn prev">&#10094;</button>
         <div class="gallery-track-container">
           <div class="gallery-track">
-            ${images.map(src => `<div class="gallery-slide"><img src="${src}" alt="Pasta Experience" /></div>`).join('')}
+            ${slidesData.map(item => `
+              <div class="gallery-slide">
+                ${item.href
+                  ? `<a href="${item.href}"><img src="${item.src}" alt="${item.alt}" /></a>`
+                  : `<img src="${item.src}" alt="${item.alt}" />`
+                }
+              </div>
+            `).join('')}
           </div>
         </div>
+        <button class="gallery-btn next">&#10095;</button>
       </div>
     `;
 
     const track = galleryContainer.querySelector('.gallery-track');
     const slides = galleryContainer.querySelectorAll('.gallery-slide');
+    const prevBtn = galleryContainer.querySelector('.gallery-btn.prev');
+    const nextBtn = galleryContainer.querySelector('.gallery-btn.next');
     let idx = 0;
+
+    const updateGallery = () => {
+      const w = slides[0].clientWidth;
+      track.style.transform = `translateX(-${idx * w}px)`;
+    };
+    nextBtn.addEventListener('click', () => { idx = (idx+1)%slides.length; updateGallery(); });
+    prevBtn.addEventListener('click', () => { idx = (idx-1+slides.length)%slides.length; updateGallery(); });
+    window.addEventListener('resize', updateGallery);
+    updateGallery();
+
+    // touch
+    let startX = 0;
+    track.addEventListener('touchstart', e => startX = e.touches[0].clientX);
+    track.addEventListener('touchend', e => {
+      const endX = e.changedTouches[0].clientX;
+      if (endX < startX - 30) nextBtn.click();
+      if (endX > startX + 30) prevBtn.click();
+    });
   }
 
   // === FORM === //cambiare qui info form
@@ -28,30 +78,32 @@ document.addEventListener("DOMContentLoaded", () => {
       <div id="message-box" class="hidden">
         <p id="message-text"></p>
       </div>
+
       <form id="booking-form" class="booking-form" novalidate>
         <label class="bold-text" for="date-picker">Add info and chat!</label>
-        <div><p></p></div><p class="bold-gray">*mandatory field</p> 
-        <input type="text" id="main-guest" placeholder="*Name and Surname" required>
-        <input type="text" id="host" placeholder="*Who did you book your stay with?" required>
-        <textarea id="optional-request" placeholder="Optional Request"></textarea>
+            <p class="bold-gray">*mandatory field</p>        
+            <input type="text" id="main-guest" placeholder="*Name and Surname" required></input>
+            <input type="text" id="host" placeholder="*Who did you book your stay with?" required></input>
+            <textarea id="optional-request" placeholder="Request"></textarea>
 
-  
-<!-- Sezione campi facoltativi integrata nel bottone -->
-<div class="expandable-form">
-  <button type="button" class="btn-form" id="toggle-form">
-    <span id="form-toggle-text">optional fields</span>
-    <img id="form-arrow" src="../../assets/img/icons/down-arrow.png" alt="Arrow" class="arrow-down" />
-  </button>
 
-  <div id="optional-fields" class="optional-fields">
+      <!-- Sezione campi facoltativi integrata nel bottone -->
+      <div class="expandable-form">
+        <button type="button" class="btn-form" id="toggle-form">
+          <span id="form-toggle-text">optional fields</span>
+          <img id="form-arrow" src="../../assets/img/icons/down-arrow.png" alt="Arrow" class="arrow-down" />
+        </button>
+
+        <div id="optional-fields" class="optional-fields">
+
         <input type="email" id="email" placeholder="example@email.com">
         <input type="tel" id="phone" placeholder="+39 123 456 7890">
-      </div>
-    </div>
-    <br>
-  
-  <!-- Bottoni di invio -->
-  <button type="submit" class="check-btn">Send and chat via WhatsApp</button>
+        </div>
+        </div>
+        <br>
+    
+        <!-- Bottoni di invio -->
+        <button type="submit" class="check-btn">Send and chat via WhatsApp</button>
         <div><p></p></div>
         <button type="button" id="submit-email" class="check-btn">Send via email</button>
         <p style="color: #888888;">No auto-replies, no bot</p>
@@ -64,18 +116,6 @@ document.querySelector('.btn-form').addEventListener('click', () => {
   container.classList.toggle('open');
   arrow.classList.toggle('arrow-up');
 });
-
-
-  // Inizializza il date picker (SPOSTATO DOPO IL TOGGLE)
-  const dateInput = document.getElementById('date-picker');
-  if (dateInput) {
-    const picker = new Pikaday({
-      field: dateInput,
-      format: 'DD/MM/YYYY',
-      minDate: new Date(),
-      theme: 'dark-theme'
-    });
-  }
 
   const sendMsg = method => {
     const val = id => document.getElementById(id)?.value.trim() || '';
@@ -93,8 +133,11 @@ document.querySelector('.btn-form').addEventListener('click', () => {
       `🏠 Host:  ${val("host")}`,
       `📧 Email: ${val("email")}`,
       `📞 Phone: ${val("phone")}`,
-      `📝 Notes: ${val("optional-request")}`,
     ];
+  
+    if (val("optional-request")) {
+      lines.push(`📝 Request: ${val("optional-request")}`);
+    }
   
     lines.push(``, `Looking forward to your reply!`);
   
