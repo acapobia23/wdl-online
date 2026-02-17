@@ -1,0 +1,126 @@
+<section class="description">
+    <hr><br>
+
+    <p>
+        <strong>[TITOLO PRINCIPALE]</strong><br><br>
+        [TESTO INTRODUTTIVO]<br><br>
+    </p>
+
+    <br><hr><br>
+
+    <!-- TOGGLE 1 -->
+    <button class="toggle-btn" data-toggle="[ID-UNIVOCO-1]">
+        <span>[TITOLO TOGGLE 1]</span>
+        <img src="../../assets/img/icons/down-arrow.png"
+            alt="Arrow"
+            class="arrow-down" />
+    </button>
+
+    <div class="toggle-content" data-toggle="[ID-UNIVOCO-1]" style="display: none;">
+        <div style="margin: 10px 24px 20px 24px;">
+            <br>
+            [CONTENUTO TOGGLE 1]
+        </div>
+        <hr>
+    </div>
+
+    <br>
+
+    <!-- TOGGLE 2 -->
+    <button class="toggle-btn" data-toggle="[ID-UNIVOCO-2]">
+        <span>[TITOLO TOGGLE 2]</span>
+        <img src="../../assets/img/icons/down-arrow.png"
+            alt="Arrow"
+            class="arrow-down" />
+    </button>
+
+    <div class="toggle-content" data-toggle="[ID-UNIVOCO-2]" style="display: none;">
+        <div style="margin: 10px 24px 20px 24px;">
+            <br>
+            [CONTENUTO TOGGLE 2]
+        </div>
+        <hr>
+    </div>
+
+    <br>
+
+    <!-- TOGGLE 3 -->
+    <button class="toggle-btn" data-toggle="[ID-UNIVOCO-3]">
+        <span>[TITOLO TOGGLE 3]</span>
+        <img src="../../assets/img/icons/down-arrow.png"
+            alt="Arrow"
+            class="arrow-down" />
+    </button>
+
+    <div class="toggle-content" data-toggle="[ID-UNIVOCO-3]" style="display: none;">
+        <div style="margin: 10px 24px 20px 24px;">
+            <br>
+            [CONTENUTO TOGGLE 3]
+        </div>
+        <hr>
+    </div>
+
+    <br><hr><br>
+
+    <!-- TOGGLE N (ripeti se necessario) -->
+
+    <br><hr><br>
+
+    <h4>[TITOLO SEZIONE FINALE]</h4>
+    <br>
+    <p>
+        [TESTO FINALE]
+    </p>
+
+    <br><hr><br>
+
+</section>
+
+Script per Claude
+Quando l'utente ti fornisce un nuovo testo per questa struttura, segui questo processo:
+1. ANALISI DEL CONTENUTO
+
+Identifica il titolo principale e l'intro
+Conta quante sezioni toggle sono necessarie
+Individua eventuali sezioni speciali (con mappa, prezzi, elenchi, ecc.)
+Identifica la sezione conclusiva
+
+2. ASSEGNAZIONE ID UNIVOCI
+
+Crea ID descrittivi in formato kebab-case per ogni toggle
+Esempio: data-toggle="massage-types", data-toggle="studio-prices"
+Gli ID devono essere identici tra <button> e <div class="toggle-content">
+
+3. FORMATTAZIONE CONTENUTI
+Per ogni toggle, struttura il contenuto interno usando:
+
+<p> per paragrafi
+<ul><li> per elenchi puntati
+<strong> per evidenziare termini importanti
+<br> per spaziature tra blocchi
+<h4> per sottotitoli all'interno del toggle
+<em> per note o avvisi in corsivo
+
+4. ELEMENTI SPECIALI
+Se presente una mappa o link esterno:
+html<div class="map-icon">
+    <a href="[URL]">
+        <span>[TESTO LINK]</span>
+        <img src="../../assets/img/icons/map.png" alt="map">
+    </a>
+</div>
+5. VERIFICA FINALE
+
+Ogni data-toggle ha un valore univoco e corrispondente
+Tutti i <div class="toggle-content"> hanno style="display: none;"
+Le immagini freccia usano il path corretto: ../../assets/img/icons/down-arrow.png
+La struttura <hr><br> è rispettata tra le sezioni
+
+6. OUTPUT
+Restituisci l'HTML completo, pronto per essere inserito nella pagina.
+
+Esempio di utilizzo:
+
+"Ecco il testo per la sezione yoga: [testo...]"
+
+Claude procederà ad applicare lo scheletro adattandolo al contenuto fornito.
