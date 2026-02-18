@@ -1,0 +1,14 @@
++/assets/img/boxes/experience/drink_and_paint/27.jpg
++/assets/img/boxes//street-food/masaniello/02.jpg
++/assets/img/boxes/private-event-space/03.jpeg
++/assets/img/boxes/nightlife/habana500/02.jpg
++/assets/img/boxes/restaurants/de-bardi/01.webp
++/assets/img/boxes/wine/fill-bottle/01.png
++/assets/img/boxes/experience/van-tour/01.jpg
++/assets/img/boxes/parking/garage-italia/01.webp
++/assets/img/boxes/wellness/relax/01.jpg
++/assets/img/boxes/wellness/soulspace/01.jpg
++/assets/img/boxes/luggage-store/bounce/02.jpg
++/assets/img/boxes/ship-package/02.jpg
++/assets/img/boxes/shopping/bastah/05.jpg
++/assets/img/boxes/at-your-door/pasta-to-you/01.jpg

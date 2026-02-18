@@ -8,6 +8,11 @@
     font-family: 'Poppins', sans-serif;
     color: #555454;
   }
+
+  main.container > p {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
   
   .banner {
     background: url('../assets/img/headers/header-1920x1080.jpeg') no-repeat center center;
@@ -383,6 +388,7 @@
 
 .info-box .icon {
   margin-right: 8px;
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.15));
 }
 
 /* Nasconde il box all’avvio */
@@ -463,7 +469,7 @@
   padding: 4px 16px;
   border-radius: 40px;
   border: 2px solid #3BD2C9;
-  background: #ffffffcc;
+  background: #ffffffb3;
   font-size: 1.1rem;
   outline: none;
   box-shadow: 0 2px 8px rgba(59,210,201,0.07);
@@ -575,15 +581,28 @@ body {
 }
 
 .carousel-card .carousel-img {
-  width: 80px !important;
-  height: 80px !important;
+  width: 45px !important;
+  height: 45px !important;
   min-width: 0;
   object-fit: contain; /* Mostra l'immagine per intero */
-  align-self: center;
-  border-radius: 0px !important;
-  margin: 4px;
-  background: #fff;
+  border-radius: 8px !important;
+  margin: 0 !important;
+  background: transparent;
   display: block;
+  position: absolute !important;
+  top: 10px !important;
+  right: 10px !important;
+  filter: drop-shadow(8px 8px 10px rgba(0, 0, 0, 0.7));
+}
+
+.carousel-card .carousel-title-icon {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+  border-radius: 6px;
+  background: transparent;
+  display: inline-block;
+  filter: drop-shadow(8px 8px 10px rgba(0, 0, 0, 0.7));
 }
 
 .carousel-card .carousel-content {
@@ -592,23 +611,31 @@ body {
   flex-direction: column;
   justify-content: center;
   padding: 18px 12px 18px 12px;
-  color: #222;
+  color: #fff;
   background: none;
   align-items: flex-start;
   text-align: left;
+  text-shadow: 0 3px 8px rgba(0, 0, 0, 0.9), 0 2px 4px rgba(0, 0, 0, 1);
 }
 
 .carousel-card .carousel-content h2 {
   margin: 0 0 0.3em 0;
   font-size: 1.2rem;
   font-family: 'Poppins', Arial, sans-serif;
-  color: #222;
+  font-weight: 800;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-shadow: 0 3px 8px rgba(0, 0, 0, 0.9), 0 2px 4px rgba(0, 0, 0, 1);
 }
 .carousel-card .carousel-content p {
   margin: 0;
   font-size: 1em;
-  opacity: 0.85;
-  color: #222;
+  font-weight: 600;
+  opacity: 0.95;
+  color: #fff;
+  text-shadow: 0 3px 8px rgba(0, 0, 0, 0.9), 0 2px 4px rgba(0, 0, 0, 1);
 }
 
 /* Rimuovi overlay gradient */
@@ -627,13 +654,15 @@ body {
     max-width: 900px !important;
   }
   .carousel-card .carousel-img {
-    width: 80px !important;
-    height: 80px !important;
+    width: 45px !important;
+    height: 45px !important;
     min-width: 0 !important;
     object-fit: contain; /* Mostra l'immagine per intero anche su desktop */
-    margin: 4px;
-    border-radius: 0px !important;
-    align-self: center;
+    margin: 0 !important;
+    border-radius: 8px !important;
+    position: absolute !important;
+    top: 10px !important;
+    right: 10px !important;
 }
   .carousel-card .carousel-content {
     padding: 18px 18px 18px 18px;

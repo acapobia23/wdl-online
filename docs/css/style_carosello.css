@@ -40,6 +40,15 @@ body {
   display: flex;
   transform: translateX(var(--carousel-offset));
   transition: transform var(--carousel-duration) var(--carousel-easing);
+
+.carousel-card .carousel-title-icon {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  border-radius: 6px;
+  background: transparent;
+  display: inline-block;
+}
   will-change: transform;
   gap: 1rem;
   padding: 0 1rem;
@@ -47,6 +56,9 @@ body {
   
   /* Nascosto inizialmente per prevenire FOUC */
   opacity: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
   transition: transform var(--carousel-duration) var(--carousel-easing), 
               opacity 0.15s ease-out;
 }
@@ -72,7 +84,7 @@ body {
 
 .carousel-card {
   background: #fff;
-  border-radius: 42px;
+  border-radius: 32px;
   box-shadow:
     0 1.5px 4px rgba(59,210,201,0.12),
     0 4px 12px rgba(0,0,0,0.10),
@@ -81,6 +93,7 @@ body {
   display: flex;
   flex-direction: row-reverse;
   align-items: center;
+  justify-content: center;
   overflow: hidden;
   border: none;
   min-width: 320px;
@@ -91,6 +104,7 @@ body {
   text-decoration: none;
   color: inherit;
   margin-top: 60px; /* Spazio verticale sopra ogni card */
+  position: relative; /* Abilita il posizionamento assoluto dei figli */
 }
 .carousel-card.active {
   box-shadow:
@@ -101,40 +115,88 @@ body {
 }
 
 .carousel-card .carousel-img {
-  width: 80px;
+  width: 45px;
   min-width: 0;
-  height: 80px;
+  height: 45px;
   object-fit: cover;
-  align-self: center;
-  border-radius: 16px;
-  margin: 18px;
-  background: #fff;
+  border-radius: 8px;
+  background: transparent;
   display: block;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  margin: 0;
 }
 
 .carousel-card .carousel-content {
-  flex: 1 1 0;
+  flex: 0 0 auto;
+  width: fit-content;
+  max-width: calc(100% - 24px);
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 18px 12px 18px 12px;
-  color: #222;
-  background: none;
-  align-items: flex-start;
-  text-align: left;
+  padding: 12px 24px;
+  margin: 12px;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+  
+  /* Glassmorphism Effect - Effetto vetro sfocato stile iOS */
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.25) 0%,
+    rgba(255, 255, 255, 0.12) 100%
+  );
+  backdrop-filter: blur(16px) saturate(200%);
+  -webkit-backdrop-filter: blur(16px) saturate(200%);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 100px;
+  box-shadow: 
+    0 8px 32px 0 rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.4);
+  
+  align-items: center;
+  text-align: center;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8), 0 1px 3px rgba(0, 0, 0, 0.9);
+}
+
+/* Riflesso vetro iOS sulla parte superiore */
+.carousel-card .carousel-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.3) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  border-radius: 100px 100px 0 0;
+  pointer-events: none;
 }
 
 .carousel-card .carousel-content h2 {
-  margin: 0 0 0.3em 0;
-  font-size: 1.2rem;
+  margin: 0 0 0.2em 0;
+  font-size: 1.05rem;
   font-family: 'Poppins', Arial, sans-serif;
-  color: #222;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8), 0 1px 3px rgba(0, 0, 0, 0.9);
+  position: relative;
+  z-index: 1;
 }
+
 .carousel-card .carousel-content p {
   margin: 0;
-  font-size: 1em;
-  opacity: 0.85;
-  color: #222;
+  font-size: 0.85rem;
+  font-weight: 500;
+  opacity: 0.95;
+  color: #fff;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8), 0 1px 3px rgba(0, 0, 0, 0.9);
+  position: relative;
+  z-index: 1;
 }
 
 .card-overlay {
@@ -151,12 +213,14 @@ body {
     max-width: 900px;
   }
   .carousel-card .carousel-img {
-    width: 80px;
+    width: 45px;
     min-width: 0px;
-    height: 80px;
-    border-radius: 16px;
-    margin: 18px;
-    align-self: center;
+    height: 45px;
+    border-radius: 8px;
+    margin: 0;
+    position: absolute;
+    top: 10px;
+    right: 10px;
   }
   .carousel-card .carousel-content {
     padding: 18px 18px 18px 18px;
@@ -260,12 +324,13 @@ body {
     gap: 12px;
   } 
   .carousel-card .carousel-img {
-    width: 80px;
-    height: 80px;
-    margin: 4px;
-    height: calc(100% - 8px);
-    border-radius: 40px;
-    align-self: center;
+    width: 45px;
+    height: 45px;
+    margin: 0;
+    border-radius: 8px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
   }
 }
 
@@ -294,18 +359,84 @@ body {
   top: -0.5rem;
   left: 2rem;
   z-index: 10;
-  background: #30ada5;
+  overflow: hidden;
+  
+  /* Glassmorphism Effect stile iOS per turchese */
+  background: linear-gradient(
+    135deg,
+    rgba(59, 210, 201, 0.85) 0%,
+    rgba(48, 173, 165, 0.75) 100%
+  );
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  
   color: #ffffff;
-  border: 3.5px solid #3bd2c9;
+  border: 2.5px solid rgba(59, 210, 201, 0.6);
   border-radius: 40px;
   font-family: 'Poppins', Arial, sans-serif;
   font-size: 1.45em;
   font-weight: 1000;
   padding: 0.45em 2.2em;
-  box-shadow: 0 2px 12px rgba(59,210,201,0.13);
+  
+  box-shadow: 
+    0 4px 20px rgba(59, 210, 201, 0.3),
+    0 2px 8px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.5);
+    
   letter-spacing: 0.01em;
   pointer-events: none;
   user-select: none;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+/* Riflesso vetro iOS sulla pillola turchese */
+.carousel-pill::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.35) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  border-radius: 40px 40px 0 0;
+  pointer-events: none;
+}
+
+/* Animazione pillola durante il carosello */
+@keyframes pill-slide-left {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-6px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes pill-slide-right {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(6px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.carousel-pill.animate-pill-left {
+  animation: pill-slide-left 0.55s cubic-bezier(0.45, 0, 0.55, 1) both;
+}
+
+.carousel-pill.animate-pill-right {
+  animation: pill-slide-right 0.55s cubic-bezier(0.45, 0, 0.55, 1) both;
 }
 
 @media (max-width: 700px) {

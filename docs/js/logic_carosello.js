@@ -29,6 +29,11 @@ document.querySelectorAll('.carousel').forEach(carousel => {
 
   const cards = Array.from(track.querySelectorAll('.carousel-card'));
   let current = 1; // inizia dalla prima card reale
+  let previousCurrent = current; // Traccia il valore precedente per determinare la direzione
+  
+  // Ottieni la pillola dal contenitore genitore
+  const carouselSection = carousel.closest('.carousel-section');
+  const pill = carouselSection ? carouselSection.querySelector('.carousel-pill') : null;
   
   // Calcolo e posizionamento ultra-veloce con CSS Custom Properties
   function setInitialPosition() {
@@ -98,6 +103,24 @@ document.querySelectorAll('.carousel').forEach(carousel => {
       track.style.setProperty('--carousel-offset', '0px');
     }
     track.style.setProperty('--carousel-duration', animate ? '0.4s' : '0s');
+    
+    // Animazione della pillola: determina la direzione in base al movimento
+    if (animate && pill) {
+      // Rimuovi le classi di animazione precedenti per permettere il reset
+      pill.classList.remove('animate-pill-left', 'animate-pill-right');
+      
+      // Determina la direzione: aumenta = destra, diminuisce = sinistra
+      if (current > previousCurrent) {
+        // Movimento a destra nel carosello = swipe a sinistra
+        pill.classList.add('animate-pill-left');
+      } else if (current < previousCurrent) {
+        // Movimento a sinistra nel carosello = swipe a destra
+        pill.classList.add('animate-pill-right');
+      }
+    }
+    
+    // Aggiorna sempre il valore precedente (anche quando animate=false per jump silenzioso)
+    previousCurrent = current;
   }
 
   function jumpTo(index) {
@@ -206,6 +229,11 @@ document.querySelectorAll('.carousel').forEach(carousel => {
     }
   });
   track.addEventListener('transitionend', () => {
+    // Rimuovi le classi di animazione dalla pillola al termine dell'animazione
+    if (pill) {
+      pill.classList.remove('animate-pill-left', 'animate-pill-right');
+    }
+    
     if (current === cards.length - 1) jumpTo(1); // clone in fondo → prima reale
     if (current === 0) jumpTo(cards.length - 2); // clone in testa → ultima reale
     
