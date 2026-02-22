@@ -806,6 +806,7 @@ h1, h2, h3, h4, h5, h6, a, button {
   color: inherit;
   position: relative;
   border-radius: 16px;
+  border: 1px solid #3BD2C9;
   overflow: hidden;
   background: #fff;
   box-shadow:

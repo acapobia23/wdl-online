@@ -2,17 +2,16 @@ document.addEventListener("DOMContentLoaded", () => {
   // === GALLERY ===
   const galleryContainer = document.getElementById("gallery-container");
   if (galleryContainer) {
-    const offerCards = Array.from(document.querySelectorAll('.row.g-4 .flip-card-front'));
+    const offerCards = Array.from(document.querySelectorAll('.privilege-card'));
     const galleryItems = offerCards
       .map(card => {
-        const image = card.querySelector('img');
-        const link = card.querySelector('a');
-        const title = card.querySelector('p strong');
+        const image = card.querySelector('.privilege-card-img-wrap img');
+        const title = card.querySelector('.privilege-title');
 
         return {
           src: image?.getAttribute('src') || '',
           alt: image?.getAttribute('alt') || title?.textContent?.trim() || 'special offer',
-          href: link?.getAttribute('href') || ''
+          href: card.getAttribute('href') || ''
         };
       })
       .filter(item => item.src);
