@@ -50,23 +50,39 @@ document.addEventListener("DOMContentLoaded", () => {
     const prevBtn = galleryContainer.querySelector('.gallery-btn.prev');
     const nextBtn = galleryContainer.querySelector('.gallery-btn.next');
     let idx = 0;
+    let autoplayInterval = null;
 
     const updateGallery = () => {
       const w = slides[0].clientWidth;
       track.style.transform = `translateX(-${idx * w}px)`;
     };
-    nextBtn.addEventListener('click', () => { idx = (idx+1)%slides.length; updateGallery(); });
-    prevBtn.addEventListener('click', () => { idx = (idx-1+slides.length)%slides.length; updateGallery(); });
+
+    const startAutoplay = () => {
+      if (autoplayInterval) clearInterval(autoplayInterval);
+      autoplayInterval = setInterval(() => {
+        idx = (idx + 1) % slides.length;
+        updateGallery();
+      }, 4000);
+    };
+
+    const resetAutoplay = () => {
+      if (autoplayInterval) clearInterval(autoplayInterval);
+      startAutoplay();
+    };
+
+    nextBtn.addEventListener('click', () => { idx = (idx+1)%slides.length; updateGallery(); resetAutoplay(); });
+    prevBtn.addEventListener('click', () => { idx = (idx-1+slides.length)%slides.length; updateGallery(); resetAutoplay(); });
     window.addEventListener('resize', updateGallery);
     updateGallery();
+    startAutoplay();
 
     // touch
     let startX = 0;
     track.addEventListener('touchstart', e => startX = e.touches[0].clientX);
     track.addEventListener('touchend', e => {
       const endX = e.changedTouches[0].clientX;
-      if (endX < startX - 30) nextBtn.click();
-      if (endX > startX + 30) prevBtn.click();
+      if (endX < startX - 30) { nextBtn.click(); resetAutoplay(); }
+      if (endX > startX + 30) { prevBtn.click(); resetAutoplay(); }
     });
   }
 

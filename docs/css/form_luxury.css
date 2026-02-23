@@ -814,6 +814,7 @@ h1, h2, h3, h4, h5, h6, a, button {
     0 0 0 1px rgba(59, 210, 201, 0.25),
     inset 0 1px 0 rgba(255,255,255,0.9);
   transition: transform 0.22s ease, box-shadow 0.22s ease;
+  isolation: isolate;
 }
 
 .privilege-card:hover {
@@ -829,17 +830,19 @@ h1, h2, h3, h4, h5, h6, a, button {
   content: '';
   position: absolute;
   left: 0;
-  top: 12%;
-  height: 76%;
+  top: 0;
+  bottom: 0;
+  height: auto;
   width: 3px;
   background: linear-gradient(180deg, #3BD2C9, #1aa8a0);
-  border-radius: 0 2px 2px 0;
-  z-index: 2;
+  border-radius: 16px 0 0 16px;
+  z-index: 0;
 }
 
 /* Immagine */
 .privilege-card-img-wrap {
   position: relative;
+  z-index: 1;
   width: 38%;
   flex-shrink: 0;
   overflow: hidden;
@@ -878,6 +881,8 @@ h1, h2, h3, h4, h5, h6, a, button {
 
 /* Body testo */
 .privilege-card-body {
+  position: relative;
+  z-index: 1;
   flex: 1;
   display: flex;
   flex-direction: column;

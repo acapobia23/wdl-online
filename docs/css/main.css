@@ -849,7 +849,8 @@ body {
 .luxury-shape-wrapper {
   display: block;
   position: relative;
-  max-width: 680px;
+  width: 80%;
+  max-width: 100%;
   margin: 0 auto;
   z-index: 1;
   transition: transform 0.18s ease-out;
@@ -865,7 +866,7 @@ body {
   position: absolute;
   inset: -6px;
   background: linear-gradient(160deg, #3BD2C9 0%, #1aa8a0 100%);
-  clip-path: polygon(6% 0%, 94% 0%, 100% 50%, 94% 100%, 6% 100%, 0% 50%);
+  clip-path: polygon(4% 0%, 100% 0%, 96% 100%, 0% 100%);
   z-index: -2;
   transition: transform 0.18s ease-out;
 }
@@ -876,7 +877,7 @@ body {
   position: absolute;
   inset: -3px;
   background: linear-gradient(160deg, #ffffff 0%, #c8f6f3 100%);
-  clip-path: polygon(6% 0%, 94% 0%, 100% 50%, 94% 100%, 6% 100%, 0% 50%);
+  clip-path: polygon(4% 0%, 100% 0%, 96% 100%, 0% 100%);
   z-index: -1;
   transition: transform 0.18s ease-out;
 }
@@ -886,10 +887,12 @@ body {
   position: relative;
   border: none;
   border-radius: 0;
-  padding: 22px 60px;
+  padding: 22px 32px;
   min-height: 80px;
+  text-align: left;
+  align-items: flex-start;
   background: linear-gradient(160deg, #ffffff 0%, #e8fafa 55%, #d0f5f3 100%);
-  clip-path: polygon(6% 0%, 94% 0%, 100% 50%, 94% 100%, 6% 100%, 0% 50%);
+  clip-path: polygon(4% 0%, 100% 0%, 96% 100%, 0% 100%);
   box-shadow:
     0 8px 24px rgba(59, 210, 201, 0.30),
     0 2px 6px rgba(0, 0, 0, 0.10),
@@ -913,6 +916,7 @@ body {
   color: #1aa8a0;
   text-shadow: 0 1px 0 rgba(255,255,255,0.8);
   display: flex;
+  justify-content: flex-start;
   align-items: center;
   gap: 10px;
 }
@@ -985,3 +989,167 @@ body {
   background-color: #ccc;
   color: #000;
 } */
+
+/* ============================================
+   === GUEST PRIVILEGES — Luxury Cards ===
+   ============================================ */
+
+.privilege-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 8px 0 24px;
+}
+
+.privilege-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.privilege-label-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #3BD2C9, transparent);
+}
+
+.privilege-label-text {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #3BD2C9;
+  white-space: nowrap;
+}
+
+.privilege-card {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  height: 115px;
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+  border-radius: 16px;
+  border: 1px solid #3BD2C9;
+  overflow: hidden;
+  background: #fff;
+  box-shadow:
+    0 2px 8px rgba(0,0,0,0.07),
+    0 0 0 1px rgba(59, 210, 201, 0.25),
+    inset 0 1px 0 rgba(255,255,255,0.9);
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+  isolation: isolate;
+}
+
+.privilege-card:hover {
+  transform: translateY(-3px) scale(1.012);
+  box-shadow:
+    0 10px 28px rgba(59, 210, 201, 0.22),
+    0 0 0 1.5px rgba(59, 210, 201, 0.55),
+    inset 0 1px 0 rgba(255,255,255,0.9);
+}
+
+.privilege-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  height: auto;
+  width: 3px;
+  background: linear-gradient(180deg, #3BD2C9, #1aa8a0);
+  border-radius: 16px 0 0 16px;
+  z-index: 0;
+}
+
+.privilege-card-img-wrap {
+  position: relative;
+  z-index: 1;
+  width: 38%;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.privilege-card-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.privilege-card:hover .privilege-card-img-wrap img {
+  transform: scale(1.06);
+}
+
+.privilege-card-shine {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, rgba(255,255,255,0.18) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.privilege-card-img-wrap::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 32px;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, #fff);
+}
+
+.privilege-card-body {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 14px 18px 14px 16px;
+  gap: 3px;
+}
+
+.privilege-tag {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #3BD2C9;
+}
+
+.privilege-title {
+  font-size: 0.97rem;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.privilege-sub {
+  font-size: 0.78rem;
+  color: #888;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.privilege-cta {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #1aa8a0;
+  letter-spacing: 0.05em;
+  margin-top: 4px;
+  transition: letter-spacing 0.2s ease;
+}
+
+.privilege-card:hover .privilege-cta {
+  letter-spacing: 0.12em;
+}
+
+.privilege-divider {
+  margin-top: 8px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(59,210,201,0.3), transparent);
+}

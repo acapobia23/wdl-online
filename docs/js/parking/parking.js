@@ -78,8 +78,9 @@ document.addEventListener("DOMContentLoaded", () => {
     
         <!-- Bottoni di invio -->
         <button type="submit" class="check-btn">Send and chat via WhatsApp</button>
-        <div><p></p></div>
+        <br><br>
         <button type="button" id="submit-email" class="check-btn">Send via email</button>
+        <br>
         <p style="color: #888888;">No auto-replies, no bot</p>
       </form>
     `;
