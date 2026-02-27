@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
         autoplayInterval = setInterval(() => {
           idx = (idx + 1) % slides.length;
           updateGallery();
-        }, 3000);
+        }, 2000);
       }, 1000);
     };
 
