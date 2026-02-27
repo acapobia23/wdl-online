@@ -28,7 +28,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     galleryContainer.innerHTML = `
       <div class="gallery">
-        <button class="gallery-btn prev">&#10094;</button>
         <div class="gallery-track-container">
           <div class="gallery-track">
             ${slidesData.map(item => `
@@ -41,14 +40,11 @@ document.addEventListener("DOMContentLoaded", () => {
             `).join('')}
           </div>
         </div>
-        <button class="gallery-btn next">&#10095;</button>
       </div>
     `;
 
     const track = galleryContainer.querySelector('.gallery-track');
     const slides = galleryContainer.querySelectorAll('.gallery-slide');
-    const prevBtn = galleryContainer.querySelector('.gallery-btn.prev');
-    const nextBtn = galleryContainer.querySelector('.gallery-btn.next');
     let idx = 0;
     let autoplayInterval = null;
 
@@ -70,8 +66,6 @@ document.addEventListener("DOMContentLoaded", () => {
       startAutoplay();
     };
 
-    nextBtn.addEventListener('click', () => { idx = (idx+1)%slides.length; updateGallery(); resetAutoplay(); });
-    prevBtn.addEventListener('click', () => { idx = (idx-1+slides.length)%slides.length; updateGallery(); resetAutoplay(); });
     window.addEventListener('resize', updateGallery);
     updateGallery();
     startAutoplay();
@@ -81,8 +75,8 @@ document.addEventListener("DOMContentLoaded", () => {
     track.addEventListener('touchstart', e => startX = e.touches[0].clientX);
     track.addEventListener('touchend', e => {
       const endX = e.changedTouches[0].clientX;
-      if (endX < startX - 30) { nextBtn.click(); resetAutoplay(); }
-      if (endX > startX + 30) { prevBtn.click(); resetAutoplay(); }
+      if (endX < startX - 30) { idx = (idx + 1) % slides.length; updateGallery(); resetAutoplay(); }
+      if (endX > startX + 30) { idx = (idx - 1 + slides.length) % slides.length; updateGallery(); resetAutoplay(); }
     });
   }
 
