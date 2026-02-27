@@ -47,6 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const slides = galleryContainer.querySelectorAll('.gallery-slide');
     let idx = 0;
     let autoplayInterval = null;
+    let firstAutoplayTimeout = null;
 
     const updateGallery = () => {
       const w = slides[0].clientWidth;
@@ -54,14 +55,22 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     const startAutoplay = () => {
+      if (firstAutoplayTimeout) clearTimeout(firstAutoplayTimeout);
       if (autoplayInterval) clearInterval(autoplayInterval);
-      autoplayInterval = setInterval(() => {
+
+      firstAutoplayTimeout = setTimeout(() => {
         idx = (idx + 1) % slides.length;
         updateGallery();
-      }, 4000);
+
+        autoplayInterval = setInterval(() => {
+          idx = (idx + 1) % slides.length;
+          updateGallery();
+        }, 3000);
+      }, 1000);
     };
 
     const resetAutoplay = () => {
+      if (firstAutoplayTimeout) clearTimeout(firstAutoplayTimeout);
       if (autoplayInterval) clearInterval(autoplayInterval);
       startAutoplay();
     };
