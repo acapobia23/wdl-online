@@ -817,6 +817,114 @@ h1, h2, h3, h4, h5, h6, a, button {
   isolation: isolate;
 }
 
+.privilege-card.has-offer {
+  overflow: visible;
+}
+
+.privilege-card.has-offer .offer-card {
+  position: absolute;
+  top: 3px;
+  right: 2px;
+  transform: translate(34%, -56%);
+  z-index: 3;
+  box-shadow: 0 7px 16px rgba(15, 43, 91, 0.16);
+}
+
+.privilege-card.has-offer .offer-left,
+.privilege-card.has-offer .offer-right {
+  padding: 4px 6px;
+  font-size: 0.62rem;
+  letter-spacing: 0.05em;
+}
+
+.privilege-card.has-offer .offer-right {
+  --right-extra: 10px;
+}
+
+:root {
+  --blue-dark: #080536;
+  --blue-light: #6fffff;
+  --blue-light-alt: #47eef7;
+  --text-dark: #080536;
+}
+
+.offer-card {
+  display: flex;
+  align-items: stretch;
+  border-radius: 3px;
+  overflow: hidden;
+  box-shadow: 0 10px 24px rgba(15, 43, 91, 0.2);
+  transform-origin: center;
+  --right-cut: 40px;
+  clip-path: polygon(
+    0 0,
+    calc(100% - var(--right-cut)) 0,
+    100% 50%,
+    calc(100% - var(--right-cut)) 100%,
+    0 100%
+  );
+}
+
+.offer-card.pulse {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.offer-left,
+.offer-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 8px;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+
+.offer-left {
+  background: var(--blue-dark);
+  color: #ffffff;
+}
+
+.offer-right {
+  position: relative;
+  background: var(--blue-light);
+  color: var(--text-dark);
+  --slice-offset: 8px;
+  --right-extra: 12px;
+  padding-right: calc(8px + var(--right-extra));
+}
+
+.offer-right::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--blue-light-alt);
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% calc(50% + var(--slice-offset)),
+    0 calc(50% - var(--slice-offset))
+  );
+  opacity: 0.9;
+}
+
+.offer-right span {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
 .privilege-card:hover {
   transform: translateY(-3px) scale(1.012);
   box-shadow:
@@ -937,3 +1045,18 @@ h1, h2, h3, h4, h5, h6, a, button {
   height: 1px;
   background: linear-gradient(90deg, transparent, rgba(59,210,201,0.3), transparent);
 }
+
+@media (max-width: 600px) {
+  .privilege-card.has-offer .offer-card {
+    top: 3px;
+    right: 2px;
+    transform: translate(28%, -54%);
+  }
+
+  .privilege-card.has-offer .offer-left,
+  .privilege-card.has-offer .offer-right {
+    padding: 4px 5px;
+    font-size: 0.58rem;
+  }
+}
+

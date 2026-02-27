@@ -1,4 +1,38 @@
 document.addEventListener("DOMContentLoaded", () => {
+  const offerCard = document.getElementById("offer-card");
+  if (offerCard) {
+    const offerRight = offerCard.querySelector(".offer-right");
+    const updateSliceOffset = () => {
+      if (!offerRight) {
+        return;
+      }
+      const height = offerRight.getBoundingClientRect().height;
+      const offset = Math.max(6, Math.round(height * 0.18));
+      offerRight.style.setProperty("--slice-offset", `${offset}px`);
+    };
+
+    const updateRightCut = () => {
+      const rect = offerCard.getBoundingClientRect();
+      if (!rect.height || !rect.width) {
+        return;
+      }
+      const targetCut = rect.height * 0.5;
+      const maxCut = rect.width * 0.3;
+      const cut = Math.round(Math.min(targetCut, maxCut));
+      offerCard.style.setProperty("--right-cut", `${cut}px`);
+    };
+
+    offerCard.classList.add("pulse");
+    updateSliceOffset();
+    updateRightCut();
+
+    const resizeObserver = new ResizeObserver(() => {
+      updateSliceOffset();
+      updateRightCut();
+    });
+    resizeObserver.observe(offerCard);
+  }
+
   // === GALLERY ===
   const galleryContainer = document.getElementById("gallery-container");
   if (galleryContainer) {
@@ -255,3 +289,4 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
