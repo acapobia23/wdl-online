@@ -136,7 +136,7 @@ document.querySelector('.btn-form').addEventListener('click', () => {
 // 🔹 Aspetta mezzo secondo per dare tempo a GA4 di registrare l'evento
     setTimeout(() => {
       if (method === "whatsapp") {
-        window.open(`https://wa.me/393473119031?text=${encodeURIComponent(msg)}`, "_blank");
+        window.open(`https://wa.me/+393473119031?text=${encodeURIComponent(msg)}`, "_blank");
       } else {
         const mailMsg = encodeURIComponent(msg);
         window.location.href = `mailto:wheredolocals@gmail.com?subject=&body=${mailMsg}`;
