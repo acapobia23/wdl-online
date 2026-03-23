@@ -115,9 +115,16 @@ document.querySelector('.btn-form').addEventListener('click', () => {
     });
   }
 
-  const sendMsg = method => {
+const sendMsg = method => {
     const val = id => document.getElementById(id)?.value.trim() || '';
     const experience = document.querySelector(".section-title")?.innerText.trim() || document.title.trim() || "Unknown Experience";
+
+    // 🔹 Apri la finestra SUBITO (sincrono), prima di qualsiasi async
+    // Altrimenti Safari/iOS blocca window.open come popup
+    let newWindow = null;
+    if (method === "whatsapp") {
+      newWindow = window.open("", "_blank");
+    }
 
     gtag("event", "form_contact", {
       method: method,
@@ -144,15 +151,20 @@ document.querySelector('.btn-form').addEventListener('click', () => {
   
     const msg = lines.join('\n');
   
-// 🔹 Aspetta mezzo secondo per dare tempo a GA4 di registrare l'evento
+    // 🔹 Aspetta GA4, poi naviga
     setTimeout(() => {
       if (method === "whatsapp") {
-        window.open(`https://wa.me/393473119031?text=${encodeURIComponent(msg)}`, "_blank");
+        const url = `https://wa.me/+393473119031?text=${encodeURIComponent(msg)}`;
+        if (newWindow) {
+          newWindow.location.href = url;
+        } else {
+          window.location.href = url; // fallback se popup bloccato
+        }
       } else {
         const mailMsg = encodeURIComponent(msg);
         window.location.href = `mailto:wheredolocals@gmail.com?subject=&body=${mailMsg}`;
       }
-    }, 1000);
+    }, 500); // 500ms è sufficiente per GA4
   };
   
 

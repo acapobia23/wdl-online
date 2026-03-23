@@ -111,9 +111,16 @@ document.querySelector('.btn-form').addEventListener('click', () => {
     });
   }
 
-  const sendMsg = method => {
+const sendMsg = method => {
     const val = id => document.getElementById(id)?.value.trim() || '';
     const experience = document.querySelector(".section-title")?.innerText.trim() || document.title.trim() || "Unknown Experience";
+
+    // 🔹 Apri la finestra SUBITO (sincrono), prima di qualsiasi async
+    // Altrimenti Safari/iOS blocca window.open come popup
+    let newWindow = null;
+    if (method === "whatsapp") {
+      newWindow = window.open("", "_blank");
+    }
 
     gtag("event", "form_contact", {
       method: method,
