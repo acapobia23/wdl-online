@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // === GALLERY ===
   const galleryContainer = document.getElementById("gallery-container");
   if (galleryContainer) {
-    const imageFiles = ["01.jpg","02.jpg","03.jpg","04.jpg"]; //file name of pic
+    const imageFiles = ["01.jpg","02.jpg","03.jpg"]; //file name of pic
     const basePath = "../../assets/img/boxes/restaurants/il-giova/"; //path pic
     const images = imageFiles.map(f => basePath + f);
 //cambiare alt name linea 14
