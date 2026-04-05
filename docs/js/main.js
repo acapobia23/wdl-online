@@ -54,8 +54,40 @@ function animateLogo() { // Animazione logo WDL
   }
 }
 
+function lazyLoadCarouselBackgrounds() {
+  const cards = document.querySelectorAll('.carousel-card[data-bg]');
+  if (!cards.length) return;
+
+  const loadCardBackground = (card) => {
+    const bg = card.getAttribute('data-bg');
+    if (!bg) return;
+    const imageArea = card.querySelector('.card-image-area');
+    if (imageArea) {
+      imageArea.style.backgroundImage = `url('${bg}')`;
+    }
+    card.removeAttribute('data-bg');
+  };
+
+  if (!('IntersectionObserver' in window)) {
+    cards.forEach(loadCardBackground);
+    return;
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        loadCardBackground(entry.target);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { rootMargin: '200px 0px', threshold: 0.01 });
+
+  cards.forEach((card) => observer.observe(card));
+}
+
 document.addEventListener("DOMContentLoaded", function () {
   animateLogo();
+  lazyLoadCarouselBackgrounds();
 });
 
 // === Ricerca intelligente pagine/sinonimi ===
@@ -402,3 +434,35 @@ if (searchBar) {
 //   // Avvia scheduling
 //   schedulePopup();
 // });
+
+function initShinyButtons() {
+  const shinyButtons = document.querySelectorAll('.shiny-button');
+  if (!shinyButtons.length) return;
+
+  const hasInnerRing = Array.from(shinyButtons).some((button) =>
+    button.querySelector('.shiny-button-inner-ring')
+  );
+  if (!hasInnerRing) return;
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduceMotion) {
+    shinyButtons.forEach((button) => button.style.setProperty('--ring-angle', '-20deg'));
+    return;
+  }
+
+  const cycleMs = 5200;
+  const startTime = performance.now();
+
+  const animateGloss = (currentTime) => {
+    const phase = ((currentTime - startTime) % cycleMs) / cycleMs;
+    const angle = -20 + phase * 360;
+    shinyButtons.forEach((button) => button.style.setProperty('--ring-angle', `${angle}deg`));
+    requestAnimationFrame(animateGloss);
+  };
+
+  requestAnimationFrame(animateGloss);
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  initShinyButtons();
+});

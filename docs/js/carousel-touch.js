@@ -8,17 +8,53 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 100);
 });
 
+// Stato globale condiviso per evitare duplicazione listener e lock persistenti
+let globalListenersAdded = false;
+const globalCarouselAnimating = new Set();
+const carouselAnimationWatchdogs = new WeakMap();
+
 function initializeCarouselTouch() {
-    const carousels = document.querySelectorAll('.carousel-track');
+    const carousels = document.querySelectorAll('.carousel-track:not([data-enhanced-drag="true"])');
+    if (carousels.length === 0) return;
     
     // Rilevamento Safari iOS
     const isSafariIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && 
                        /Safari/.test(navigator.userAgent) && 
                        !/Chrome|CriOS|FxiOS/.test(navigator.userAgent);
     
-    // Gestione globale delle animazioni (fix per listener duplicati)
-    let globalListenersAdded = false;
-    const globalCarouselAnimating = new Set(); // Traccia caroselli multipli
+    // Timeout di sicurezza: se transitionend non arriva, sblocca comunque
+    const ANIMATION_UNLOCK_TIMEOUT_MS = 1800;
+
+    function markCarouselAnimating(carousel) {
+        globalCarouselAnimating.add(carousel);
+
+        const previousWatchdog = carouselAnimationWatchdogs.get(carousel);
+        if (previousWatchdog) {
+            clearTimeout(previousWatchdog);
+        }
+
+        const watchdog = setTimeout(() => {
+            globalCarouselAnimating.delete(carousel);
+            carouselAnimationWatchdogs.delete(carousel);
+            if (isSafariIOS && globalCarouselAnimating.size === 0) {
+                document.body.style.overflow = '';
+                document.documentElement.style.overflow = '';
+                document.body.style.webkitOverflowScrolling = 'touch';
+            }
+        }, ANIMATION_UNLOCK_TIMEOUT_MS);
+
+        carouselAnimationWatchdogs.set(carousel, watchdog);
+    }
+
+    function unmarkCarouselAnimating(carousel) {
+        const watchdog = carouselAnimationWatchdogs.get(carousel);
+        if (watchdog) {
+            clearTimeout(watchdog);
+            carouselAnimationWatchdogs.delete(carousel);
+        }
+
+        globalCarouselAnimating.delete(carousel);
+    }
     
     // Aggiungi listener globali solo una volta per evitare duplicati
     if (!globalListenersAdded) {
@@ -196,11 +232,11 @@ function initializeCarouselTouch() {
         
         // Monitora animazioni per questo specifico carosello
         carousel.addEventListener('transitionstart', function() {
-            globalCarouselAnimating.add(carousel);
+            markCarouselAnimating(carousel);
         });
         
         carousel.addEventListener('transitionend', function() {
-            globalCarouselAnimating.delete(carousel);
+            unmarkCarouselAnimating(carousel);
             
             // Safari iOS: Ripristino veloce al termine delle animazioni
             if (isSafariIOS && globalCarouselAnimating.size === 0) {
@@ -211,6 +247,18 @@ function initializeCarouselTouch() {
                     document.body.style.webkitOverflowScrolling = 'touch';
                     
                     // Trigger scroll event per "risvegliare" Safari iOS
+                    window.dispatchEvent(new Event('scroll', { bubbles: true }));
+                }, 20);
+            }
+        });
+
+        carousel.addEventListener('transitioncancel', function() {
+            unmarkCarouselAnimating(carousel);
+            if (isSafariIOS && globalCarouselAnimating.size === 0) {
+                setTimeout(() => {
+                    document.body.style.overflow = '';
+                    document.documentElement.style.overflow = '';
+                    document.body.style.webkitOverflowScrolling = 'touch';
                     window.dispatchEvent(new Event('scroll', { bubbles: true }));
                 }, 20);
             }
@@ -233,7 +281,7 @@ function initializeCarouselTouch() {
                     return;
                 }
                 
-                if (!startX || !startY) return;
+                if (startX === null || startY === null) return;
                 
                 const currentX = e.touches[0].clientX;
                 const currentY = e.touches[0].clientY;
@@ -256,7 +304,7 @@ function initializeCarouselTouch() {
                     return;
                 }
                 
-                if (!startX || !startY) return;
+                if (startX === null || startY === null) return;
                 
                 const currentX = e.touches[0].clientX;
                 const currentY = e.touches[0].clientY;
@@ -363,7 +411,7 @@ function initializeCarouselTouch() {
         
         carousel.addEventListener('pointermove', function(e) {
             if (e.pointerType === 'touch') return; // Gestito già da touchmove
-            if (!startPointerX || !startPointerY) return;
+            if (startPointerX === null || startPointerY === null) return;
             
             const deltaX = Math.abs(e.clientX - startPointerX);
             const deltaY = Math.abs(e.clientY - startPointerY);

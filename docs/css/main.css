@@ -8,6 +8,11 @@
     font-family: 'Poppins', sans-serif;
     color: #555454;
   }
+
+  main.container > p {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
   
   .banner {
     background: url('../assets/img/headers/header-1920x1080.jpeg') no-repeat center center;
@@ -21,6 +26,12 @@
     border-radius: 0 0 24px 24px;
     transform: translateZ(0); /* Forza l'accelerazione hardware */
     position: relative;      /* Per posizionamento del logo */
+  }
+
+  @media (max-width: 430px) {
+    .banner {
+      background-image: url('../assets/img/headers/header-1080x720.jpeg');
+    }
   }
     
   .logo-animation {                       /* Logo animato sopra il banner */
@@ -49,6 +60,24 @@
     padding: 20px;
     box-shadow: 0 8px 5px rgba(0, 0, 0, 0.1);
     border: 3px solid #3BD2C9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* centram. verticale */
+    text-align: center;
+    transition: transform 0.15s ease-out, background-color 0.15s ease-out;
+    touch-action: manipulation;
+    will-change: transform;
+  }
+
+  .offer-grid-item {
+    height: 100%; /* prende sempre tutta l'altezza disponibile dal .col */
+    min-height: 89px;
+    background-color: #f9f9f9;
+    border-radius:  80px;
+    padding: 20px;
+    box-shadow: 0 8px 5px rgba(0, 0, 0, 0.1);
+    border: 4px solid #3BD2C9;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -365,6 +394,7 @@
 
 .info-box .icon {
   margin-right: 8px;
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.15));
 }
 
 /* Nasconde il box all’avvio */
@@ -445,7 +475,7 @@
   padding: 4px 16px;
   border-radius: 40px;
   border: 2px solid #3BD2C9;
-  background: #ffffffcc;
+  background: #ffffffb3;
   font-size: 1.1rem;
   outline: none;
   box-shadow: 0 2px 8px rgba(59,210,201,0.07);
@@ -542,7 +572,7 @@ body {
   overflow: hidden;
   border: none;
   min-width: 320px;
-  height: 180px;
+  height: 220px !important;
   max-width: 100%;
   padding: 0;
   transition: box-shadow 0.3s, transform 0.4s;
@@ -557,15 +587,28 @@ body {
 }
 
 .carousel-card .carousel-img {
-  width: 80px !important;
-  height: 80px !important;
+  width: 45px !important;
+  height: 45px !important;
   min-width: 0;
   object-fit: contain; /* Mostra l'immagine per intero */
-  align-self: center;
-  border-radius: 0px !important;
-  margin: 4px;
-  background: #fff;
+  border-radius: 8px !important;
+  margin: 0 !important;
+  background: transparent;
   display: block;
+  position: absolute !important;
+  top: 10px !important;
+  right: 10px !important;
+  filter: drop-shadow(8px 8px 10px rgba(0, 0, 0, 0.7));
+}
+
+.carousel-card .carousel-title-icon {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+  border-radius: 6px;
+  background: transparent;
+  display: inline-block;
+  filter: drop-shadow(8px 8px 10px rgba(0, 0, 0, 0.7));
 }
 
 .carousel-card .carousel-content {
@@ -574,23 +617,29 @@ body {
   flex-direction: column;
   justify-content: center;
   padding: 18px 12px 18px 12px;
-  color: #222;
+  color: #fff;
   background: none;
   align-items: flex-start;
   text-align: left;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.6);
 }
 
 .carousel-card .carousel-content h2 {
   margin: 0 0 0.3em 0;
   font-size: 1.2rem;
   font-family: 'Poppins', Arial, sans-serif;
-  color: #222;
+  font-weight: 800;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 .carousel-card .carousel-content p {
   margin: 0;
   font-size: 1em;
-  opacity: 0.85;
-  color: #222;
+  font-weight: 600;
+  opacity: 0.95;
+  color: #fff;
 }
 
 /* Rimuovi overlay gradient */
@@ -609,13 +658,15 @@ body {
     max-width: 900px !important;
   }
   .carousel-card .carousel-img {
-    width: 80px !important;
-    height: 80px !important;
+    width: 45px !important;
+    height: 45px !important;
     min-width: 0 !important;
     object-fit: contain; /* Mostra l'immagine per intero anche su desktop */
-    margin: 4px;
-    border-radius: 0px !important;
-    align-self: center;
+    margin: 0 !important;
+    border-radius: 8px !important;
+    position: absolute !important;
+    top: 10px !important;
+    right: 10px !important;
 }
   .carousel-card .carousel-content {
     padding: 18px 18px 18px 18px;
@@ -834,92 +885,6 @@ body {
   gap: 50px;
   height: 60px; /* imposta un’altezza fissa */
 }
-
-.offer-grid-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  touch-action: manipulation;
-  will-change: transform;
-}
-
-/* Wrapper esterno: gestisce i layer di bordo */
-.luxury-shape-wrapper {
-  display: block;
-  position: relative;
-  width: 80%;
-  max-width: 100%;
-  margin: 0 auto;
-  z-index: 1;
-  transition: transform 0.18s ease-out;
-}
-
-.luxury-shape-wrapper:hover {
-  transform: scale(1.025);
-}
-
-/* Layer 1 — bordo teal esterno */
-.luxury-shape-wrapper::before {
-  content: '';
-  position: absolute;
-  inset: -6px;
-  background: linear-gradient(160deg, #3BD2C9 0%, #1aa8a0 100%);
-  clip-path: polygon(4% 0%, 100% 0%, 96% 100%, 0% 100%);
-  z-index: -2;
-  transition: transform 0.18s ease-out;
-}
-
-/* Layer 2 — separatore bianco */
-.luxury-shape-wrapper::after {
-  content: '';
-  position: absolute;
-  inset: -3px;
-  background: linear-gradient(160deg, #ffffff 0%, #c8f6f3 100%);
-  clip-path: polygon(4% 0%, 100% 0%, 96% 100%, 0% 100%);
-  z-index: -1;
-  transition: transform 0.18s ease-out;
-}
-
-/* Elemento interno: solo sfondo e clip-path */
-.offer-grid-item.luxury-shape {
-  position: relative;
-  border: none;
-  border-radius: 0;
-  padding: 22px 32px;
-  min-height: 80px;
-  text-align: left;
-  align-items: flex-start;
-  background: linear-gradient(160deg, #ffffff 0%, #e8fafa 55%, #d0f5f3 100%);
-  clip-path: polygon(4% 0%, 100% 0%, 96% 100%, 0% 100%);
-  box-shadow:
-    0 8px 24px rgba(59, 210, 201, 0.30),
-    0 2px 6px rgba(0, 0, 0, 0.10),
-    inset 0 1px 0 rgba(255, 255, 255, 0.90);
-  z-index: 1;
-  transition: box-shadow 0.18s ease-out;
-}
-
-.luxury-shape-wrapper:hover .offer-grid-item.luxury-shape {
-  box-shadow:
-    0 14px 36px rgba(59, 210, 201, 0.45),
-    0 4px 10px rgba(0, 0, 0, 0.12),
-    inset 0 1px 0 rgba(255, 255, 255, 0.95);
-}
-
-.offer-grid-item.luxury-shape h2 {
-  font-weight: 600;
-  font-size: 1.15rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #1aa8a0;
-  text-shadow: 0 1px 0 rgba(255,255,255,0.8);
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 10px;
-}
 /*CSS POPUP INSTALL APP*/
 
 /* .install-popup {
@@ -989,6 +954,109 @@ body {
   background-color: #ccc;
   color: #000;
 } */
+
+.shiny-button-wrap {
+  display: flex;
+  justify-content: center;
+  margin: 1.2rem 0 0.5rem;
+}
+
+.shiny-button {
+  --ring-angle: -20deg;
+  position: relative;
+  width: min(80vw, 360px);
+  min-height: 58px;
+  padding: 0 30px;
+  border: none;
+  border-radius: 999px;
+  overflow: hidden;
+  cursor: pointer;
+  background: linear-gradient(90deg, #1c9890 0%, #26b8b1 48%, #3bd2c9 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.24),
+    inset 0 -2px 8px rgba(8, 72, 69, 0.36),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.12),
+    0 12px 28px rgba(37, 178, 170, 0.24);
+  transition: transform 0.18s ease, box-shadow 0.2s ease;
+}
+
+.shiny-button:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.26),
+    inset 0 -2px 8px rgba(8, 72, 69, 0.36),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.14),
+    0 14px 30px rgba(37, 178, 170, 0.28);
+}
+
+.shiny-button:active {
+  transform: translateY(1px) scale(0.995);
+}
+
+.shiny-button-inner-ring {
+  position: absolute;
+  inset: 3px;
+  padding: 1.5px;
+  border-radius: 999px;
+  pointer-events: none;
+  background: conic-gradient(
+    from var(--ring-angle),
+    rgba(255, 255, 255, 0.16) 0deg,
+    rgba(255, 255, 255, 0.9) 18deg,
+    rgba(255, 255, 255, 0.2) 42deg,
+    rgba(255, 255, 255, 0.1) 160deg,
+    rgba(255, 255, 255, 0.85) 198deg,
+    rgba(255, 255, 255, 0.18) 222deg,
+    rgba(255, 255, 255, 0.11) 360deg
+  );
+  opacity: 0.9;
+  filter: blur(0.25px);
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+.shiny-button-text {
+  position: relative;
+  z-index: 2;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 1.03rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.info-cta-match {
+  width: min(80vw, 360px);
+  height: 58px;
+  min-height: 58px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 30px !important;
+  position: relative;
+}
+
+.info-cta-match h2 {
+  position: relative;
+  width: 100%;
+  margin: 0;
+  font-size: 1.4rem;
+  text-align: center;
+  line-height: 1;
+}
+
+.info-cta-match h2 img {
+  position: absolute;
+  left: 50px;
+  top: 50%;
+  transform: translateY(-50%);
+  margin: 0;
+}
 
 /* ============================================
    === GUEST PRIVILEGES — Luxury Cards ===
