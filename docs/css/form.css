@@ -207,6 +207,7 @@ h1, h2, h3, h4, h5, h6, a, button {
 }
 
 /* buttons */
+
 .check-btn,
 .whatsapp-btn,
 .email-btn {
@@ -220,6 +221,13 @@ h1, h2, h3, h4, h5, h6, a, button {
   border-radius: 20px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.1s ease;
+  margin-bottom: 12px;
+}
+
+.check-btn:last-child,
+.whatsapp-btn:last-child,
+.email-btn:last-child {
+  margin-bottom: 0;
 }
 
 .email-btn {
