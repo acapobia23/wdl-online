@@ -218,10 +218,10 @@ h1, h2, h3, h4, h5, h6, a, button {
   font-weight: bold;
   padding: 14px;
   font-size: 16px;
-  border-radius: 20px;
+  border-radius: 80px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.1s ease;
-  margin-bottom: 12px;
+  margin-bottom: 4px;
 }
 
 .check-btn:last-child,
