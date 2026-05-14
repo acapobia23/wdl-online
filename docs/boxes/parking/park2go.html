@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Park2Go Florence - Where Do Locals</title>
+
+  <link rel="stylesheet" href="../../css/form.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
+  <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EH7YNQHCH0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-EH7YNQHCH0');
+</script>
+<link rel="icon" href="../../assets/img/headers/cupola-logo.png" type="image/png">
+</head>
+
+<body data-form-type="Park2Go Florence">
+
+  <a href="../../index.html" class="header-link">
+        <header style="position:relative; min-height:50px;">
+          <img src="../../assets/img/svg/logoWDL.svg" alt="Where Do Locals Logo" style="position:absolute; top:70%; left:50%; transform:translateX(-50%) scale(1); opacity:1; width:295px; height:auto; z-index:10;" />
+        </header>
+  </a>
+
+  <div class="container">
+    <br><br><br>
+
+    <h2 class="section-title">Park2Go Florence</h2>
+
+    <div id="gallery-container"></div>
+
+    <!-- DESCRIPTION SECTION -->
+<section class="description">
+    <hr><br>
+    <p>
+        <strong>Park2Go Florence</strong> – The Ideal Parking Solution for Guests next to the Duomo!<br>
+        Park2Go Florence is located in the historic center of Florence, in Via Ricasoli 18, <br>
+        just 80 meters from the Florence Cathedral (Duomo), making it the ideal starting point for exploring the city on foot. <br>
+        It is a secure and monitored garage with authorized ZTL access and spacious, practical parking spaces. <br><br>
+        The perfect solution for guests arriving by car who want to enjoy Florence stress-free. <br>
+    </p>
+    <br><hr><br>
+
+    <!-- TOGGLE 1 — LOCATION & ZTL ACCESS -->
+    <button class="toggle-btn" data-toggle="location-park2go">
+        <span>Location & ZTL Access - Important Information</span>
+        <img src="../../assets/img/icons/down-arrow.png"
+            alt="Arrow"
+            class="arrow-down" />
+    </button>
+
+    <div class="toggle-content" data-toggle="location-park2go" style="display: none;">
+        <div style="margin: 10px 24px 20px 24px;">
+            <br>
+            <p>
+                The garage is located inside the Limited Traffic Zone (ZTL) of Florence.
+            </p>
+            <br>
+            <h4>Important:</h4>
+            <p>
+                ZTL access is managed directly by the garage.<br>
+                Upon arrival, the staff will electronically register your vehicle plate number with the Municipality of Florence,
+                authorizing your access to the ZTL area. The municipal access pass costs €1 and is included in the parking fee.<br><br>
+                <strong>Once you enter the ZTL area, you have a maximum of 3 hours to reach the garage.</strong><br>
+                If you leave and re-enter the ZTL during your stay, a new plate registration will be required (€1 extra for each new access).<br>
+                The authorization only applies to ZTL access and does not include bus lanes, pedestrian areas, or restricted emergency/service lanes.
+            </p>
+            <br>
+            <h4>Garage Location</h4>
+                <div class="map-icon">
+                    <a href="https://maps.app.goo.gl/WVDHa7Xf7XRYxxuV6">
+                        <span>Find Us Here</span>
+                        <img src="../../assets/img/icons/map.png" alt="map">
+                    </a>
+                </div>
+            <p><strong>Address:</strong> Via Ricasoli, 18 – Firenze (FI)<br>
+            <strong>Area:</strong> Historic center, 80 meters from the Duomo</p>
+        </div>
+        <hr>
+    </div>
+    <br>
+
+    <!-- TOGGLE 2 — PARKING RATES -->
+    <button class="toggle-btn" data-toggle="rates-park2go">
+        <span>Parking Rates & Services Included</span>
+        <img src="../../assets/img/icons/down-arrow.png"
+            alt="Arrow"
+            class="arrow-down" />
+    </button>
+
+    <div class="toggle-content" data-toggle="rates-park2go" style="display: none;">
+        <div style="margin: 10px 24px 20px 24px;">
+            <br>
+            <h4>Standard Cars</h4>
+            <p>
+                <strong>First 2 hours: €12</strong> &nbsp;|&nbsp; After 2 hours: €6/hour &nbsp;|&nbsp; <strong>Daily rate: €35</strong>
+            </p>
+            <br>
+            <h4>SUV</h4>
+            <p>
+                <strong>First 2 hours: €20</strong> &nbsp;|&nbsp; After 2 hours: €10/hour &nbsp;|&nbsp; <strong>Daily rate: €46</strong>
+            </p>
+            <br>
+            <h4>Van</h4>
+            <p>
+                <strong>First 2 hours: €19</strong> &nbsp;|&nbsp; After 2 hours: €9/hour &nbsp;|&nbsp; <strong>Daily rate: €60</strong>
+            </p>
+            <br>
+            <h4>Luxury Cars</h4>
+            <p>
+                <strong>First 2 hours: €20</strong> &nbsp;|&nbsp; After 2 hours: €10/hour &nbsp;|&nbsp; <strong>Daily rate: €50</strong>
+            </p>
+            <br>
+            <h4>What Is Included in the Price</h4>
+            <p>The rate includes:</p>
+            <ul>
+                <li>Secure and monitored parking</li>
+                <li>ZTL access registration (€1 municipal pass included)</li>
+                <li>Your vehicle will not be moved during parking</li>
+                <li>Spacious and practical parking spaces</li>
+            </ul>
+        </div>
+    </div>
+    <br><hr><br>
+
+    <!-- TOGGLE 3 — WHY CHOOSE PARK2GO -->
+    <button class="toggle-btn" data-toggle="why-park2go">
+        <span>Why Choose Park2Go Florence</span>
+        <img src="../../assets/img/icons/down-arrow.png"
+            alt="Arrow"
+            class="arrow-down" />
+    </button>
+
+    <div class="toggle-content" data-toggle="why-park2go" style="display: none;">
+        <div style="margin: 10px 24px 20px 24px;">
+            <br>
+            <ul>
+                <li>Prime location in the historic center of Florence</li>
+                <li>Secure and monitored garage</li>
+                <li>Authorized access to the ZTL (Limited Traffic Zone)</li>
+                <li>Possibility to use your car during your stay</li>
+                <li>Your vehicle will not be moved during parking</li>
+                <li>Spacious and practical parking spaces</li>
+            </ul>
+            <br>
+            <p>
+                Park2Go Florence is an excellent solution for guests staying near the Duomo
+                and looking for a convenient, stress-free way to park in the heart of Florence
+                while keeping the flexibility to use their car during the stay.
+            </p>
+        </div>
+    </div>
+    <br><hr><br>
+
+    <h4>Reservation Required</h4>
+    <br>
+    <p>
+        To guarantee parking availability, advance booking is strongly recommended.<br>
+        Send a message using the form below with the required information — we will take care of the rest.
+    </p>
+    <p>
+        When booking, remember to provide:
+    </p>
+    <ul>
+        <li>License plate number</li>
+        <li>Car model and type (Standard, SUV, Van, Luxury)</li>
+        <li>Arrival date and estimated time</li>
+        <li>Departure date and estimated time</li>
+        <li>Any special requests</li>
+    </ul>
+    <br><hr><br>
+
+</section>
+    <div id="form-container"></div>
+<br><br><br><br><br>
+    <div class="icon-links">
+            <a href="https://wa.me/+393473119031" class="text-decoration-none text-dark">
+        <img src="../../assets/img/icons/whatsapp.png" alt="contact" /></a>
+      <a href="parking.html"><img src="../../assets/img/icons/back-arrow.png" alt="back" /></a>
+    </div>
+  </div>
+</body>
+</html>
+
+<script src="../../js/parking/park2go.js"></script>
