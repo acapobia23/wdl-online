@@ -2,8 +2,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // === GALLERY ===
   const galleryContainer = document.getElementById("gallery-container");
   if (galleryContainer) {
-    const imageFiles = ["01.jpg","02.jpg","03.jpg","04.jpg","05.jpg"]; //file name of pic
-    const basePath = "../../assets/img/boxes/restaurants/caffe-amerini/"; //path pic
+    const imageFiles = ["01.jpeg","02.jpeg", "03.jpeg","04.jpeg", "05.jpeg","06.jpeg", "07.jpeg","08.jpeg"]; //file name of pic
+    const basePath = "../../assets/img/boxes/nightlife/orti-dipinti/"; //path pic
     const images = imageFiles.map(f => basePath + f);
 //cambiare alt name linea 14
     galleryContainer.innerHTML = `
@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <button class="gallery-btn prev">&#10094;</button>
         <div class="gallery-track-container">
           <div class="gallery-track">
-            ${images.map(src => `<div class="gallery-slide"><img src="${src}" alt="pizzaiuolo" /></div>`).join('')}
+            ${images.map(src => `<div class="gallery-slide"><img src="${src}" alt="habana500" /></div>`).join('')}
           </div>
         </div>
         <button class="gallery-btn next">&#10095;</button>
@@ -53,40 +53,32 @@ document.addEventListener("DOMContentLoaded", () => {
 
       <form id="booking-form" class="booking-form" novalidate>
         <label class="bold-text" for="date-picker">Add info and chat!</label>
-            <p class="bold-gray">*mandatory field</p>        
-      <input type="text" id="main-guest" placeholder="*Name and Surname" required></input>
-      <input type="text" id="host" placeholder="*Who did you book your stay with?" required>
-      <!-- Sezione campi facoltativi integrata nel bottone -->
-      <div class="expandable-form">
-        <button type="button" class="btn-form" id="toggle-form">
-          <span id="form-toggle-text">optional fields</span>
-          <img id="form-arrow" src="../../assets/img/icons/down-arrow.png" alt="Arrow" class="arrow-down" />
-        </button>
+        <div><p></p></div><p class="bold-gray">*mandatory field</p>
+      <input type="text" id="main-guest" placeholder="*Name and Surname" required>
+  <input type="text" id="host" placeholder="*Who did you book your stay with?" required>
+  
+<!-- Sezione campi facoltativi integrata nel bottone -->
+<div class="expandable-form">
+  <button type="button" class="btn-form" id="toggle-form">
+    <span id="form-toggle-text">optional fields</span>
+    <img id="form-arrow" src="../../assets/img/icons/down-arrow.png" alt="Arrow" class="arrow-down" />
+  </button>
 
-        <div id="optional-fields" class="optional-fields">
-
-        <input type="text" id="date-picker" placeholder="Select a date" readonly>
+  <div id="optional-fields" class="optional-fields">
         <select id="guest-picker">
           ${[...Array(6)].map((_,i)=>
             `<option value="${i+1}">${i+1} Adult${i>0?'s':''}</option>`
           ).join('')}
         </select>
-        <select id="under-18">
-          <option value="0">No Minors</option>
-          ${[...Array(5)].map((_,i)=>
-            `<option value="${i+1}">${i+1} Minor${i>0?'s':''}</option>`
-          ).join('')}
-        </select>
         <input type="email" id="email" placeholder="example@email.com">
         <input type="tel" id="phone" placeholder="+39 123 456 7890">
-        <textarea id="optional-request" placeholder="Optional Request"></textarea>
-
-        </div>
-        </div>
-        <br>
-    
-        <!-- Bottoni di invio -->
-        <button type="submit" class="check-btn">Send and chat via WhatsApp</button>
+        <textarea id="optional-request" placeholder="Enter your chosen night"></textarea>
+      </div>
+    </div>
+    <br>
+  
+  <!-- Bottoni di invio -->
+  <button type="submit" class="check-btn">Send and chat via WhatsApp</button>
         <div><p></p></div>
         <button type="button" id="submit-email" class="check-btn">Send via email</button>
         <p style="color: #888888;">No auto-replies, no bot</p>
@@ -131,11 +123,7 @@ const sendMsg = method => {
     const lines = [
       `Hello! I'm staying at ${val("host")} I'd like to book this ${experience}.`,
       ``,
-      `📅 Date:  ${val("date-picker")}`,
-    `👤 Name:  ${val("main-guest")}`,
-    `🏠 Host:  ${val("host")}`,
       `🧑‍🤝‍🧑 Adults: ${val("guest-picker")}`,
-      `👶 Minors: ${val("under-18")}`,
       `📧 Email: ${val("email")}`,
       `📞 Phone: ${val("phone")}`,
     ];
@@ -165,30 +153,31 @@ const sendMsg = method => {
   };
   
 
-  // Gestione del bottone WhatsApp (submit del form)
-  document.getElementById("booking-form")
-    .addEventListener("submit", e => {
-      e.preventDefault();
-      const form = e.target;
+// Gestione del bottone WhatsApp (submit del form)
+document.getElementById("booking-form")
+  .addEventListener("submit", e => {
+    e.preventDefault();
+    const form = e.target;
 
-      if (form.checkValidity()) {
-        sendMsg("whatsapp");
-      } else {
-        form.reportValidity(); // Mostra messaggi di errore dei campi
-      }
-    });
+    if (form.checkValidity()) {
+      sendMsg("whatsapp");
+    } else {
+      form.reportValidity(); // Mostra messaggi di errore dei campi
+    }
+  });
 
-  // Gestione del bottone email (click separato)
-  document.getElementById("submit-email")
-    .addEventListener("click", () => {
-      const form = document.getElementById("booking-form");
+// Gestione del bottone email (click separato)
+document.getElementById("submit-email")
+  .addEventListener("click", () => {
+    const form = document.getElementById("booking-form");
 
-      if (form.checkValidity()) {
-        sendMsg("email");
-      } else {
-        form.reportValidity(); // Mostra messaggi di errore dei campi
-      }
-    });
+    if (form.checkValidity()) {
+      sendMsg("email");
+    } else {
+      form.reportValidity(); // Mostra messaggi di errore dei campi
+    }
+  });
+
   }
 
   // === HEADER LOGO ===
@@ -205,6 +194,16 @@ const sendMsg = method => {
     }
     lastY = y;
   });
+
+  const backLink = document.getElementById('orti-dipinti-back-link');
+  if (backLink) {
+    backLink.addEventListener('click', function (event) {
+      if (window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    });
+  }
 });
 
 // === TOGGLE FUNCTIONALITY ===
@@ -212,16 +211,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const toggleButtons = document.querySelectorAll(".toggle-btn");
 
   toggleButtons.forEach((btn) => {
-    const toggleKey = btn.dataset.toggle; // Leggi l'id dal data attribute
+    const toggleKey = btn.dataset.toggle;
     const content = document.querySelector(`.toggle-content[data-toggle="${toggleKey}"]`);
     const arrow = btn.querySelector("img");
 
-    if (!content) return; // Protezione: se il content non esiste, salta
+    if (!content) return;
 
     btn.addEventListener("click", () => {
       const isVisible = content.style.display === "block";
 
-      // Chiudi tutte le altre sezioni
       document.querySelectorAll(".toggle-content").forEach((div) => {
         div.style.display = "none";
       });
@@ -230,7 +228,6 @@ document.addEventListener("DOMContentLoaded", () => {
         img.classList.add("arrow-down");
       });
 
-      // Apri solo la sezione cliccata
       content.style.display = isVisible ? "none" : "block";
 
       if (!isVisible) {

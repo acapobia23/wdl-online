@@ -195,13 +195,6 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!isVisible) {
         arrow.classList.add("arrow-up");
         arrow.classList.remove("arrow-down");
-
-        // Se è la mappa, forza l'aggiornamento Leaflet
-        if (toggleKey === "spots" && typeof map !== "undefined") {
-          setTimeout(() => {
-            map.invalidateSize();
-          }, 250);
-        }
       }
     });
   });

@@ -194,4 +194,45 @@ document.getElementById("submit-email")
     }
     lastY = y;
   });
+  const backLink = document.getElementById('orti-dipinti-back-link');
+  if (backLink) {
+    backLink.addEventListener('click', function (event) {
+      if (window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    });
+  }
+});
+
+// === TOGGLE FUNCTIONALITY ===
+document.addEventListener("DOMContentLoaded", () => {
+  const toggleButtons = document.querySelectorAll(".toggle-btn");
+
+  toggleButtons.forEach((btn) => {
+    const toggleKey = btn.dataset.toggle;
+    const content = document.querySelector(`.toggle-content[data-toggle="${toggleKey}"]`);
+    const arrow = btn.querySelector("img");
+
+    if (!content) return;
+
+    btn.addEventListener("click", () => {
+      const isVisible = content.style.display === "block";
+
+      document.querySelectorAll(".toggle-content").forEach((div) => {
+        div.style.display = "none";
+      });
+      document.querySelectorAll(".toggle-btn img").forEach((img) => {
+        img.classList.remove("arrow-up");
+        img.classList.add("arrow-down");
+      });
+
+      content.style.display = isVisible ? "none" : "block";
+
+      if (!isVisible) {
+        arrow.classList.add("arrow-up");
+        arrow.classList.remove("arrow-down");
+      }
+    });
+  });
 });
