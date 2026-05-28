@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <label class="bold-text" for="date-picker">Add info and chat!</label>
             <p class="bold-gray">*mandatory field</p>        
       <input type="text" id="main-guest" placeholder="*Name and Surname" required></input>
-      <input type="text" id="host" placeholder="*Who did you book your stay with?" required>
+      <input type="text" id="host" placeholder="*Property / Hotel / Host Name" required>
         
       <!-- Sezione campi facoltativi integrata nel bottone -->
       <div class="expandable-form">
