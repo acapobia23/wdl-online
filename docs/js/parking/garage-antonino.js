@@ -234,12 +234,12 @@ const sendMsg = method => {
     const lines = [
       `Hello! I'm staying at ${val("host")} I'd like to book this ${experience}.`,
       ``,
-      `👤 Name:  ${val("main-guest")}`,
-      `🏠 Host:  ${val("host")}`,
+      `Name:  ${val("main-guest")}`,
+        `Host:  ${val("host")}`,
       `🚗 Model car:  ${val("model-car")}`,
       `🚗 Licenze Plate numbers:${val("plate")}`,
-      `📧 Email: ${val("email")}`,
-      `📞 Phone: ${val("phone")}`,
+      `Email: ${val("email")}`,
+      `Phone: ${val("phone")}`,
     ];
   
     // Aggiungi arrivo se compilato
@@ -261,7 +261,7 @@ const sendMsg = method => {
     }
     
     if (val("optional-request")) {
-      lines.push(`📝 Notes: ${val("optional-request")}`);
+      lines.push(` Notes: ${val("optional-request")}`);
     }
   
     lines.push(``, `Looking forward to your reply!`);

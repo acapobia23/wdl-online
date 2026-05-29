@@ -129,16 +129,16 @@ const sendMsg = method => {
     const lines = [
       `Hello! I'd like to know more about ${experience}.`,
       ``,
-    `👤 Name:  ${val("main-guest")}`,
-    `🏠 Host:  ${val("host")}`,
-      `🧑‍🤝‍🧑 Adults: ${val("guest-picker")}`,
-      `👶 Minors: ${val("under-18")}`,
-      `📧 Email: ${val("email")}`,
-      `📞 Phone: ${val("phone")}`,
+    `Name:  ${val("main-guest")}`,
+      `Host:  ${val("host")}`,
+      `Adults: ${val("guest-picker")}`,
+      `Minors: ${val("under-18")}`,
+      `Email: ${val("email")}`,
+      `Phone: ${val("phone")}`,
     ];
   
     if (val("optional-request")) {
-      lines.push(`📝 Notes: ${val("optional-request")}`);
+      lines.push(` Notes: ${val("optional-request")}`);
     }
   
     lines.push(``, `Looking forward to your reply!`);

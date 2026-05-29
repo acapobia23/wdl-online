@@ -124,17 +124,17 @@ const sendMsg = method => {
     const lines = [
       `Hello! I'm staying at ${val("host")} I'd like to book this ${experience}.`,
       ``,
-      `📅 Date:  ${val("date-picker")}`,
-    `👤 Name:  ${val("main-guest")}`,
-    `🏠 Host:  ${val("host")}`,
-      `🧑‍🤝‍🧑 Adults: ${val("guest-picker")}`,
-      `👶 Minors: ${val("under-18")}`,
-      `📧 Email: ${val("email")}`,
-      `📞 Phone: ${val("phone")}`,
+      `Date:  ${val("date-picker")}`,
+    `Name:  ${val("main-guest")}`,
+      `Host:  ${val("host")}`,
+      `Adults: ${val("guest-picker")}`,
+      `Minors: ${val("under-18")}`,
+      `Email: ${val("email")}`,
+      `Phone: ${val("phone")}`,
     ];
   
     if (val("optional-request")) {
-      lines.push(`📝 Notes: ${val("optional-request")}`);
+      lines.push(` Notes: ${val("optional-request")}`);
     }
   
     lines.push(``, `Looking forward to your reply!`);

@@ -188,14 +188,14 @@ const sendMsg = method => {
     const lines = [
       `Hello! I'm staying at ${val("host")} I'd like to book this ${experience}.`,
       ``,
-      `👤 Name:  ${val("main-guest")}`,
-      `🏠 Host:  ${val("host")}`,
-      `📧 Email: ${val("email")}`,
-      `📞 Phone: ${val("phone")}`,
+      `Name:  ${val("main-guest")}`,
+        `Host:  ${val("host")}`,
+      `Email: ${val("email")}`,
+      `Phone: ${val("phone")}`,
     ];
   
     if (val("optional-request")) {
-      lines.push(`📝 Request: ${val("optional-request")}`);
+      lines.push(` Request: ${val("optional-request")}`);
     }
   
     lines.push(``, `Looking forward to your reply!`);
