@@ -53,33 +53,46 @@ document.addEventListener("DOMContentLoaded", () => {
 
       <form id="booking-form" class="booking-form" novalidate>
         <label class="bold-text" for="date-picker">Add info and chat!</label>
-        <div><p></p></div><p class="bold-gray">*mandatory field</p> 
-      <input type="text" id="main-guest" placeholder="*Name and Surname" required>
-  <input type="text" id="host" placeholder="*Property / Hotel / Host Name" required>
-  
-<!-- Sezione campi facoltativi integrata nel bottone -->
-<div class="expandable-form">
-  <button type="button" class="btn-form" id="toggle-form">
-    <span id="form-toggle-text">optional fields</span>
-    <img id="form-arrow" src="../../assets/img/icons/down-arrow.png" alt="Arrow" class="arrow-down" />
-  </button>
+        <div><p></p></div><p class="bold-gray">*mandatory field</p>
 
-  <div id="optional-fields" class="optional-fields">
-        <input type="text" id="date-picker" placeholder="Select a date" readonly>
-        <select id="guest-picker">
+        <input type="text" id="name-surname" placeholder="*Name and Surname" required>
+        <input type="text" id="host" placeholder="*Property / Hotel / Host Name" required>
+        <input type="text" id="pick-up-location" placeholder="*Pick-up Location" required>
+        <input type="text" id="drop-off-location" placeholder="*Drop-off Location" required>
+        <input type="text" id="date-picker" placeholder="*Select a Date" readonly required>
+        <input type="time" id="pick-up-time" placeholder="*Pick-up Time" required>
+
+        <select id="guest-picker" required>
           ${[...Array(6)].map((_,i)=>
-            `<option value="${i+1}">${i+1} Passengers${i>0?'s':''}</option>`
+            `<option value="${i+1}">${i+1} Adult${i>0?'s':''}</option>`
           ).join('')}
         </select>
-        <input type="email" id="email" placeholder="example@email.com">
-        <input type="tel" id="phone" placeholder="+39 123 456 7890">
-        <textarea id="optional-request" placeholder="Optional Request"></textarea>
-      </div>
-    </div>
-    <br>
-  
-  <!-- Bottoni di invio -->
-  <button type="submit" class="check-btn">Send and chat via WhatsApp</button>
+        <select id="under-18">
+          <option value="0">No Children</option>
+          ${[...Array(6)].map((_,i)=>
+            `<option value="${i+1}">${i+1} Child${i>0?'ren':''}</option>`
+          ).join('')}
+        </select>
+
+        <!-- Sezione campi facoltativi integrata nel bottone -->
+        <div class="expandable-form">
+          <button type="button" class="btn-form" id="toggle-form">
+            <span id="form-toggle-text">optional fields</span>
+            <img id="form-arrow" src="../../assets/img/icons/down-arrow.png" alt="Arrow" class="arrow-down" />
+          </button>
+
+          <div id="optional-fields" class="optional-fields">
+            <input type="text"  id="luggage"          placeholder="Number of Luggage">
+            <input type="text"  id="flight-train"     placeholder="Flight / Train Number">
+            <input type="email" id="email"            placeholder="example@email.com">
+            <input type="tel"   id="phone"            placeholder="+39 123 456 7890">
+            <textarea           id="optional-request" placeholder="Optional Request"></textarea>
+          </div>
+        </div>
+        <br>
+
+        <!-- Bottoni di invio -->
+        <button type="submit" class="check-btn">Send and chat via WhatsApp</button>
         <div><p></p></div>
         <button type="button" id="submit-email" class="check-btn">Send via email</button>
         <p style="color: #888888;">No auto-replies, no bot</p>
@@ -109,8 +122,6 @@ const sendMsg = method => {
     const val = id => document.getElementById(id)?.value.trim() || '';
     const experience = document.querySelector(".section-title")?.innerText.trim() || document.title.trim() || "Unknown Experience";
 
-    // 🔹 Apri la finestra SUBITO (sincrono), prima di qualsiasi async
-    // Altrimenti Safari/iOS blocca window.open come popup
     let newWindow = null;
     if (method === "whatsapp") {
       newWindow = window.open("", "_blank");
@@ -120,27 +131,40 @@ const sendMsg = method => {
       method: method,
       experience: experience
     });
-    
+
+    const children = val("under-18");
+    const guestsLine = children === "0"
+      ? `Adults:        ${val("guest-picker")}`
+      : `Adults:        ${val("guest-picker")}  |  Children: ${children}`;
+
     const lines = [
-      `Hello! I'm staying at ${val("host")} I'd like to book this ${experience}.`,
+      `Hello! I'd like to book: ${experience}.`,
       ``,
-      `Date:  ${val("date-picker")}`,
-    `Name:  ${val("main-guest")}`,
-      `Host:  ${val("host")}`,
-      `Adults: ${val("guest-picker")}`,
-      `Email: ${val("email")}`,
-      `Phone: ${val("phone")}`,
+      `Name:          ${val("name-surname")}`,
+      `Host:          ${val("host")}`,
+      `Date:          ${val("date-picker")}`,
+      `Pick-up Time:  ${val("pick-up-time")}`,
+      `Pick-up:       ${val("pick-up-location")}`,
+      `Drop-off:      ${val("drop-off-location")}`,
+      guestsLine,
     ];
-  
-    if (val("optional-request")) {
-      lines.push(` Notes: ${val("optional-request")}`);
-    }
-  
+
+    const luggage     = val("luggage");
+    const flightTrain = val("flight-train");
+    const email       = val("email");
+    const phone       = val("phone");
+    const notes       = val("optional-request");
+
+    if (luggage)     lines.push(`Luggage:        ${luggage}`);
+    if (flightTrain) lines.push(`Flight/Train:   ${flightTrain}`);
+    if (email)       lines.push(`Email:          ${email}`);
+    if (phone)       lines.push(`Phone:          ${phone}`);
+    if (notes)       lines.push(`Notes:          ${notes}`);
+
     lines.push(``, `Looking forward to your reply!`);
-  
+
     const msg = lines.join('\n');
-  
-    // 🔹 Aspetta GA4, poi naviga
+
     setTimeout(() => {
       if (method === "whatsapp") {
         const url = `https://wa.me/+393473119031?text=${encodeURIComponent(msg)}`;
@@ -150,10 +174,9 @@ const sendMsg = method => {
           window.location.href = url; // fallback se popup bloccato
         }
       } else {
-        const mailMsg = encodeURIComponent(msg);
-        window.location.href = `mailto:wheredolocals@gmail.com?subject=&body=${mailMsg}`;
+        window.location.href = `mailto:wheredolocals@gmail.com?subject=${encodeURIComponent(experience)}&body=${encodeURIComponent(msg)}`;
       }
-    }, 500); // 500ms è sufficiente per GA4
+    }, 500);
   };
   
 
