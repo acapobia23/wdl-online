@@ -191,20 +191,6 @@ h1, h2, h3, h4, h5, h6, a, button {
   box-sizing: border-box;
 }
 
-.booking-form input::placeholder,
-.booking-form textarea::placeholder {
-  color: #7f8c8d;
-  opacity: 1;
-}
-
-#pick-up-time {
-  color: black;
-}
-
-#pick-up-time:invalid {
-  color: black;
-}
-
 .booking-form select {
   appearance: none;
   -webkit-appearance: none;
@@ -781,5 +767,71 @@ h1, h2, h3, h4, h5, h6, a, button {
 
 .text-center {
   text-align: center;
+}
+
+/* Time input overlay placeholder: keeps native time input but shows readable text */
+.time-input-wrapper {
+  position: relative;
+}
+
+.time-input-wrapper input[type="time"] {
+  background: white;
+  position: relative;
+  z-index: 1;
+  padding-left: 16px; /* ensure space for placeholder */
+}
+
+.time-placeholder {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #888888;
+  pointer-events: none; /* allow taps to reach native input */
+  font-size: 14px;
+  z-index: 0;
+}
+
+.time-input-wrapper.focused .time-placeholder,
+.time-input-wrapper.has-value .time-placeholder {
+  display: none;
+}
+
+/* On very small screens make placeholder a bit smaller */
+@media (max-width: 400px) {
+  .time-placeholder { font-size: 13px; left: 12px; }
+}
+
+/* Children ages UI */
+.small-label {
+  display: block;
+  font-size: 13px;
+  color: #666;
+  margin-top: 8px;
+  margin-bottom: 4px;
+}
+
+.children-ages {
+  margin-top: 8px;
+  margin-bottom: 12px;
+}
+
+.children-note {
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.child-age-row {
+  margin-bottom: 8px;
+}
+
+.child-age-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #3BD2C9;
+  border-radius: 20px;
+  font-size: 14px;
+  box-sizing: border-box;
 }
 

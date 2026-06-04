@@ -60,26 +60,14 @@ document.addEventListener("DOMContentLoaded", () => {
         <input type="text" id="pick-up-location" placeholder="*Pick-up Location" required>
         <input type="text" id="drop-off-location" placeholder="*Drop-off Location" required>
         <input type="text" id="date-picker" placeholder="*Select a Date" readonly required>
-        <input
-          type="text"
-          id="pick-up-time"
-          placeholder="*Select a Time"
-          inputmode="numeric"
-          autocomplete="off"
-          pattern="^([01]?\\d|2[0-3]):[0-5]\\d$"
-          title="Use HH:MM format"
-          required
-        >
+        <div class="time-input-wrapper">
+          <input type="time" id="pick-up-time" required>
+          <span class="time-placeholder">*Select a Time</span>
+        </div>
 
         <select id="guest-picker" required>
           ${[...Array(6)].map((_,i)=>
             `<option value="${i+1}">${i+1} Adult${i>0?'s':''}</option>`
-          ).join('')}
-        </select>
-        <select id="under-18">
-          <option value="0">No Children</option>
-          ${[...Array(6)].map((_,i)=>
-            `<option value="${i+1}">${i+1} Child${i>0?'ren':''}</option>`
           ).join('')}
         </select>
 
@@ -91,6 +79,15 @@ document.addEventListener("DOMContentLoaded", () => {
           </button>
 
           <div id="optional-fields" class="optional-fields">
+            <label for="children-count" class="small-label"></label>
+            <select id="children-count">
+              <option value="0">No children</option>
+              ${[...Array(6)].map((_,i)=>
+                `<option value="${i+1}">${i+1} Child${i>0?'ren':''}</option>`
+              ).join('')}
+            </select>
+            <div id="children-ages" class="children-ages" aria-hidden="true"></div>
+
             <input type="text"  id="luggage"          placeholder="Number of Luggage">
             <input type="text"  id="flight-train"     placeholder="Flight / Train Number">
             <input type="email" id="email"            placeholder="example@email.com">
@@ -127,6 +124,61 @@ document.querySelector('.btn-form').addEventListener('click', () => {
     });
   }
 
+  // Time input placeholder overlay handling: keep native picker functional
+  const timeInput = document.getElementById('pick-up-time');
+  if (timeInput) {
+    const wrapper = timeInput.closest('.time-input-wrapper');
+    const updateTimePlaceholder = () => {
+      if (!wrapper) return;
+      if (timeInput.value) wrapper.classList.add('has-value');
+      else wrapper.classList.remove('has-value');
+    };
+
+    timeInput.addEventListener('input', updateTimePlaceholder);
+    timeInput.addEventListener('change', updateTimePlaceholder);
+    timeInput.addEventListener('focus', () => wrapper && wrapper.classList.add('focused'));
+    timeInput.addEventListener('blur', () => wrapper && wrapper.classList.remove('focused'));
+
+    // initialize state
+    updateTimePlaceholder();
+  }
+
+  // Children count -> generate age inputs to determine child seat need
+  const childrenCount = document.getElementById('children-count');
+  const childrenAgesContainer = document.getElementById('children-ages');
+  const renderChildrenAges = (count) => {
+    if (!childrenAgesContainer) return;
+    childrenAgesContainer.innerHTML = '';
+    if (!count || Number(count) === 0) {
+      childrenAgesContainer.setAttribute('aria-hidden', 'true');
+      return;
+    }
+    childrenAgesContainer.setAttribute('aria-hidden', 'false');
+    const note = document.createElement('div');
+    note.className = 'children-note';
+    note.textContent = "Enter each child's age (years) to determine whether a child seat is required";
+    childrenAgesContainer.appendChild(note);
+    for (let i=0;i<count;i++){
+      const wrapper = document.createElement('div');
+      wrapper.className = 'child-age-row';
+      const input = document.createElement('input');
+      input.type = 'number';
+      input.min = '0';
+      input.max = '17';
+      input.placeholder = `Child #${i+1} age`;
+      input.className = 'child-age-input';
+      input.id = `child-age-${i}`;
+      wrapper.appendChild(input);
+      childrenAgesContainer.appendChild(wrapper);
+    }
+  };
+
+  if (childrenCount) {
+    childrenCount.addEventListener('change', (e) => renderChildrenAges(Number(e.target.value)));
+    // initialize if value preset
+    renderChildrenAges(Number(childrenCount.value || 0));
+  }
+
 const sendMsg = method => {
     const val = id => document.getElementById(id)?.value.trim() || '';
     const experience = document.querySelector(".section-title")?.innerText.trim() || document.title.trim() || "Unknown Experience";
@@ -141,7 +193,7 @@ const sendMsg = method => {
       experience: experience
     });
 
-    const children = val("under-18");
+    const children = val("children-count") || '0';
     const guestsLine = children === "0"
       ? `Adults:        ${val("guest-picker")}`
       : `Adults:        ${val("guest-picker")}  |  Children: ${children}`;
@@ -169,6 +221,13 @@ const sendMsg = method => {
     if (email)       lines.push(`Email:          ${email}`);
     if (phone)       lines.push(`Phone:          ${phone}`);
     if (notes)       lines.push(`Notes:          ${notes}`);
+
+      // collect children ages if present
+      const ageEls = Array.from(document.querySelectorAll('.child-age-input'));
+      if (ageEls.length) {
+        const ages = ageEls.map(el => el.value.trim() || 'unknown');
+        lines.push(`Children ages:  ${ages.join(', ')}`);
+      }
 
     lines.push(``, `Looking forward to your reply!`);
 
