@@ -60,7 +60,16 @@ document.addEventListener("DOMContentLoaded", () => {
         <input type="text" id="pick-up-location" placeholder="*Pick-up Location" required>
         <input type="text" id="drop-off-location" placeholder="*Drop-off Location" required>
         <input type="text" id="date-picker" placeholder="*Select a Date" readonly required>
-        <input type="time" id="pick-up-time" placeholder="*Pick-up Time" required>
+        <input
+          type="text"
+          id="pick-up-time"
+          placeholder="*Select a Time"
+          inputmode="numeric"
+          autocomplete="off"
+          pattern="^([01]?\\d|2[0-3]):[0-5]\\d$"
+          title="Use HH:MM format"
+          required
+        >
 
         <select id="guest-picker" required>
           ${[...Array(6)].map((_,i)=>

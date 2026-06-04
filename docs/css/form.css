@@ -191,6 +191,20 @@ h1, h2, h3, h4, h5, h6, a, button {
   box-sizing: border-box;
 }
 
+.booking-form input::placeholder,
+.booking-form textarea::placeholder {
+  color: #7f8c8d;
+  opacity: 1;
+}
+
+#pick-up-time {
+  color: black;
+}
+
+#pick-up-time:invalid {
+  color: black;
+}
+
 .booking-form select {
   appearance: none;
   -webkit-appearance: none;
