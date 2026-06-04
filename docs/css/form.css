@@ -772,6 +772,8 @@ h1, h2, h3, h4, h5, h6, a, button {
 /* Time input overlay placeholder: keeps native time input but shows readable text */
 .time-input-wrapper {
   position: relative;
+  display: inline-block;
+  width: 100%;
 }
 
 .time-input-wrapper input[type="time"] {
@@ -779,22 +781,37 @@ h1, h2, h3, h4, h5, h6, a, button {
   position: relative;
   z-index: 1;
   padding-left: 16px; /* ensure space for placeholder */
+  color: transparent;
+}
+
+.time-input-wrapper input[type="time"]::-webkit-calendar-picker-indicator {
+  color: transparent;
+  background: transparent;
 }
 
 .time-placeholder {
   position: absolute;
   left: 16px;
-  top: 50%;
+  top: 40%;
   transform: translateY(-50%);
   color: #888888;
   pointer-events: none; /* allow taps to reach native input */
-  font-size: 14px;
-  z-index: 0;
+  font-size: 15px;
+  z-index: 2;
+  font-family: 'Poppins', sans-serif;
+  display: block;
+  min-width: 100px;
+  min-height: 20px;
+  white-space: nowrap;
 }
 
 .time-input-wrapper.focused .time-placeholder,
 .time-input-wrapper.has-value .time-placeholder {
   display: none;
+}
+
+.time-input-wrapper.has-value input[type="time"] {
+  color: black;
 }
 
 /* On very small screens make placeholder a bit smaller */
