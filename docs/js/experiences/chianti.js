@@ -1,4 +1,65 @@
 document.addEventListener("DOMContentLoaded", () => {
+  const initCardPopup = selector => {
+    document.querySelectorAll(selector).forEach(trigger => {
+      const openPopup = () => {
+        const overlay = document.createElement("div");
+        overlay.className = "popup-overlay";
+
+        const panel = document.createElement("div");
+        panel.className = "popup-panel";
+
+        const closeButton = document.createElement("button");
+        closeButton.type = "button";
+        closeButton.className = "popup-close";
+        closeButton.setAttribute("aria-label", "Close popup");
+        closeButton.textContent = "×";
+
+        const card = trigger.cloneNode(true);
+        card.removeAttribute("id");
+        card.classList.add("popup-card");
+        card.setAttribute("tabindex", "-1");
+
+        panel.append(closeButton, card);
+        overlay.appendChild(panel);
+        document.body.appendChild(overlay);
+
+        const closePopup = () => {
+          overlay.classList.remove("is-open");
+          document.removeEventListener("keydown", onKeyDown);
+          window.setTimeout(() => overlay.remove(), 220);
+        };
+
+        const onKeyDown = event => {
+          if (event.key === "Escape") {
+            closePopup();
+          }
+        };
+
+        overlay.addEventListener("click", event => {
+          if (event.target === overlay || event.target === closeButton) {
+            closePopup();
+          }
+        });
+
+        document.addEventListener("keydown", onKeyDown);
+        requestAnimationFrame(() => {
+          overlay.classList.add("is-open");
+          closeButton.focus({ preventScroll: true });
+        });
+      };
+
+      trigger.addEventListener("click", openPopup);
+      trigger.addEventListener("keydown", event => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          openPopup();
+        }
+      });
+    });
+  };
+
+  initCardPopup("#pop-up");
+
   // === GALLERY ===
   const galleryContainer = document.getElementById("gallery-container");
   if (galleryContainer) {

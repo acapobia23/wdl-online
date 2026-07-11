@@ -461,6 +461,65 @@ h1, h2, h3, h4, h5, h6, a, button {
   display: none;
 }
 
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(10, 10, 10, 0.72);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.22s ease, visibility 0.22s ease;
+}
+
+.popup-overlay.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.popup-panel {
+  position: relative;
+  width: min(100%, 420px);
+}
+
+.popup-card {
+  width: 100%;
+  cursor: default;
+  transform: scale(0.92) translateY(18px);
+  opacity: 0;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.popup-overlay.is-open .popup-card {
+  transform: scale(1) translateY(0);
+  opacity: 1;
+}
+
+.popup-close {
+  position: absolute;
+  top: -14px;
+  right: -14px;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 50%;
+  background: #ffffff;
+  color: #111111;
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.22);
+}
+
+.popup-close:hover {
+  transform: scale(1.05);
+}
+
 /* Bottone dettagli simile al tuo license-btn */
 .toggle-btn {
   width: 100%;
