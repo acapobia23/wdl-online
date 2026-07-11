@@ -188,11 +188,6 @@ const sendMsg = method => {
       newWindow = window.open("", "_blank");
     }
 
-    gtag("event", "form_contact", {
-      method: method,
-      experience: experience
-    });
-
     const children = val("children-count") || '0';
     const guestsLine = children === "0"
       ? `Adults:        ${val("guest-picker")}`
@@ -209,6 +204,20 @@ const sendMsg = method => {
       `Drop-off:      ${val("drop-off-location")}`,
       guestsLine,
     ];
+
+    const adults = parseInt(val("guest-picker"), 10) || 0;
+    const childrenCount = parseInt(children, 10) || 0;
+    const totalPeople = adults + childrenCount;
+
+    gtag("event", "form_contact", {
+      method: method,
+      experience: experience,
+      host: val("host"),
+      date: val("date-picker"),
+      pickup_location: val("pick-up-location"),
+      dropoff_location: val("drop-off-location"),
+      total_people: totalPeople
+    });
 
     const luggage     = val("luggage");
     const flightTrain = val("flight-train");
