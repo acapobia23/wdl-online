@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const galleryContainer = document.getElementById("gallery-container");
   if (galleryContainer) {
     const imageFiles = ["00.jpg","01.jpg","02.jpg"]; //file name of pic
-    const basePath = "../../assets/img/boxes/restaurants/caffe-amerini/"; //path pic
+    const basePath = "../../assets/img/boxes/restaurants/rivoire/"; //path pic
     const images = imageFiles.map(f => basePath + f);
 //cambiare alt name linea 14
     galleryContainer.innerHTML = `
@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <button class="gallery-btn prev">&#10094;</button>
         <div class="gallery-track-container">
           <div class="gallery-track">
-            ${images.map(src => `<div class="gallery-slide"><img src="${src}" alt="pizzaiuolo" /></div>`).join('')}
+            ${images.map(src => `<div class="gallery-slide"><img src="${src}" alt="rivoire" /></div>`).join('')}
           </div>
         </div>
         <button class="gallery-btn next">&#10095;</button>
