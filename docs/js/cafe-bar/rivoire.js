@@ -2,8 +2,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // === GALLERY ===
   const galleryContainer = document.getElementById("gallery-container");
   if (galleryContainer) {
-    const imageFiles = ["01.jpg","02.jpg","03.jpg","04.jpg"]; //file name of pic
-    const basePath = "../../assets/img/boxes/restaurants/odeon/"; //path pic
+    const imageFiles = ["03.jpg", "02.jpg", "01.jpg", "04.jpg", "05.jpg", "06.jpg", "07.jpg", "08.jpg", "00.jpg"]; //file name of pic
+    const basePath = "../../assets/img/boxes/cafe-bar/rivoire/"; //path pic
     const images = imageFiles.map(f => basePath + f);
 //cambiare alt name linea 14
     galleryContainer.innerHTML = `
@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <button class="gallery-btn prev">&#10094;</button>
         <div class="gallery-track-container">
           <div class="gallery-track">
-            ${images.map(src => `<div class="gallery-slide"><img src="${src}" alt="Odeon" /></div>`).join('')}
+            ${images.map(src => `<div class="gallery-slide"><img src="${src}" alt="rivoire" /></div>`).join('')}
           </div>
         </div>
         <button class="gallery-btn next">&#10095;</button>
@@ -53,18 +53,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
       <form id="booking-form" class="booking-form" novalidate>
         <label class="bold-text" for="date-picker">Add info and chat!</label>
-        <div><p></p></div><p class="bold-gray">*mandatory field</p>
-      <input type="text" id="main-guest" placeholder="*Name and Surname" required>
-  <input type="text" id="host" placeholder="*Property / Hotel / Host Name" required>
-  
-<!-- Sezione campi facoltativi integrata nel bottone -->
-<div class="expandable-form">
-  <button type="button" class="btn-form" id="toggle-form">
-    <span id="form-toggle-text">optional fields</span>
-    <img id="form-arrow" src="../../assets/img/icons/down-arrow.png" alt="Arrow" class="arrow-down" />
-  </button>
+            <p class="bold-gray">*mandatory field</p>        
+      <input type="text" id="main-guest" placeholder="*Name and Surname" required></input>
+      <input type="text" id="host" placeholder="*Property / Hotel / Host Name" required>
+      <!-- Sezione campi facoltativi integrata nel bottone -->
+      <div class="expandable-form">
+        <button type="button" class="btn-form" id="toggle-form">
+          <span id="form-toggle-text">optional fields</span>
+          <img id="form-arrow" src="../../assets/img/icons/down-arrow.png" alt="Arrow" class="arrow-down" />
+        </button>
 
-  <div id="optional-fields" class="optional-fields">
+        <div id="optional-fields" class="optional-fields">
+
         <input type="text" id="date-picker" placeholder="Select a date" readonly>
         <select id="guest-picker">
           ${[...Array(6)].map((_,i)=>
@@ -80,12 +80,13 @@ document.addEventListener("DOMContentLoaded", () => {
         <input type="email" id="email" placeholder="example@email.com">
         <input type="tel" id="phone" placeholder="+39 123 456 7890">
         <textarea id="optional-request" placeholder="Optional Request"></textarea>
-      </div>
-    </div>
-    <br>
-  
-  <!-- Bottoni di invio -->
-  <button type="submit" class="check-btn">Send and chat via WhatsApp</button>
+
+        </div>
+        </div>
+        <br>
+    
+        <!-- Bottoni di invio -->
+        <button type="submit" class="check-btn">Send and chat via WhatsApp</button>
         <div><p></p></div>
         <button type="button" id="submit-email" class="check-btn">Send via email</button>
         <p style="color: #888888;">No auto-replies, no bot</p>
@@ -164,31 +165,30 @@ const sendMsg = method => {
   };
   
 
-// Gestione del bottone WhatsApp (submit del form)
-document.getElementById("booking-form")
-  .addEventListener("submit", e => {
-    e.preventDefault();
-    const form = e.target;
+  // Gestione del bottone WhatsApp (submit del form)
+  document.getElementById("booking-form")
+    .addEventListener("submit", e => {
+      e.preventDefault();
+      const form = e.target;
 
-    if (form.checkValidity()) {
-      sendMsg("whatsapp");
-    } else {
-      form.reportValidity(); // Mostra messaggi di errore dei campi
-    }
-  });
+      if (form.checkValidity()) {
+        sendMsg("whatsapp");
+      } else {
+        form.reportValidity(); // Mostra messaggi di errore dei campi
+      }
+    });
 
-// Gestione del bottone email (click separato)
-document.getElementById("submit-email")
-  .addEventListener("click", () => {
-    const form = document.getElementById("booking-form");
+  // Gestione del bottone email (click separato)
+  document.getElementById("submit-email")
+    .addEventListener("click", () => {
+      const form = document.getElementById("booking-form");
 
-    if (form.checkValidity()) {
-      sendMsg("email");
-    } else {
-      form.reportValidity(); // Mostra messaggi di errore dei campi
-    }
-  });
-
+      if (form.checkValidity()) {
+        sendMsg("email");
+      } else {
+        form.reportValidity(); // Mostra messaggi di errore dei campi
+      }
+    });
   }
 
   // === HEADER LOGO ===
@@ -204,5 +204,39 @@ document.getElementById("submit-email")
       header.style.transform = 'translateY(0)';
     }
     lastY = y;
+  });
+});
+
+// === TOGGLE FUNCTIONALITY ===
+document.addEventListener("DOMContentLoaded", () => {
+  const toggleButtons = document.querySelectorAll(".toggle-btn");
+
+  toggleButtons.forEach((btn) => {
+    const toggleKey = btn.dataset.toggle; // Leggi l'id dal data attribute
+    const content = document.querySelector(`.toggle-content[data-toggle="${toggleKey}"]`);
+    const arrow = btn.querySelector("img");
+
+    if (!content) return; // Protezione: se il content non esiste, salta
+
+    btn.addEventListener("click", () => {
+      const isVisible = content.style.display === "block";
+
+      // Chiudi tutte le altre sezioni
+      document.querySelectorAll(".toggle-content").forEach((div) => {
+        div.style.display = "none";
+      });
+      document.querySelectorAll(".toggle-btn img").forEach((img) => {
+        img.classList.remove("arrow-up");
+        img.classList.add("arrow-down");
+      });
+
+      // Apri solo la sezione cliccata
+      content.style.display = isVisible ? "none" : "block";
+
+      if (!isVisible) {
+        arrow.classList.add("arrow-up");
+        arrow.classList.remove("arrow-down");
+      }
+    });
   });
 });
