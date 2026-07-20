@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
+ldocument.addEventListener("DOMContentLoaded", () => {
   // === GALLERY ===
   const galleryContainer = document.getElementById("gallery-container");
   if (galleryContainer) {
