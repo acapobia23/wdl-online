@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Uffizi Gallery - Where Do Locals</title>
+
+  <link rel="stylesheet" href="../../../css/form.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
+  <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EH7YNQHCH0"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-EH7YNQHCH0');
+  </script>
+  <link rel="icon" href="../../../assets/img/headers/cupola-logo.png" type="image/png">
+</head>
+
+<body data-form-type="antico-ristoro">
+
+  <a href="../../../index.html" class="header-link">
+        <header style="position:relative; min-height:50px;">
+          <img src="../../../assets/img/svg/logoWDL.svg" alt="Where Do Locals Logo" style="position:absolute; top:70%; left:50%; transform:translateX(-50%) scale(1); opacity:1; width:295px; height:auto; z-index:10;" />
+        </header>
+  </a>
+
+  <div class="container">
+    <br><br><br>
+
+    <h2 class="section-title">Uffizi Gallery</h2>
+
+    <div id="gallery-container"></div>
+
+    <!-- DESCRIPTION SECTION -->
+    <section class="description">
+        <hr><br>
+
+        <p>
+            Join a guided visit to one of the most famous museums in the world: the Uffizi Gallery. Discover its extraordinary art collection alongside an expert local guide who will introduce you to the most important masterpieces of the Italian Renaissance.
+        </p>
+
+        <p>
+            As part of a semi-private tour, you'll follow a chronological route through the gallery, travelling through time from Byzantine art in Tuscany to the wonders of the Renaissance. At the end of the guided visit, you'll have time to explore the Gallery on your own or enjoy a snack at the café terrace overlooking Palazzo Vecchio and Piazza della Signoria.
+        </p>
+
+        <hr><br>
+
+        <!-- TOGGLE 1 — THE VISIT -->
+        <button class="toggle-btn" data-toggle="the-visit">
+            <span>The Visit</span>
+            <img src="../../../assets/img/icons/down-arrow.png" alt="Arrow" class="arrow-down" />
+        </button>
+
+        <div class="toggle-content" data-toggle="the-visit" style="display: none;">
+            <div style="margin: 10px 24px 20px 24px;">
+                <br>
+                <p>
+                    Your certified guide will lead you through a chronological path and explain the history, techniques, and stories behind the Uffizi's most significant works. The semi-private group has a maximum of 15 people, making it easier to follow the tour and ask questions.
+                </p>
+                <br>
+                <p>
+                    Once the guided visit is over, you can continue exploring the Gallery independently or relax at the café while taking in the view from the terrace.
+                </p>
+            </div>
+            <hr>
+        </div>
+
+        <br>
+
+        <!-- TOGGLE 2 — MASTERPIECES -->
+        <button class="toggle-btn" data-toggle="masterpieces">
+            <span>Masterpieces You'll See</span>
+            <img src="../../../assets/img/icons/down-arrow.png" alt="Arrow" class="arrow-down" />
+        </button>
+
+        <div class="toggle-content" data-toggle="masterpieces" style="display: none;">
+            <div style="margin: 10px 24px 20px 24px;">
+                <br>
+                <p>
+                    The Uffizi welcomes more than a million visitors every year to admire its extraordinary collection. Among the artists represented are Michelangelo, Giotto, Botticelli, Caravaggio, Leonardo da Vinci, and many other protagonists of Italian art.
+                </p>
+            </div>
+            <hr>
+        </div>
+
+        <br>
+
+        <!-- TOGGLE 3 — TOUR FEATURES -->
+        <button class="toggle-btn" data-toggle="tour-features">
+            <span>Tour Features</span>
+            <img src="../../../assets/img/icons/down-arrow.png" alt="Arrow" class="arrow-down" />
+        </button>
+
+        <div class="toggle-content" data-toggle="tour-features" style="display: none;">
+            <div style="margin: 10px 24px 20px 24px;">
+                <br>
+                <ul>
+                    <li><strong>Price:</strong> starting from €65 per person</li>
+                    <li><strong>Duration:</strong> 1h 30m</li>
+                    <li><strong>Entrance ticket:</strong> included</li>
+                    <li><strong>Group:</strong> semi-private, maximum 15 people</li>
+                    <li><strong>Guide:</strong> certified guide</li>
+                </ul>
+                <br>
+                <p>The tour runs every 30 minutes from 9:30 AM to 4:30 PM. Each time slot is offered in a different language: English, German, French, Italian, or Spanish.</p>
+            </div>
+        </div>
+
+        <br><hr><br>
+
+        <!-- BOOKING INFORMATION -->
+        <div style="margin: 10px 24px 20px 24px;">
+            <h4>Need Help Booking?</h4><br>
+            <p style="margin-left: 15px;">
+                Use the chat form below to contact Francesco, find out the starting time in your preferred language, and secure your reservation.
+            </p>
+        </div>
+        <br><hr><br>
+    </section>
+
+    <div id="form-container"></div>
+    <br><br><br><br><br>
+    <div class="icon-links">
+        <a href="https://wa.me/+393473119031" class="text-decoration-none text-dark">
+            <img src="../../../assets/img/icons/whatsapp.png" alt="contact" />
+        </a>
+        <a href="medium-small-group.html">
+            <img src="../../../assets/img/icons/back-arrow.png" alt="back" />
+        </a>
+    </div>
+  </div>
+</body>
+</html>
+
+<script src="../../../js/discover-florence/medium-small-group/uffizi-gallery.js"></script>

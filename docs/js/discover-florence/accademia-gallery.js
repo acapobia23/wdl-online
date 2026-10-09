@@ -25,9 +25,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const galleryContainer = document.getElementById("gallery-container");
   if (galleryContainer) {
     // Nomi dei file immagine (modificare le estensioni se sono .webp, .png o altro)
-    const imageFiles = ["01.jpg", "02.jpg", "03.jpg", "04.jpg"]; 
+    const imageFiles = ["01.jpg", "02.jpg", "03.jpg"]; 
     // Percorso cartella immagini di questo ristorante
-    const basePath = "../../../assets/img/boxes/experience/medium-small-group/highlights-of-tuscany/"; 
+    const basePath = "../../assets/img/boxes/discover-florence/accademia-gallery/"; 
     const images = imageFiles.map(f => basePath + f);
 
     galleryContainer.innerHTML = `
@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <button class="gallery-btn prev">&#10094;</button>
         <div class="gallery-track-container">
           <div class="gallery-track">
-            ${images.map(src => `<div class="gallery-slide"><img src="${src}" alt="Highlights of Tuscany" /></div>`).join('')}
+            ${images.map(src => `<div class="gallery-slide"><img src="${src}" alt="Accademia Gallery" /></div>`).join('')}
           </div>
         </div>
         <button class="gallery-btn next">&#10095;</button>
@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="expandable-form">
           <button type="button" class="btn-form" id="toggle-form">
             <span id="form-toggle-text">optional fields</span>
-            <img id="form-arrow" src="../../../assets/img/icons/down-arrow.png" alt="Arrow" class="arrow-down" />
+            <img id="form-arrow" src="../../assets/img/icons/down-arrow.png" alt="Arrow" class="arrow-down" />
           </button>
 
           <div id="optional-fields" class="optional-fields">

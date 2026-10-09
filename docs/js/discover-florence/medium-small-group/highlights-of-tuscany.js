@@ -25,9 +25,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const galleryContainer = document.getElementById("gallery-container");
   if (galleryContainer) {
     // Nomi dei file immagine (modificare le estensioni se sono .webp, .png o altro)
-    const imageFiles = ["01.jpg", "02.jpg", "03.jpg"]; 
+    const imageFiles = ["01.jpg", "02.jpg", "03.jpg", "04.jpg"]; 
     // Percorso cartella immagini di questo ristorante
-    const basePath = "../../../assets/img/boxes/experience/medium-small-group/cinque-terre/"; 
+    const basePath = "../../../assets/img/boxes/discover-florence/medium-small-group/highlights-of-tuscany/"; 
     const images = imageFiles.map(f => basePath + f);
 
     galleryContainer.innerHTML = `
@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <button class="gallery-btn prev">&#10094;</button>
         <div class="gallery-track-container">
           <div class="gallery-track">
-            ${images.map(src => `<div class="gallery-slide"><img src="${src}" alt="Cinque Terre" /></div>`).join('')}
+            ${images.map(src => `<div class="gallery-slide"><img src="${src}" alt="Highlights of Tuscany" /></div>`).join('')}
           </div>
         </div>
         <button class="gallery-btn next">&#10095;</button>
