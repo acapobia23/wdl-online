@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Nomi dei file immagine (modificare le estensioni se sono .webp, .png o altro)
     const imageFiles = ["01.jpg", "02.jpg", "03.jpg"]; 
     // Percorso cartella immagini di questo ristorante
-    const basePath = "../../assets/img/boxes/discover-florence/accademia-gallery/"; 
+    const basePath = "../../../assets/img/boxes/discover-florence/accademia-gallery/"; 
     const images = imageFiles.map(f => basePath + f);
 
     galleryContainer.innerHTML = `
