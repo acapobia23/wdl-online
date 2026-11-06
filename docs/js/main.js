@@ -102,7 +102,7 @@ const pageKeywords = [
       "carpool", "car-sharing", "bike", "e-bike", "bicycle", "scooter", "e-scooter", "micro-mobility", 
       "logistics", "delivery", "route", "navigation", "traffic", "congestion", "lane", "road", "highway", 
       "parking", "garage", "station", "terminal", "hub", "metro", "subway", "train", "railway", "monorail", 
-      "cable-car", "ferry", "ship", "airplane", "airport", "rideshare", "pulman", "pullman", "autobus"
+      "cable-car", "ferry", "ship", "airplane", "airport", "rideshare", "pulman", "pullman", "autobus", "florence", "Florence", "firenze", "Firenze"
     ]
   },
   {
